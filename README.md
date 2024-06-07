@@ -17,7 +17,7 @@ MuMeStar (Mutiple Menu Star for OLED) 是一个用于单色OLED屏幕的多级�
 		- Fontsize: (Data): 自由调节菜单字号
 		- Brightness (Data): 自由调节屏幕亮度
 	- Hello (Parent)
-		- Sayhello (Once): "Hello MMS!"
+		- Sayhello (Once): "Hello MuMeStar!"
 		- Smile (Loop): 眼珠不断转动 
 	- About (Once): 显示项目信息
 	- Game (Parent)
