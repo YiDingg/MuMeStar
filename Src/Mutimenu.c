@@ -3,6 +3,7 @@
 #include "MutiMenu.h"
 #include "MultiMenu_Data.h"
 
+
 /*-------------- 下面是菜单相关设置 -------------- */
 static const uint8_t Mysize_08[] = {12,20,28,36,44,52};
 static const uint8_t Mysize_12[] = {16,28,40,52};
@@ -13,16 +14,27 @@ static const Mysize_typedef Mysize[] = {
     {16,12, 4, Mysize_12},
     {24,16, 2, Mysize_16}
 };
+
 /*-------------- 上面是菜单相关设置 -------------- */
 
 
+/* -----------下面是自定义全局变量---------- */
+/*                                         */
+// Smile(Loop)专用
+static uint8_t smile_x = 0;  // Smile_Image 横坐标
+static uint8_t eye_x = 0;    // Eyes_x
+static uint8_t eye_y = 0;    // Eyes_y
+/*                                         */
+/* -----------下面是自定义全局变量---------- */
 
-/* -----------下面是菜单全局变量---------- */
+
+/* -----------下面是菜单内部全局变量---------- */
+enum KEY_NUM KEY_num = Zero;    //  当前键值, KEY_Pressed()和Menu_HAndler()专用
+enum KEY_NUM Jumped_key = Zero;    //   检查是否忽略了一次键值传递, 防止按键失灵 
+enum LOOP_STATE Loop_State = Loop_Run;  // Loop型菜单专用, 表示当前循环状态
 static uint8_t Insert = 0;    // Draw_menu()专用, 判断光标位置 -1return, 0不变, 1enter
 static uint8_t Current_showrange = 0;  // Draw_menu()专用, 判断当前显示范围，屏幕最大显示行数为 Mysize[fontsize].row_number
 static uint8_t UserChoose = 0; 		// Draw_menu()专用, 光标位置
-static uint8_t Data_keynum = 0;    // Data型菜单页面专用, 传递按键值, 1previous, 2enter, 3next, 5return
-static uint8_t Loop_keynum = 0;    // Loop型菜单页面专用, 传递按键值, 1previous, 2enter, 3next, 5return
 
 static uint8_t brightness = OLED_StartBrightness;  // 默认屏幕亮度
 static uint8_t brightness_setting = OLED_StartBrightness;    // "Brightness" 专用，用于调节屏幕当前亮度
@@ -45,7 +57,8 @@ Main[Main_Child_nodesnumber],
         Main_Hello_Sayhello[1],
         Main_Hello_Smile[1],
     Main_About[1],
-    Main_Menu4[1],
+    Main_Game[1],
+        Main_Game_Dinosaur[1],
     Main_Menu5[1],
     Main_Menu6[1];
 /* Menu_Root, Menu_0 */
@@ -55,9 +68,9 @@ static const Menu_typedef Main[Main_Child_nodesnumber] = {
     {"Main",    NULL, Main_Settings,  Draw_Menu,         2,Menu_Parent},
     {"Main",    NULL, Main_Hello,     Draw_Menu,         2,Menu_Parent},
     {"Main",    NULL, Main_About,     Func_About,    1,Menu_Once},
-    {"Main",    NULL, Main_Menu4,     0, 0},
-    {"Main",    NULL, Main_Menu5,     0, 0},
-    {"Main",    NULL, Main_Menu6,     0, 0},
+    {"Main",    NULL, Main_Game,      Draw_Menu, 1,Menu_Parent},
+    {"Main",    NULL, Main_Menu5,     0, 0,Menu_Parent},
+    {"Main",    NULL, Main_Menu6,     0, 0,Menu_Parent},
 };
 
 /* Menu_1 */
@@ -68,21 +81,22 @@ static const Menu_typedef Main_Settings[2] = {
 
 static const Menu_typedef Main_Hello[2] = {				
     {"Hello", Main,  Main_Hello_Sayhello,Func_Sayhello, 1,Menu_Once},
-    {"Hello", Main,  Main_Hello_Smile,0, 1,Menu_Loop}
-};
-
-static const Menu_typedef Main_About[1] = {{"About",Main,NULL,0, 0},};
-static const Menu_typedef Main_Menu4[1] = {{"Menu4",Main,NULL,0, 0},};
-static const Menu_typedef Main_Menu5[1] = {{"Menu5",Main,NULL,0, 0},};
-static const Menu_typedef Main_Menu6[1] = {{"Menu6",Main,NULL,0, 0},};
+    {"Hello", Main,  Main_Hello_Smile,Func_Smile_enter, 1,Menu_Loop}};
+static const Menu_typedef Main_About[1] = {
+    {"About",Main,NULL,Invalid_Operation, 0,}};
+static const Menu_typedef Main_Game[1] = {
+    {"Game",Main,Main_Game_Dinosaur,Func_Dinosaur_enter, 0,Menu_Loop}};
+static const Menu_typedef Main_Menu5[1] = {
+    {"Menu5",Main,NULL,Invalid_Operation, 0,}};
+static const Menu_typedef Main_Menu6[1] = {
+    {"Menu6",Main,NULL,Invalid_Operation, 0,}};
 
 /* Menu_2*/
-static const Menu_typedef Main_Settings_Fontsize[1] = {{"Fontsize",Main_Settings,NULL,Func_Fontsize_set, 0,Menu_Data}};
-static const Menu_typedef Main_Settings_Brightness[1] = {
-    {"Brightness",Main_Settings,NULL,Func_Brightness_set, 0, Menu_Data}
-};
-static const Menu_typedef Main_Hello_Sayhello[1] = {{"Sayhello",Main_Hello,NULL,NULL, 0,}};
-static const Menu_typedef Main_Hello_Smile[1] = {{"Smile",Main_Hello,NULL,NULL, 0,}};
+static const Menu_typedef Main_Game_Dinosaur[1] = {{"Dinosaur",Main_Game,NULL,Func_Dinosaur_run, 0,}};
+static const Menu_typedef Main_Settings_Fontsize[1] = {{"Fontsize",Main_Settings,NULL,Func_Fontsize_set, 0,}};
+static const Menu_typedef Main_Settings_Brightness[1] = {{"Brightness",Main_Settings,NULL,Func_Brightness_set, 0,}};
+static const Menu_typedef Main_Hello_Sayhello[1] = {{"Sayhello",Main_Hello,NULL,Invalid_Operation, 0,}};
+static const Menu_typedef Main_Hello_Smile[1] = {{"Smile",Main_Hello,NULL,Func_Smile_run, 0,}};
 /*                                                           */
 /* ---------------------- 上面是菜单栏定义 ------------------- */
 
@@ -94,7 +108,7 @@ static const Menu_typedef Main_Hello_Smile[1] = {{"Smile",Main_Hello,NULL,NULL, 
 */
 void Func_Sayhello(void){
     OLED_Buffer_clear();
-    OLED_ShowString_rowcentering(20,"Hello world!",16,1);
+    OLED_ShowString_rowcentering(20,"Hello MuMeStar!",16,1);
     OLED_Refresh();
 }
 
@@ -106,16 +120,16 @@ void Func_About(void){
     OLED_Buffer_clear();
     OLED_ShowString_rowcentering(0," [About] ",16,0);
     OLED_ShowString(0,16,"Author: Star",12,1);
-    OLED_ShowString(0,28,"Version: 2.4",12,1);
-    OLED_ShowString(0,40,"Time: 2024.5.13",12,1);
+    OLED_ShowString(0,28,"Version: 3.2",12,1);
+    OLED_ShowString(0,40,"Time: 2024.5.23",12,1);
     OLED_Refresh();
 }
 
 /**
  * @brief Brightness节点函数(Data_enter型) , 显示OLED亮度调节页面
  * @note 
-enter 进入 Brightness 选项时，KEY_Pressed() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
-然后当前菜单属性变为 Data，此后 KEY_Pressed() 通过 KEY_Data_pressed() 调用第二个节点函数(称为Data_set函数)
+enter 进入 Brightness 选项时，Menu_Handler() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
+然后当前菜单属性变为 Data，此后 Menu_Handler() 通过 KEY_Data_pressed() 调用第二个节点函数(称为Data_set函数)
 对于前者，显示亮度调节页面；对于后者，实现亮度的设置并反馈
  * @retval void
 */
@@ -135,14 +149,14 @@ void Func_Brightness_enter(void){
  * @retval void
 */
 void Func_Brightness_set(void){
-    switch (Data_keynum)
+    switch (KEY_num)
     {
-    case 1: // previous 
+    case Prevoius: // previous 
         brightness_setting = (brightness_setting>25)?(brightness_setting-25):1;    // 亮度为0时会自动熄灭屏幕, 需重新点亮
         OLED_WR_Byte_DMA(OLED_CMD,0x81,1);OLED_WR_Byte_DMA(OLED_CMD,brightness_setting,1);
         Func_Brightness_enter();
         break;
-    case 2: // enter
+    case Enter: // enter
         brightness = brightness_setting;
         OLED_Buffer_clear();
         OLED_ShowString_rowcentering(8,"config",24,1);
@@ -151,12 +165,12 @@ void Func_Brightness_set(void){
         HAL_Delay(1000);
         KEY_Parent_return();
         break;
-    case 3: // next
+    case Next: // next
         brightness_setting = (brightness_setting<201)?(brightness_setting+25):255;
         OLED_WR_Byte_DMA(OLED_CMD,0x81,1);OLED_WR_Byte_DMA(OLED_CMD,brightness_setting,1);
         Func_Brightness_enter();
         break;
-    case 5: // return
+    case Return: // return
         brightness_setting = brightness;
         OLED_WR_Byte_DMA(OLED_CMD,0x81,1);OLED_WR_Byte_DMA(OLED_CMD,brightness_setting,1);
         OLED_Buffer_clear();
@@ -172,8 +186,8 @@ void Func_Brightness_set(void){
 
 /**
  * @brief Fontsize节点函数(Data_enter型) , 显示字号调节页面
- * @note enter 进入 Fontsize 选项时，KEY_Pressed() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
-然后当前菜单属性变为 Data，此后 KEY_Pressed() 通过 KEY_Data_pressed() 调用第二个节点函数(称为Data_set函数)
+ * @note enter 进入 Fontsize 选项时，Menu_Handler() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
+然后当前菜单属性变为 Data，此后 Menu_Handler() 通过 KEY_Data_pressed() 调用第二个节点函数(称为Data_set函数)
 对于前者，显示字号调节页面；对于后者，实现字号的设置并反馈
  * @retval void
 */
@@ -192,13 +206,13 @@ void Func_Fontsize_enter(void){
  * @retval void
 */
 void Func_Fontsize_set(void){
-    switch (Data_keynum)
+    switch (KEY_num)
     {
-    case 1: // previous
+    case Prevoius: // previous
         fontsize_setting = (fontsize_setting==0)?2:(fontsize_setting-1);    
         Func_Fontsize_enter();
         break;
-    case 2: // enter
+    case Enter: // enter
         fontsize = fontsize_setting;
         OLED_Buffer_clear();
         OLED_ShowString_rowcentering(8,"config",24,1);
@@ -207,11 +221,11 @@ void Func_Fontsize_set(void){
         HAL_Delay(1000);
         KEY_Parent_return();
         break;
-    case 3: // next
+    case Next: // next
         fontsize_setting = (fontsize_setting==2)?0:(fontsize_setting+1);    
         Func_Fontsize_enter();
         break;
-    case 5: // return
+    case Return: // return
         fontsize_setting = fontsize;
         OLED_Buffer_clear();
         OLED_ShowString_rowcentering(8,"config",24,1);
@@ -224,61 +238,95 @@ void Func_Fontsize_set(void){
     }
 }
 
+void Smile_Draweyes(void){
+    // 左眼
+    OLED_DrawPoint(eye_x,eye_y,1);
+    OLED_DrawPoint(eye_x+1,eye_y,1);
+    OLED_DrawPoint(eye_x,eye_y+1,1);
+    OLED_DrawPoint(eye_x+1,eye_y+1,1);
+    // 右眼
+    OLED_DrawPoint(eye_x+38,eye_y,1);
+    OLED_DrawPoint(eye_x+38+1,eye_y,1);
+    OLED_DrawPoint(eye_x+38,eye_y+1,1);
+    OLED_DrawPoint(eye_x+38+1,eye_y+1,1);
+}
+
 /**
  * @brief Smile节点函数(Loop_enter型) , 进入循环
  * @retval void
 */
-/* void Func_Smile_enter(void){
-    uint8_t i,x0,x1,y1;
-    x0 = 32;
+void Func_Smile_enter(void){
+    Loop_State = Loop_Run;
+    smile_x = 32;eye_x = smile_x+10; eye_y = 11;
+    // 2*2眼珠, eye_x in [smile_x+10,smile_x+14], eye_y in [11,15]
     OLED_Buffer_clear();
-    OLED_ShowPicture(x0,0,64,64,Smile_Image,1);
+    OLED_ShowPicture(smile_x,0,64,64,Smile_Image,1);
+    // 左眼
+    Smile_Draweyes();
     OLED_Refresh();
-    for(i=0;i<255;i++){
-        OLED_Refresh();
-        if(Loop_keynum == 5){break;}
-    }
-} */
+}
 
 /**
- * @brief Smile节点函数(Loop_set型) , next 笑脸右移，previous 笑脸左移，enter 笑脸反色，return退出
+ * @brief Smile节点函数(Loop_run型) ,循环转动笑脸眼珠位置;
+ *  next 笑脸右移，previous 笑脸左移，enter 笑脸反色，return 退出
  * @retval void
 */
-/* void Func_Smile_set(void){
-    switch (Data_keynum)
+void Func_Smile_run(void){
+    switch (KEY_num)
     {
-    case 1: // previous 
-        brightness_setting = (brightness_setting>25)?(brightness_setting-25):1;    // 亮度为0时会自动熄灭屏幕, 需重新点亮
-        OLED_WR_Byte_DMA(OLED_CMD,0x81,1,1);OLED_WR_Byte_DMA(OLED_CMD,brightness_setting,1,1);
-        Func_Brightness_enter();
+    case Zero:      // Defult
+        if(Loop_State==Loop_Run){
+            // 清除原眼珠
+            OLED_DrawRectangle(smile_x+10,11,6,6,0,0);
+            OLED_DrawRectangle(smile_x+10+38,11,6,6,0,0);
+            // 获得新眼珠坐标
+            if(eye_y==11){
+                if(eye_x == smile_x+14 ){eye_y++;  }
+                else{eye_x++; }
+            }
+            else if (eye_y == 15){
+                if( eye_x==smile_x+10 ){eye_y--;}
+                else{ eye_x--; }
+            }
+            else{
+                if(eye_x==smile_x+10){eye_y--;}
+                else{eye_y++;}
+            }
+            Smile_Draweyes();
+            OLED_Refresh();
+        }
         break;
-    case 2: // enter
-        brightness = brightness_setting;
+    case Prevoius:  // previous 
+        eye_x = (smile_x == 0)?(64+10):(eye_x-8);
+        smile_x = (smile_x == 0)?64:(smile_x-8);
         OLED_Buffer_clear();
-        OLED_ShowString_rowcentering(8,"config",24,1);
-        OLED_ShowString_rowcentering(32,"success",24,1);
+        OLED_ShowPicture(smile_x,0,64,64,Smile_Image,1);
+        Smile_Draweyes();
         OLED_Refresh();
-        HAL_Delay(1000);
-        KEY_Parent_return();
+        KEY_num = Zero;
         break;
-    case 3: // next
-        brightness_setting = (brightness_setting<201)?(brightness_setting+25):255;
-        OLED_WR_Byte_DMA(OLED_CMD,0x81,1,1);OLED_WR_Byte_DMA(OLED_CMD,brightness_setting,1,1);
-        Func_Brightness_enter();
+    case Enter:     // enter
+        Loop_State = (Loop_State==Loop_Stop)?Loop_Run:Loop_Stop;
+        KEY_num = Zero;
         break;
-    case 5: // return
-        brightness_setting = brightness;
-        OLED_WR_Byte_DMA(OLED_CMD,0x81,1,1);OLED_WR_Byte_DMA(OLED_CMD,brightness_setting,1,1);
+    case Next:      // next
+        eye_x = (smile_x == 64)?(0+10):(eye_x+8);
+        smile_x = (smile_x==64)?0:(smile_x+8);
+        //smile_x = (smile_x+1)%65;
         OLED_Buffer_clear();
-        OLED_ShowString_rowcentering(8,"config",24,1);
-        OLED_ShowString_rowcentering(32,"cancel",24,1);
+        OLED_ShowPicture(smile_x,0,64,64,Smile_Image,1);
+        Smile_Draweyes();
         OLED_Refresh();
-        HAL_Delay(1000);
+        KEY_num = Zero;
+        break;
+    case Return:    // return
+        Loop_State = Loop_Stop;
         KEY_Parent_return();
+        KEY_num = Zero;
         break;
     default:return;
     }
-} */
+}
 
 /* -------------上面是菜单节点函数------------- */
 
@@ -296,9 +344,7 @@ void Func_Fontsize_set(void){
 */
 void Multimenu_Init(void){
     Insert = 0;
-    Current_showrange = 0;
-    Data_keynum = 0;    
-    Loop_keynum = 0;    
+    Current_showrange = 0; 
     brightness = OLED_StartBrightness;  
     brightness_setting = OLED_StartBrightness;    
     fontsize = OLED_StartFontsize;  
@@ -320,7 +366,7 @@ uint8_t Get_menu_index(Menu_typedef* menu){
     uint8_t x = 0;  // 当前菜单在父菜单中的索引值
     if( menu == Main ){ return 255; }
     else{
-        for( x=0;x<100;x++ ){   // 每个 Parent 型菜单最大子菜单数目为 99
+        for( x=0;x<30;x++ ){   // 每个 Parent 型菜单最大子菜单数目为 30
         if(menu->Parent[x].Child==menu){break;}
         }
         return x;
@@ -328,13 +374,15 @@ uint8_t Get_menu_index(Menu_typedef* menu){
 }
 
 /**
- * @brief 获取菜单
+ * @brief 获取菜单名字长度
  * @param void
  * @param 
  * @retval void
 */
 uint8_t Get_menu_namelenth(Menu_typedef* menu){
-    return 3;
+    uint8_t i;
+    while(' '<=*(menu->Name+i) && *(menu->Name+i)<='~'){i++;}    // 获取名字长度
+    return i;
 }
 
 /**
@@ -364,44 +412,51 @@ void Draw_Menu(void){
     uint8_t x; // 光标所在位置
     uint8_t rec_y; // 滑动条填充部分起始纵坐标
     uint8_t height; // 滑动条填充部分纵长
+    uint8_t index;  // 当前菜单在父级中的索引
+    index = Get_menu_index(Menu_Pointer);
     switch (Insert)
     {
     case 0: 
         x= UserChoose-Current_showrange;
+        rec_y = (uint8_t) 60*UserChoose/((Menu_Pointer==Main)?Main_Child_nodesnumber:Menu_Pointer->Parent->Child_nodes_number);
         break;
     case 1:
         x=0;Insert=0;
+        rec_y = 0;
         break;
     case 2: 
-        x = UserChoose; 
-        Current_showrange = (UserChoose-2)>=0?(UserChoose-2):0;
+        Current_showrange = ( UserChoose>=Mysize[fontsize].row_number )?(UserChoose+1-Mysize[fontsize].row_number):0;
+        x = UserChoose-Current_showrange; 
+        rec_y = (uint8_t) 60*UserChoose/((Menu_Pointer==Main)?Main_Child_nodesnumber:Menu_Pointer->Parent->Child_nodes_number);
         break;
     default:return;
     }
     while(' '<=*(Menu_Pointer->Name+i) && *(Menu_Pointer->Name+i)<='~'){i++;}    // 获取名字长度
     len = i;
-    if(Menu_Pointer->Parent == NULL){ // 若为主菜单
+    if(Menu_Pointer == Main){ // 若为主菜单
         n = (Main_Child_nodesnumber<=Mysize[fontsize].row_number)?Main_Child_nodesnumber:Mysize[fontsize].row_number;
-        rec_y = (uint8_t) 60*UserChoose/Main_Child_nodesnumber*((Insert==0)?1:0);
         height = (uint8_t) 60/Main_Child_nodesnumber-1;
     }
     else{
-        n = (Menu_Pointer->Parent->Child_nodes_number<=Mysize[fontsize].row_number)?Menu_Pointer->Parent->Child_nodes_number:Mysize[fontsize].row_number;
-        rec_y = (uint8_t) 60*UserChoose/Menu_Pointer->Parent->Child_nodes_number*((Insert==0)?1:0);
-        height = (uint8_t) 60/Menu_Pointer->Parent->Child_nodes_number-1;
+        n = ((Menu_Pointer->Parent+index)->Child_nodes_number<=Mysize[fontsize].row_number)?(Menu_Pointer->Parent+index)->Child_nodes_number:Mysize[fontsize].row_number;
+        height = (uint8_t) 60/(Menu_Pointer->Parent+index)->Child_nodes_number-1;
     }
     Insert=0;
     OLED_Buffer_clear();
-    // 显示光标
-    OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
-    // 显示菜单头与子菜单
+    // 显示菜单头
     for (i = 0; i < len+2; i++)
     {OLED_ShowChar(i*Mysize[fontsize].size_title/2,0,' ',Mysize[fontsize].size_title,0);}
     OLED_ShowString(Mysize[fontsize].size_title/2,0,(uint8_t *)Menu_Pointer->Name,Mysize[fontsize].size_title,0);
+    // 显示子菜单
     for (i = 0; i <n; i++)  
     {
         OLED_ShowString(12,Mysize[fontsize].Mysize_array[i],(uint8_t *)(Menu_Pointer+i+Current_showrange)->Child->Name,Mysize[fontsize].size_content,1);
+        if((Menu_Pointer+i+Current_showrange)->Child_Menuproperty == Menu_Parent){ 
+        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);
+        }
     }
+    // 显示光标
+    OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
     // 显示右侧滑动条
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
@@ -411,68 +466,85 @@ void Draw_Menu(void){
 
 /* -------------上面是菜单内部函数------------- */
 
-
 /* -------------下面是KEY函数(中断模式)------------- */
 /**
- * @brief 按键总控函数, 任意按键按下时触发, 提取当前菜单属性并调用对应函数
+ * @brief 任一按键按下时调用，传递键值
  * @retval void
 */
 void KEY_Pressed(uint8_t GPIO_pin){
     uint8_t ispressed;
-    // 获取当前菜单属性
-    enum MenuProperties property;   
-    // -----------------------------------------------------
-    HAL_Delay(15);  // 按键消抖
+    HAL_Delay(10);  // 按键消抖
     ispressed = 
     (HAL_GPIO_ReadPin(Key_return_GPIO_Port,Key_previous_Pin)==KEY_Active_Volt)||
     (HAL_GPIO_ReadPin(Key_next_GPIO_Port,Key_next_Pin)==KEY_Active_Volt)||
     (HAL_GPIO_ReadPin(Key_enter_GPIO_Port,Key_enter_Pin)==KEY_Active_Volt)||
     (HAL_GPIO_ReadPin(Key_return_GPIO_Port,Key_return_Pin)==KEY_Active_Volt);
-    /* 根据菜单属性调用函数 */
     if(ispressed == 1){     // 防误触
-        if(Menu_Pointer == Main){ property = Menu_Parent; }
-        else{property = Menu_Pointer->Parent[Get_menu_index(Menu_Pointer)].Child_Menuproperty;}
-        switch (property)
-        {
-        case Menu_Parent:   // Menu_Parents 型菜单
-            KEY_Parent_pressed(GPIO_pin);
-            break;
-        case Menu_Data:
-            KEY_Data_pressed(GPIO_pin);
-            break;
-        case Menu_Once:   // Menu_Parents 型菜单
-            KEY_Once_pressed(GPIO_pin);
-            break;
-        case Menu_Loop:   // Menu_Parents 型菜单
-            break;
-        default:
-            break;
+        switch (GPIO_pin){
+            case Key_previous_Pin:KEY_num = Prevoius;Jumped_key = Prevoius; break;
+            case Key_enter_Pin:KEY_num = Enter;Jumped_key = Enter;  break;
+            case Key_next_Pin:KEY_num = Next;Jumped_key = Next; break;
+            case Key_return_Pin:KEY_num = Return;Jumped_key = Return; break;
+            default: return;
         }
-        HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);  // 状态灯
     }
-    else {return;}
-    HAL_Delay(15);  // 按键消抖
+    HAL_Delay(10);  // 按键消抖
 }
 
 /**
- * @brief 经过 KEY_Pressed() 函数判定当前菜单为 Parent 型后调用此函数
- * @param GPIO_pin 被按下的 GPIO 口
+ * @brief 按键处理函数, 提取当前菜单属性并根据键值调用对应函数
  * @retval void
 */
-void KEY_Parent_pressed(uint8_t GPIO_pin){
-     switch (GPIO_pin){
-            case Key_previous_Pin:KEY_Parent_previous();break;
-            case Key_next_Pin:KEY_Parent_next();break;
-            case Key_enter_Pin:KEY_Parent_enter(); break;
-            case Key_return_Pin:KEY_Parent_return();break;
+void Menu_Handler(void){
+    // 检查是否忽略了一次键值
+    // if( Jumped_key != Zero ){KEY_num = Jumped_key;Jumped_key=Zero;Menu_Handler();}
+    
+    /* 根据菜单属性调用函数 */
+    enum MenuProperties property;   // 获取当前菜单属性
+    if(Menu_Pointer == Main){ property = Menu_Parent; }
+    else{property = Menu_Pointer->Parent[Get_menu_index(Menu_Pointer)].Child_Menuproperty;}
+    if(KEY_num!=Zero){
+        Jumped_key = Zero; HAL_GPIO_TogglePin(LED_GPIO_Port,Led_Pin);
+        switch (property){
+            case Menu_Parent:   // Menu_Parents 型菜单
+                KEY_Parent_pressed();KEY_num = Zero;
+                break;
+            case Menu_Data:
+                KEY_Data_pressed();KEY_num = Zero;
+                break;
+            case Menu_Once:   // Menu_Parents 型菜单
+                KEY_Once_pressed();KEY_num = Zero;
+                break;
+            case Menu_Loop:   // Menu_Parents 型菜单
+                KEY_Loop_pressed();
+                break;
+            default:Multimenu_Init();   // 限制未定义菜单
+        }
+    }
+    else{if(property==Menu_Loop){Jumped_key = Zero;KEY_Loop_pressed();}}
+}
+
+/**
+ * @brief 经过 Menu_Handler() 函数判定当前菜单为 Parent 型后调用此函数
+ * @retval void
+*/
+void KEY_Parent_pressed(void){
+     switch (KEY_num){
+            case Prevoius: KEY_Parent_previous();break;
+            case Enter:    KEY_Parent_enter();   break;
+            case Next:     KEY_Parent_next();    break;
+            case Return:   KEY_Parent_return();  break;
             default: return;
         }
 }
 
+/**
+ * @brief 返回父菜单, 经过 Menu_Handler() 函数判定当前菜单为 Parent 型后调用此函数, 或者在选项中手动调用
+ * @retval void
+*/
 void KEY_Parent_return(void){
     if(Menu_Pointer->Parent == NULL){   // 根菜单检测
-        Insert = 0;
-        return; // return不能省略
+        Insert = 0;return;
     }  
     else{ 
         Insert = 2;
@@ -483,7 +555,7 @@ void KEY_Parent_return(void){
 }
 
 void KEY_Parent_next(void){
-    uint8_t nodes_number = Menu_Pointer->Parent->Child_nodes_number;
+    uint8_t nodes_number = (Menu_Pointer->Parent+Get_menu_index(Menu_Pointer))->Child_nodes_number;
     if(Menu_Pointer == Main){nodes_number = Main_Child_nodesnumber;}    
     // 判断 当前菜单子项目数 与 最大显示行数 大小关系
     if(nodes_number<=Mysize[fontsize].row_number){
@@ -491,9 +563,8 @@ void KEY_Parent_next(void){
         else{UserChoose++;}
     }
     else{
-        if( UserChoose == Current_showrange + Mysize[fontsize].row_number -1 ){   // 到达显示下边界
-            if( UserChoose == nodes_number-1 )
-            {Current_showrange=0;UserChoose=0;}    // 到达选项下边界
+        if( UserChoose >= Current_showrange + Mysize[fontsize].row_number -1 ){   // 到达显示下边界
+            if( UserChoose >= nodes_number-1 ){Current_showrange=0;UserChoose=0;}    // 到达菜单选项下边界
             else{Current_showrange++;UserChoose++;}
         }
         else{   // 未到达显示边界
@@ -504,7 +575,7 @@ void KEY_Parent_next(void){
 }
 
 void KEY_Parent_previous(void){
-    uint8_t nodes_number = Menu_Pointer->Parent->Child_nodes_number;
+    uint8_t nodes_number = (Menu_Pointer->Parent+Get_menu_index(Menu_Pointer))->Child_nodes_number;
     if(Menu_Pointer == Main){nodes_number = Main_Child_nodesnumber;}    
     // 判断 当前菜单子项目数 与 最大显示行数 大小关系
     if(nodes_number<=Mysize[fontsize].row_number){
@@ -512,7 +583,7 @@ void KEY_Parent_previous(void){
         else{UserChoose--;}
     }
     else{
-        if( UserChoose == Current_showrange ){   // 到达显示上边界
+        if( UserChoose <= Current_showrange ){   // 到达显示上边界
             if( UserChoose == 0 )      // 到达选项上边界
             {Current_showrange=nodes_number-Mysize[fontsize].row_number; UserChoose=nodes_number-1;}    
             else{Current_showrange--; UserChoose--;}
@@ -541,82 +612,304 @@ void KEY_Parent_enter(void){
 
 
 /**
- * @brief 经过 KEY_Pressed() 函数判定当前菜单为 Data 型后调用此函数
- * @param GPIO_pin 被按下的 GPIO 口
+ * @brief 经过 Menu_Handler() 函数判定当前菜单为 Data 型后调用此函数
+ * @param KEY_num 键值
  * @retval void
 */
-void KEY_Data_pressed(uint8_t GPIO_pin){
-     switch (GPIO_pin){
-            case Key_previous_Pin:
-                    Data_keynum = 1;
-                    Menu_Pointer->func();
-                    Data_keynum = 0;
-                break;
-            case Key_next_Pin:
-                    Data_keynum = 3;
-                    Menu_Pointer->func();
-                    Data_keynum = 0;
-                break;
-            case Key_enter_Pin:
-                    Data_keynum = 2;
-                    Menu_Pointer->func();
-                    Data_keynum = 0;
-                break;
-            case Key_return_Pin:
-                    Data_keynum = 5;
-                    Menu_Pointer->func();
-                    Data_keynum = 0;
-                break;
-            default: return;
-        }
+void KEY_Data_pressed(void){
+    if(KEY_num != Zero ){Menu_Pointer->func();}
 }
 
 
 /**
- * @brief 经过 KEY_Pressed() 函数判定当前菜单为 Once 型后调用此函数
- * @param GPIO_pin 被按下的 GPIO 口
+ * @brief 经过 Menu_Handler() 函数判定当前菜单为 Once 型后调用此函数
+ * @param KEY_num 键值
  * @retval void
 */
-void KEY_Once_pressed(uint8_t GPIO_pin){
-    KEY_Parent_return();
+void KEY_Once_pressed(void){
+    if(KEY_num != Zero){KEY_Parent_return();}
 }
  
 /**
- * @brief 经过 KEY_Pressed() 函数判定当前菜单为 Loop 型后调用此函数
- * @param GPIO_pin 被按下的 GPIO 口
+ * @brief 经过 Menu_Handler() 函数判定当前菜单为 Loop 型后调用此函数
  * @retval void
 */
-void KEY_Loop_pressed(uint8_t GPIO_pin){
-        switch (GPIO_pin){
-        case Key_previous_Pin:
-                Loop_keynum = 1;
-                Menu_Pointer->func();
-                Loop_keynum = 0;
-            break;
-        case Key_next_Pin:
-                Loop_keynum = 3;
-                Menu_Pointer->func();
-                Loop_keynum = 0;
-            break;
-        case Key_enter_Pin:
-                Loop_keynum = 2;
-                Menu_Pointer->func();
-                Loop_keynum = 0;
-            break;
-        case Key_return_Pin:
-                Loop_keynum = 5;
-                Menu_Pointer->func();
-                Loop_keynum = 0;
-            break;
-        default: return;
-    }
+void KEY_Loop_pressed(void){
+    Menu_Pointer->func();
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     if(GPIO_Pin == Key_previous_Pin||Key_next_Pin||Key_enter_Pin||Key_return_Pin )
     {KEY_Pressed(GPIO_Pin);}
-}
+} 
 /* -------------上面是 KEY函数(中断模式)------------- */
+
+/* 下面是小恐龙游戏 */
+#if defined(Add_Game_Dinosaur)
+/* Higheset Score */
+// 全局变量声明
+const uint8_t dino_crashedData[63];const Image dino_crashedImg;
+const uint8_t dino_front_legData[63];const Image dino_front_legImg;
+const uint8_t dino_back_legData[63];const Image dino_back_legImg;
+const uint8_t dino_jumpsData[63];const Image dino_jumpsImg;
+const uint8_t tree_smallData[12];const Image tree_smallImg;
+const uint8_t tree_bigData[36];const Image tree_bigImg;
+const uint8_t time_distance[38];
+enum GAME_STATE Game_State;
+uint16_t highest_score = 0;  //Higheset Score
+
+// 游戏变量声明
+uint16_t tree_interval;
+uint16_t tree1_interval;
+int16_t interval;
+uint16_t tree_x;
+uint16_t tree1_x;
+Image *tree;
+Image *tree1;
+int16_t dino_right;
+int16_t dino_y;
+uint8_t jump;
+uint16_t score_raw;
+uint16_t score;
+uint8_t leg;
+//uint32_t tmp;
+
+/**
+ * @brief Dinosaur节点函数(Loop_enter型) , 进入循环
+ * @retval void
+*/
+void Func_Dinosaur_enter(void){
+    tree_interval = 170; // 252
+    tree1_interval = 240;   // 381
+    interval = 0;
+    tree_x = tree_interval + 100;
+    tree1_x = tree1_interval + 200;
+    tree = (HAL_GetTick() % 8) ? (Image *)&tree_smallImg : (Image *)&tree_bigImg;
+    tree1 = (HAL_GetTick() % 5) ? (Image *)&tree_smallImg : (Image *)&tree_bigImg;
+    dino_right = DINO_INIT_X + dino_front_legImg.width;
+    dino_y = DINO_INIT_Y;
+    jump = 0;
+    score_raw = 0;
+    score = 0;
+    leg = 0;
+    //tmp = 0;
+
+    Game_State = Game_Stop;
+    OLED_Buffer_clear();
+    moveDino(dino_y, -2);
+    Move_Tree();
+    OLED_DrawLine(BASE_LINE_X, BASE_LINE_Y, BASE_LINE_X1, BASE_LINE_Y-1,1);
+    displayScore(score);
+    if (score > highest_score) {highest_score = score;OLED_ShowString(2,2,"New Hst",12,1);} 
+    else {displayScore(score);}
+    OLED_DrawRectangle(18,14,92,36,1,0);
+    OLED_ShowString_rowcentering(16,"Press Enter",16,1);
+    OLED_ShowString_rowcentering(32,"to Start",16,1);
+    OLED_Refresh();
+}
+
+/**
+ * @brief Dinosaur节点函数(Loop_run型) , 循环执行操作
+ * @retval void
+*/
+void Func_Dinosaur_run(void){
+    HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
+    switch (Game_State)
+    {
+    case Game_Stop:Dinosaur_Stop_Handler();break;
+    case Game_Run:Dinosaur_Run_Handler();break;
+    case Game_Over:Dinosaur_Over_Handler();break;
+    default:break;
+    }
+}
+
+/**
+ * @brief 小恐龙游戏内部函数，当游戏状态为Game_Stop时运行
+ * @retval void
+*/
+void Dinosaur_Stop_Handler(void){
+    switch (KEY_num){
+    case Enter:Game_State = Game_Run;break;
+    case Return:Game_State = Game_Over;KEY_Parent_return();break;
+    default:break;
+    }
+    KEY_num=Zero;
+}
+
+/**
+ * @brief 小恐龙游戏内部函数，当游戏状态为Game_Run时运行
+ * @retval void
+*/
+void Dinosaur_Run_Handler(void){
+    switch (KEY_num)
+    {
+    case Zero:break;
+    case Prevoius:if (jump == 0){jump = 1;}break;
+    case Next:if (jump == 0){jump = 1;}break;
+    case Enter:
+        Game_State = Game_Stop;
+        OLED_DrawRectangle(10,18,106,28,1,0);
+        OLED_ShowString_rowcentering(20,"Enter to continue",12,1);
+        OLED_ShowString_rowcentering(32,"Return to exit",12,1);
+        OLED_Refresh();
+        KEY_num=Zero;
+        return;
+    case Return:
+        Game_State = Game_Stop;
+        OLED_DrawRectangle(10,18,106,28,1,0);
+        OLED_ShowString_rowcentering(20,"Enter to continue",12,1);
+        OLED_ShowString_rowcentering(32,"Return to exit",12,1);
+        OLED_Refresh();
+        KEY_num=Zero;
+        return;
+    default:return;
+    }KEY_num=Zero;
+    OLED_Buffer_clear();
+    // 判断是否Game_Over
+    if ((tree1_x <= (dino_right - ((jump < 5) ? jump : 5)) && tree1_x > (DINO_INIT_X + 1) && (dino_y + dino_back_legImg.height) >= (BASE_LINE_Y - tree1->height))||(tree_x <= (dino_right - ((jump < 5) ? jump : 5)) && tree_x > (DINO_INIT_X + 1) && (dino_y + dino_back_legImg.height) >= (BASE_LINE_Y - tree->height))){
+
+        // Collision Happened
+        Game_State = Game_Over;
+        moveDino(dino_y, -2);
+        Move_Tree();
+        OLED_DrawLine(BASE_LINE_X, BASE_LINE_Y, BASE_LINE_X1, BASE_LINE_Y-1,1);
+        OLED_Refresh();
+        HAL_Delay(800);
+        if (score >= highest_score) {highest_score = score;OLED_ShowString(0,2,"New Hst",12,1);} 
+        displayScore(score);
+        OLED_DrawRectangle(17,32,94,28,1,0);
+        OLED_ShowString_rowcentering(34,"Game Over!",12,1);
+        OLED_ShowString_rowcentering(46,"E-replay R-exit",12,1);
+        OLED_Refresh();
+        return;}
+    else{
+        if (jump > 0) {dino_y = DINO_INIT_Y - time_distance[jump - 1];if (++jump > 38){jump = 0;}}
+        score_raw++;
+        score = score_raw / 5;
+        if (jump != 0){moveDino(dino_y, -1);}
+        else { moveDino(dino_y, (leg > 4)?1:0);if (++leg > 9){leg = 0;}}
+        Move_Tree();
+        OLED_DrawLine(BASE_LINE_X, BASE_LINE_Y, BASE_LINE_X1, BASE_LINE_Y-1,1);
+        displayScore(score);
+        OLED_Ref_Nowait();}
+}
+
+/**
+ * @brief 小恐龙游戏内部函数，当游戏状态为Game_Over时运行
+ * @retval void
+*/
+void Dinosaur_Over_Handler(void){
+    switch (KEY_num){
+    case Enter:Func_Dinosaur_enter();break;
+    case Return:KEY_Parent_return();break;
+    default:return;
+    }
+    KEY_num=Zero;
+}
+
+/**
+ * @brief Move dino
+ * @note Referenced from github@harshmittal2210/dino_game.ino
+ */
+void moveDino(int16_t y, int type){
+    switch (type){
+    case 0:OLED_ShowPic_Structure(DINO_INIT_X, y,dino_front_legImg,1);break;
+    case 1:OLED_ShowPic_Structure(DINO_INIT_X, y,dino_back_legImg,1);break;
+    case -1:OLED_ShowPic_Structure(DINO_INIT_X, y,dino_jumpsImg,1);break;
+    case -2:OLED_ShowPic_Structure(DINO_INIT_X, y,dino_crashedImg,1);break;
+    default:return;}
+}
+
+/**
+ * @brief 计算树位置并写入显存
+ * @retval void
+*/
+void Move_Tree(void){
+    if(Game_State==Game_Run){
+        tree_x = tree_x - 2;
+        tree1_x = tree1_x - 2;
+        if (tree_x <= 4) {
+            tree_x = tree_interval + (uwTick&0xF);
+            tree = (uwTick % 4) ? (Image *)&tree_smallImg : (Image *)&tree_bigImg;
+        }
+        if (tree1_x <= 4) {
+            tree1_x = tree1_interval + (uwTick&0x1F);
+            tree1 = (uwTick % 5) ? (Image *)&tree_smallImg : (Image *)&tree_bigImg;
+        }
+        if (interval > 0 && interval <= 46)
+            tree_x += interval;
+        else if (interval < 0 && interval >= -46)
+            tree1_x += interval;
+        // 判断是否作出树
+        if(tree_x + tree->width <= 127){OLED_ShowPic_Structure(tree_x, BASE_LINE_Y - tree->height,*tree,1);}
+        if(tree1_x + tree1->width <= 127){OLED_ShowPic_Structure(tree1_x, BASE_LINE_Y - tree1->height,*tree1,1);}    
+    }
+    else{
+        if(tree_x + tree->width <= 127){OLED_ShowPic_Structure(tree_x, BASE_LINE_Y - tree->height,*tree,1);}
+        if(tree1_x + tree1->width <= 127){OLED_ShowPic_Structure(tree1_x, BASE_LINE_Y - tree1->height,*tree1,1);}
+    }
+}
+
+/**
+ * @brief Display score while running the game
+ * @note Referenced from github@harshmittal2210/dino_game.ino
+ */
+void displayScore(int score){
+    switch (Game_State){
+    case Game_Over:
+        OLED_ShowString(50,2,"Score:",12,1);OLED_ShowNum_dec(86,2,score,5,12,1);
+        OLED_ShowString(2,15,"Highest Score:",12,1);OLED_ShowNum_dec(86,15,highest_score,5,12,1);
+        break;
+    case Game_Stop:
+        OLED_ShowString(50,2,"Score:",12,1);OLED_ShowNum_dec(86,2,score,5,12,1);
+        break;
+    case Game_Run:
+        OLED_ShowString(50,2,"Score:",12,1);OLED_ShowNum_dec(86,2,score,5,12,1);
+        break;
+    default:
+        break;
+    }
+}
+
+/* Bitmap */
+// Dino crashed
+const uint8_t dino_crashedData[63] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xf1, 0xf5, 0xf1, 0xff, 0xff, 0xff, 0xff, 0x7f, 0x7e, 0x7f, 0xfc, 0xf8, 0xe0, 0xe0, 0xf8, 0xfc, 0xfc, 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f, 0x04, 0x1c, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x81, 0x83, 0x87, 0xff, 0xdf, 0x87, 0x87, 0x87, 0xff, 0xc3, 0xc3, 0x81, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+};
+const Image dino_crashedImg = {21, 23, dino_crashedData};
+// Dino lifts front leg
+const uint8_t dino_front_legData[63] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xff, 0xfb, 0xff, 0xff, 0xbf, 0xbf, 0xbf, 0x3f, 0x3e, 0x3f, 0xfc, 0xf8, 0xf0, 0xf0, 0xf8, 0xfc, 0xfc, 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f, 0x04, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x81, 0x83, 0x87, 0xff, 0xdf, 0x8f, 0x87, 0x87, 0x8f, 0x8b, 0x8b, 0x81, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+};
+const Image dino_front_legImg = {21, 23, dino_front_legData};
+// Dino lifts back leg
+const uint8_t dino_back_legData[63] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xff, 0xfb, 0xff, 0xff, 0xbf, 0xbf, 0xbf, 0x3f, 0x3e, 0x3f, 0xfc, 0xf8, 0xf0, 0xf0, 0xf8, 0xfc, 0xfc, 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f, 0x04, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x81, 0x83, 0x87, 0x8f, 0x9f, 0x97, 0x87, 0x8f, 0xff, 0xc3, 0xc3, 0x81, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+};
+const Image dino_back_legImg = {21, 23, dino_back_legData};
+// Dino jumps
+const uint8_t dino_jumpsData[63] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xff, 0xff, 0xfb, 0xff, 0xff, 0xbf, 0xbf, 0xbf, 0x3f, 0x3e, 0x3f, 0xfc, 0xf8, 0xf0, 0xf0, 0xf8, 0xfc, 0xfc, 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f, 0x04, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x81, 0x83, 0x87, 0xff, 0xdf, 0x8f, 0x87, 0x8f, 0xff, 0xc3, 0xc3, 0x81, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+};
+const Image dino_jumpsImg = {21, 23, dino_jumpsData};
+
+// Small tree
+const uint8_t tree_smallData[12] = {
+    0xf8, 0x00, 0xff, 0xff, 0xc0, 0x7c, 0xc1, 0xc1, 0xff, 0xff, 0xc0, 0xc0,
+};
+const Image tree_smallImg = {6, 14, tree_smallData};
+
+// Big tree
+const uint8_t tree_bigData[36] = {
+    0x80, 0xc0, 0x80, 0x00, 0xff, 0xff, 0xff, 0xff, 0x00, 0xe0, 0xe0, 0xe0, 0x3f, 0x7f, 0x7f, 0x60, 0xff, 0xff, 0xff, 0xff, 0x60, 0x7f, 0x3f, 0x1f, 0x80, 0x80, 0x80, 0x80, 0xff, 0xff, 0xff, 0xff, 0x80, 0x80, 0x80, 0x80,
+};
+const Image tree_bigImg = {12, 23, tree_bigData};
+
+/* Jump Time-Distance Table */
+const uint8_t time_distance[38] = {0, 4, 7, 11, 14, 17, 20, 23, 25, 28, 30, 31, 33, 34, 35, 36, 37, 37, 38, 38, 37, 37, 36, 35, 34, 33, 31, 30, 28, 25, 23, 20, 17, 14, 11, 7, 4, 0};
+
+
+#endif // Add_Game_Dinosaur
 
 

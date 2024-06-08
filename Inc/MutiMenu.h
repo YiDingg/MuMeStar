@@ -3,6 +3,8 @@
 #ifndef _MMS_H_
 #define _MMS_H_
 
+#define Add_Game_Dinosaur 1
+
 // OLED相关设置
 #define OLED_Width 128
 #define OLED_Height 64
@@ -57,12 +59,22 @@ typedef struct Size
 /* ----------- 上面是菜单字号结构 -------- */
 
 /* ----------- 下面是菜单底层结构 -------- */
-// 定义菜单属性
-enum MenuProperties{  
+enum MenuProperties{  // 定义菜单属性
   Menu_Parent=1,
   Menu_Data,
   Menu_Once,
   Menu_Loop,
+};
+enum KEY_NUM{  // 定义键值
+  Zero,
+  Prevoius,
+  Enter,
+  Next,
+  Return=5,
+};
+enum LOOP_STATE{
+  Loop_Run=1,
+  Loop_Stop
 };
 // 定义菜单底层结构体
 typedef struct Menu{
@@ -83,6 +95,8 @@ void Func_Brightness_enter(void);
 void Func_Brightness_set(void);
 void Func_Fontsize_enter(void);
 void Func_Fontsize_set(void);
+void Func_Smile_enter(void);
+void Func_Smile_run(void);
 /* -----------自定义菜单节点函数声明------------ */
 
 
@@ -95,13 +109,53 @@ void Draw_Menu(void);
 
 // 按键控制
 void KEY_Pressed(uint8_t GPIO_pin);
-void KEY_Parent_pressed(uint8_t GPIO_pin);
+void Menu_Handler(void);
+void KEY_Parent_pressed(void);
 void KEY_Parent_next(void);
 void KEY_Parent_enter(void);
 void KEY_Parent_previous(void);
 void KEY_Parent_return(void);
-void KEY_Data_pressed(uint8_t GPIO_pin);
-void KEY_Once_pressed(uint8_t GPIO_pin);
+void KEY_Data_pressed(void);
+void KEY_Once_pressed(void);
+void KEY_Loop_pressed(void);
 /* ------------- 菜单内部函数声明 -------------- */
+
+/* ------------- 下面是小恐龙游戏 -------------- */
+#if defined(Add_Game_Dinosaur)
+
+#define OLED_Width 128
+#define OLED_Height 64
+
+#define BASE_LINE_X 0
+#define BASE_LINE_Y OLED_Height-2
+#define BASE_LINE_X1 OLED_Width-1
+
+#define DINO_INIT_X 10      // Dino initial spawn location
+#define DINO_INIT_Y BASE_LINE_Y - 23  // Dino initial spawn location
+
+// Number of pixel dino will jump
+#define JUMP_PIXEL 32
+
+// 全局声明
+enum GAME_STATE{
+    Game_Stop=1,
+    Game_Run,
+    Game_Over
+};
+
+void Func_Dinosaur_enter(void);
+void Func_Dinosaur_run(void);
+void Dinosaur_Stop_Handler(void);
+void Dinosaur_Run_Handler(void);
+void Dinosaur_Over_Handler(void);
+void moveDino(int16_t y, int type);
+void moveTree(int16_t x, Image *type);
+void Move_Tree(void);
+void displayScore(int score);
+
+#endif // Add_Game_Dinosaur
+/* ------------- 上面是小恐龙游戏 -------------- */
+
+
 
 #endif // _MMS_H_

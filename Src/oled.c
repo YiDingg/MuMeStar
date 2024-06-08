@@ -123,7 +123,7 @@ void OLED_WR_Byte_DMA(u8 isdata,u8 dat, u8 wait)
 }
 
 /** 
-  * @brief  设置光标位置(x,y)
+  * @brief 将光标位置(x,y)存于CursorBuf中
   * @param x x轴, 从 0 到 127
   * @param y 页位置, 从 0 到 7
   * @retval none
@@ -135,7 +135,7 @@ void OLED_SetCursorBuf(u8 x, u8 y){
 }
 
 /**
- * @brief 将显存更新到OLED屏幕(DMA模式)
+ * @brief 将显存更新到OLED屏幕(DMA模式，等待)，强制等待DMA传输完毕
  * @retval void
 */
 void OLED_Refresh(void)
@@ -150,6 +150,16 @@ void OLED_Refresh(void)
 	}
 }
 
+/**
+ * @brief 将显存更新到OLED屏幕(DMA模式，不等待)
+ * @note 可能产生未定义结果!
+ * @retval void
+*/
+void OLED_Ref_Nowait(void)
+{
+	while (I2CtoOLED.State != HAL_I2C_STATE_READY);	// if IIC_state == Ready;
+	HAL_I2C_Mem_Write_DMA(&I2CtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,*OLED_GRAMBuf,8*128);
+}
 
 /* 	BufFinshFlag = 1;
 	IIC_state = Busy;
@@ -280,15 +290,17 @@ void OLED_Buffer_clear(void){
  * @brief 作一个像素点
  * @param x 横坐标(从左往右)
  * @param y 纵坐标(从上往下)
+ * @param mode 1亮0暗
  * @retval void
 */
-void OLED_DrawPoint(u8 x,u8 y,u8 t)
+void OLED_DrawPoint(u8 x,u8 y,u8 mode)
 {
+	if(x>=OLED_Width||y>=OLED_Height){return;}
 	u8 i,m,n;
 	i=y/8;
 	m=y%8;
 	n=1<<m;
-	if(t){OLED_GRAMBuf[i][x]|=n;}
+	if(mode){OLED_GRAMBuf[i][x]|=n;}
 	else
 	{
 		OLED_GRAMBuf[i][x]=~OLED_GRAMBuf[i][x];
@@ -375,11 +387,61 @@ void OLED_DrawCircle(u8 x,u8 y,u8 r)
 }
 
 /**
+ * @brief 绘制一个椭圆
+ * @param x 椭圆中心横坐标
+ * @param y 椭圆中心纵坐标
+ * @param a 椭圆长轴(包括边界点)
+ * @param b 椭圆短轴(包括边界点)
+ * @param mode 1亮0暗, 椭圆边界颜色,
+ */
+void OLED_DrawEllipse(uint8_t x, uint8_t y, uint8_t a, uint8_t b, uint8_t mode){
+  int xpos = 0, ypos = b;
+  int a2 = a * a, b2 = b * b;
+  int d = b2 + a2 * (0.25 - b);
+  while (a2 * ypos > b2 * xpos)
+  {
+    OLED_DrawPoint(x + xpos, y + ypos, mode);
+    OLED_DrawPoint(x - xpos, y + ypos, mode);
+    OLED_DrawPoint(x + xpos, y - ypos, mode);
+    OLED_DrawPoint(x - xpos, y - ypos, mode);
+    if (d < 0)
+    {
+      d = d + b2 * ((xpos << 1) + 3);
+      xpos += 1;
+    }
+    else
+    {
+      d = d + b2 * ((xpos << 1) + 3) + a2 * (-(ypos << 1) + 2);
+      xpos += 1, ypos -= 1;
+    }
+  }
+  d = b2 * (xpos + 0.5) * (xpos + 0.5) + a2 * (ypos - 1) * (ypos - 1) - a2 * b2;
+  while (ypos > 0)
+  {
+    OLED_DrawPoint(x + xpos, y + ypos, mode);
+    OLED_DrawPoint(x - xpos, y + ypos, mode);
+    OLED_DrawPoint(x + xpos, y - ypos, mode);
+    OLED_DrawPoint(x - xpos, y - ypos, mode);
+    if (d < 0)
+    {
+      d = d + b2 * ((xpos << 1) + 2) + a2 * (-(ypos << 1) + 3);
+      xpos += 1, ypos -= 1;
+    }
+    else
+    {
+      d = d + a2 * (-(ypos << 1) + 3);
+      ypos -= 1;
+    }
+  }
+}
+
+
+/**
  * @brief 作一个矩形
  * @param x	起始横坐标(边框左上角)
  * @param y 起始纵坐标(边框左上角)
- * @param width (边框)宽
- * @param height (边框)高
+ * @param width 宽(算上边框的两像素)
+ * @param height 高(算上边框的两像素)
  * @param frame 外部边框, 1亮0暗
  * @param inside 内部填充, 1亮0暗 
  * @retval void
@@ -556,8 +618,8 @@ void OLED_ShowNum_bin(u8 x,u8 y,u32 num,u8 len,u8 size1,u8 mode){
  * @param y 纵坐标
  * @param num 要显示的数字
  * @param len 显示位数(左侧自动补零)
- * @param size 字号, {8,12,16,24}依次对应{08*06,12*06,16*08,24*12}
- * @param mode 反色: 1正常;0反色;
+ * @param size 字号{8,12,16,24}
+ * @param mode 1正常;0反色;
  * @retval void
 */
 void OLED_ShowNum_dec(u8 x,u8 y,u32 num,u8 len,u8 size1,u8 mode)
@@ -680,41 +742,40 @@ void OLED_ShowChinese(u8 x,u8 y,u8 num,u8 size1,u8 mode)
  * @brief Show one picture
  * @param x (起始)横坐标
  * @param y (起始)纵坐标
- * @note 起始坐标位于字符/图片的左上角
- * @param sizex 图片横宽 
+ * @param sizex 图片横宽
  * @param sizey 图片纵高 
  * @param BMP 图片对应数组名 
  * @param mode 1正常, 0反色显示 
+ * @note  起始坐标位于字符/图片的左上角
  * @retval void
 */
 void OLED_ShowPicture(u8 x,u8 y,u8 sizex,u8 sizey,const u8 BMP[],u8 mode)
 {
-	u16 j=0;
-	u8 i,n,temp,m;
-	u8 x0=x,y0=y;
-	sizey=sizey/8+((sizey%8)?1:0);
-	for(n=0;n<sizey;n++)
-	{
-		 for(i=0;i<sizex;i++)
-		 {
-				temp=BMP[j];
-				j++;
-				for(m=0;m<8;m++)
-				{
-					if(temp&0x01)OLED_DrawPoint(x,y,mode);
-					else OLED_DrawPoint(x,y,!mode);
-					temp>>=1;
-					y++;
+	uint8_t i,j,k,temp,page;
+	uint8_t x0=x, y0=y;
+	page=sizey/8+((sizey%8)?1:0); // 计算页数
+	for(i=0;i<page;i++){
+		for(j=0;j<sizex;j++){
+			temp=BMP[i*sizex+j];
+			for(k=0;k<8;k++){
+				if(i*8+k>=sizey){break;}
+				OLED_DrawPoint(x0+j,y0+i*8+k,mode*((temp>>k)&0x01));
 				}
-				x++;
-				if((x-x0)==sizex)
-				{
-					x=x0;
-					y0=y0+8;
-				}
-				y=y0;
-     }
-	 }
+		}
+	}
+}
+
+/**
+ * @brief Show one picture by using Structure
+ * @param x (起始)横坐标
+ * @param y (起始)纵坐标
+ * @param Image  图片对应结构体 
+ * @param mode 1正常, 0反色显示 
+ * @note  起始坐标位于字符/图片的左上角
+ * @retval void
+*/
+void OLED_ShowPic_Structure(u8 x,u8 y, Image Pic_Structure,u8 mode){
+	OLED_ShowPicture(x,y,Pic_Structure.width,Pic_Structure.height,Pic_Structure.picture,mode);
 }
 
 /**
