@@ -15,6 +15,7 @@
 #define KEY_Active_Volt 0   // 0-按键有效电平为低电平, 1-按键有效电平为高电平
 #define OLED_StartBrightness  0x80  // 屏幕默认亮度, 范围0x01~0xFF, 50% 对应0x80
 #define OLED_StartFontsize size_1206    // 菜单默认字号, 范围{size_0806, size_1206, size_1608}
+#define OLED_Defult_ColorMode White   // 默认屏幕颜色，White--白字黑底，Black---黑字白底
 
 // 状态灯
 #define Led_Pin GPIO_PIN_13
@@ -46,17 +47,21 @@
  
 /* ----------- 下面是菜单字号结构 -------- */
 enum FONTSIZE{
-    size_0806,
-    size_1206,
-    size_1608
+  size_0806,
+  size_1206,
+  size_1608
+};
+enum COLORMODE{
+  White,
+  Black
 };
 
 typedef struct Size
 {
-    const uint8_t size_title;
-    const uint8_t size_content;
-    const uint8_t row_number;
-    const uint8_t* Mysize_array;
+  const uint8_t size_title;
+  const uint8_t size_content;
+  const uint8_t row_number;
+  const uint8_t* Mysize_array;
 }Mysize_typedef;
 
 /* ----------- 上面是菜单字号结构 -------- */
@@ -96,6 +101,8 @@ void Func_About(void);
 void Func_Sayhello(void);
 void Func_Brightness_enter(void);
 void Func_Brightness_set(void);
+void Func_ColorMode_enter(void);
+void Func_ColorMode_set(void);
 void Func_Fontsize_enter(void);
 void Func_Fontsize_set(void);
 void Func_Smile_enter(void);
