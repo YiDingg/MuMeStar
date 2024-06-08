@@ -71,6 +71,10 @@ void Error_Handler(void);
 #define KEY_return_Pin GPIO_PIN_3
 #define KEY_return_GPIO_Port GPIOA
 #define KEY_return_EXTI_IRQn EXTI3_IRQn
+#define OLED_SCL_Pin GPIO_PIN_10
+#define OLED_SCL_GPIO_Port GPIOB
+#define OLED_SDA_Pin GPIO_PIN_11
+#define OLED_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
