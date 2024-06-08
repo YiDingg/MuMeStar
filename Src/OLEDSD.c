@@ -44,6 +44,7 @@ const uint8_t OLED_Init_CMD[29] =
 	0x01, 	// 亮度：0x00~0xff(0x00时屏幕熄灭)--Set SEG Output Current Brightness
 
 //  0xA4,   // (默认)0xA4显示屏幕显存内容(硬件显存)，0xA5无视显存点亮全屏
+
 	0xA1, 	// 设置屏幕左右镜像,0xa1正常,0xa0左右反置--Set SEG/Column Mapping    
 	0xC8,   // 设置屏幕上下镜像,0xc8正常,0xc0上下反置--Set COM/Row Scan Direction,  
 	0xA6, 	// 设置显示模式,0xA6正常显示,0xA7反相显示--set normal display
@@ -184,7 +185,7 @@ void OLED_Refresh_Poll_Mutimode(uint8_t Mode, uint8_t time){
 
 /**
  * @brief 屏幕是否反色
- * @param Mode 0正常1反色(默认模式下反色为白底黑字)
+ * @param Mode 0正常1反色(当前取模下，0--白字黑底)
  * @retval void
 */
 void OLED_ColorTurn(uint8_t Mode)
