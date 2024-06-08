@@ -57,8 +57,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED_Pin GPIO_PIN_13
-#define LED_GPIO_Port GPIOC
 #define KEY_previous_Pin GPIO_PIN_0
 #define KEY_previous_GPIO_Port GPIOA
 #define KEY_previous_EXTI_IRQn EXTI0_IRQn
@@ -73,8 +71,6 @@ void Error_Handler(void);
 #define KEY_return_EXTI_IRQn EXTI3_IRQn
 #define OLED_SCL_Pin GPIO_PIN_10
 #define OLED_SCL_GPIO_Port GPIOB
-#define OLED_SDA_Pin GPIO_PIN_11
-#define OLED_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

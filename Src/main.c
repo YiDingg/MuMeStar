@@ -20,11 +20,11 @@
 #include "main.h"
 #include "dma.h"
 #include "i2c.h"
+#include "spi.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "oled.h"
 #include "MutiMenu.h"
 /* USER CODE END Includes */
 
@@ -91,21 +91,21 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_I2C2_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  HAL_Delay(20);  // 等待OLED上电启动
+  
   OLED_Init();
   Multimenu_Init(); 
-  HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
   while (1)
   {
     Menu_Handler();
     /* USER CODE END WHILE */
-    
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -116,7 +116,7 @@ int main(void)
   * @retval None
   */
 void SystemClock_Config(void)
-{ 
+{
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 

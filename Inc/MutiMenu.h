@@ -1,4 +1,5 @@
 #include "main.h"
+#include "OLEDSD.h"
 
 #ifndef _MMS_H_
 #define _MMS_H_
@@ -18,6 +19,8 @@
 // 状态灯
 #define Led_Pin GPIO_PIN_13
 #define Led_GPIO_Port GPIOC
+#define LED_Pin GPIO_PIN_13
+#define LED_GPIO_Port GPIOC
 
 // previous键
 #define Key_previous_Pin GPIO_PIN_0
@@ -102,8 +105,8 @@ void Func_Smile_run(void);
 
 /* ------------- 菜单内部函数声明 -------------- */
 void Multimenu_Init(void);
-uint8_t Get_menu_index(Menu_typedef* menu);
-uint8_t Get_menu_namelenth(Menu_typedef* menu);
+uint8_t Get_MenuIndex(Menu_typedef* menu);
+uint8_t Get_MenuNameLenth(Menu_typedef* menu);
 void Invalid_Operation(void);
 void Draw_Menu(void);
 
@@ -148,10 +151,9 @@ void Func_Dinosaur_run(void);
 void Dinosaur_Stop_Handler(void);
 void Dinosaur_Run_Handler(void);
 void Dinosaur_Over_Handler(void);
-void moveDino(int16_t y, int type);
-void moveTree(int16_t x, Image *type);
-void Move_Tree(void);
-void displayScore(int score);
+void Dinosaur_MoveDino(int16_t y, int type);
+void Dinosaur_MoveTree(void);
+void Dinosaur_DisplayScore(int score);
 
 #endif // Add_Game_Dinosaur
 /* ------------- 上面是小恐龙游戏 -------------- */
