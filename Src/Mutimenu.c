@@ -103,7 +103,8 @@ static const Menu_typedef Main_Hello_Smile[1] = {{"Smile",Main_Hello,NULL,Func_S
 
 /* -------------下面是菜单节点函数------------- */
 /**
- * @brief Once型节点函数，在屏幕上显示"Hello world!"
+ * @brief Once型节点函数
+ * @note 在屏幕上显示"Hello world!"
  * @retval void
 */
 void Func_Sayhello(void){
@@ -113,7 +114,8 @@ void Func_Sayhello(void){
 }
 
 /**
- * @brief Once型节点函数, 显示版本信息等
+ * @brief Once型节点函数
+ * @note 显示版本信息
  * @retval void
 */
 void Func_About(void){
@@ -125,12 +127,13 @@ void Func_About(void){
     OLED_Refresh_Poll();
 }
 
-/**
- * @brief Brightness节点函数(Data_enter型) , 显示OLED亮度调节页面
- * @note 
-enter 进入 Brightness 选项时，Menu_Handler() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
+/* enter 进入 Brightness 选项时，Menu_Handler() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
 然后当前菜单属性变为 Data，此后 Menu_Handler() 通过 KEY_Data_pressed() 调用第二个节点函数(称为Data_set函数)
-对于前者，显示亮度调节页面；对于后者，实现亮度的设置并反馈
+对于前者，显示亮度调节页面；对于后者，实现亮度的设置并反馈 */
+
+/**
+ * @brief Brightness节点函数(Data_enter型)
+ * @note 显示OLED亮度调节页面
  * @retval void
 */
 void Func_Brightness_enter(void){
@@ -144,8 +147,8 @@ void Func_Brightness_enter(void){
 }
 
 /**
- * @brief Brightness节点函数(Data_set型), next 增大亮度，previous 减小亮度，enter确定，return取消
- * 修改的同时在屏幕上显示当前亮度值
+ * @brief Brightness节点函数(Data_set型)
+ * @note  next 增大亮度，previous 减小亮度，enter确定，return取消，修改的同时在屏幕上显示当前亮度值
  * @retval void
 */
 void Func_Brightness_set(void){
@@ -185,10 +188,69 @@ void Func_Brightness_set(void){
 }
 
 /**
- * @brief Fontsize节点函数(Data_enter型) , 显示字号调节页面
- * @note enter 进入 Fontsize 选项时，Menu_Handler() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
+ * @brief Colormode节点函数(Data_enter型) 
+ * @note 显示OLED颜色设置页面
+ * @retval void
+*/
+void Func_ColorMode_enter(void){
+/*     uint8_t percent = (uint8_t)(100*brightness_setting/0xFF);
+    OLED_BufferClear();
+    OLED_ShowString_Rowcentering(0,"Brightness:   %%",16,0);
+    OLED_ShowNum_Dec(96,0,percent,3,16,0);
+    OLED_ShowString_Rowcentering(20,"Hello",24,1);
+    OLED_ShowString_Rowcentering(48,"Hello",16,0);
+    OLED_Refresh_Poll(); */
+}
+
+/**
+ * @brief Colormode节点函数(Data_set型)
+ * @note next或previous调整白天、黑夜模式，enter确定，return取消，修改的同时在屏幕上显示当前颜色模式
+ * @retval void
+*/
+void Func_ColorMode_set(void){
+/*     switch (KEY_num)
+    {
+    case Prevoius: // previous 
+        brightness_setting = (brightness_setting>25)?(brightness_setting-25):1;    // 亮度为0时会自动熄灭屏幕, 需重新点亮
+        OLED_SendByte_Poll(0x81,OLED_Command);OLED_SendByte_Poll(brightness_setting,OLED_Command);
+        Func_Brightness_enter();
+        break;
+    case Enter: // enter
+        brightness = brightness_setting;
+        OLED_BufferClear();
+        OLED_ShowString_Rowcentering(8,"config",24,1);
+        OLED_ShowString_Rowcentering(32,"success",24,1);
+        OLED_Refresh_Poll();
+        HAL_Delay(1000);
+        KEY_Parent_return();
+        break;
+    case Next: // next
+        brightness_setting = (brightness_setting<201)?(brightness_setting+25):255;
+        OLED_SendByte_Poll(0x81,OLED_Command);OLED_SendByte_Poll(brightness_setting,OLED_Command);
+        Func_Brightness_enter();
+        break;
+    case Return: // return
+        brightness_setting = brightness;
+        OLED_SendByte_Poll(0x81,OLED_Command);OLED_SendByte_Poll(brightness_setting,OLED_Command);
+        OLED_BufferClear();
+        OLED_ShowString_Rowcentering(8,"config",24,1);
+        OLED_ShowString_Rowcentering(32,"cancel",24,1);
+        OLED_Refresh_Poll();
+        HAL_Delay(1000);
+        KEY_Parent_return();
+        break;
+    default:return;
+    } */
+}
+
+
+/* enter 进入 Fontsize 选项时，Menu_Handler() 总控会先通过 KEY_Parent_pressed() 调用第一个节点函数(称为Data_enter函数)，
 然后当前菜单属性变为 Data，此后 Menu_Handler() 通过 KEY_Data_pressed() 调用第二个节点函数(称为Data_set函数)
-对于前者，显示字号调节页面；对于后者，实现字号的设置并反馈
+对于前者，显示字号调节页面；对于后者，实现字号的设置并反馈 */
+
+/**
+ * @brief Fontsize节点函数(Data_enter型)
+ * @note 显示字号调节页面
  * @retval void
 */
 void Func_Fontsize_enter(void){
@@ -201,8 +263,8 @@ void Func_Fontsize_enter(void){
 }
 
 /**
- * @brief Fontsize节点函数(Data_set型), next 增大字号，previous 减小字号，enter确定，return取消 
- * 修改的同时会在屏幕上显示当前字号效果
+ * @brief Fontsize节点函数(Data_set型)
+ * @note  next 增大字号，previous 减小字号，enter确定，return取消，修改的同时会在屏幕上显示当前字号效果
  * @retval void
 */
 void Func_Fontsize_set(void){
@@ -238,6 +300,10 @@ void Func_Fontsize_set(void){
     }
 }
 
+/**
+ * @brief 画眼睛 (Smile节点内部函数)
+ * @retval void
+*/
 void Smile_Draweyes(void){
     // 左眼
     OLED_DrawPoint(eye_x,eye_y,1);
@@ -252,7 +318,7 @@ void Smile_Draweyes(void){
 }
 
 /**
- * @brief Smile节点函数(Loop_enter型) , 进入循环
+ * @brief Smile节点函数(Loop_enter型)
  * @retval void
 */
 void Func_Smile_enter(void){
@@ -267,8 +333,8 @@ void Func_Smile_enter(void){
 }
 
 /**
- * @brief Smile节点函数(Loop_run型) ,循环转动笑脸眼珠位置;
- *  next 笑脸右移，previous 笑脸左移，enter 笑脸反色，return 退出
+ * @brief Smile节点函数(Loop_run型) 
+ * @note 循环转动笑脸眼珠位置；next 笑脸右移，previous 笑脸左移，enter 笑脸反色，return 退出
  * @retval void
 */
 void Func_Smile_run(void){
