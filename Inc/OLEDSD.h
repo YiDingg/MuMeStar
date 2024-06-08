@@ -83,6 +83,11 @@ enum OLED_WAIT_TYPE{
   OLED_NoWait
 };
 
+enum BOOL{
+  No,
+  Yes
+};
+
 /* -------------------------------- */
 /* -------------------------------- */
 /* -------------------------------- */
@@ -95,6 +100,8 @@ void OLED_BufferClear(void);
 void OLED_BufferFill(void);
 void OLED_ColorTurn(uint8_t Mode);
 void OLED_DisplayTurn(uint8_t Mode);
+void OLED_MirrorHo(uint8_t Mode);
+void OLED_MirrorVer(uint8_t Mode);
 void OLED_DisPlay_On(void);
 void OLED_DisPlay_Off(void);
 void OLED_SetCursorBuf(uint8_t x, uint8_t y);

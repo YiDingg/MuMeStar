@@ -200,19 +200,46 @@ void OLED_ColorTurn(uint8_t Mode)
 
 /**
  * @brief 屏幕是否反转
- * @param Mode 0为正常，1为翻转
+ * @param Mode 0正常，1翻转
  * @retval void
 */
 void OLED_DisplayTurn(uint8_t Mode)
 {
 	switch (Mode){
-	case 0:	// 正常显示
-		OLED_SendByte_Poll(0xC8,OLED_Command);
-		OLED_SendByte_Poll(0xA1,OLED_Command);return;
-	case 1:	// 反转显示
-		OLED_SendByte_Poll(0xC0,OLED_Command);
-		OLED_SendByte_Poll(0xA0,OLED_Command);return;
-	default:return;}
+		case No:	// 正常显示
+			OLED_SendByte_Poll(0xC8,OLED_Command);
+			OLED_SendByte_Poll(0xA1,OLED_Command);return;
+		case Yes:	// 反转显示
+			OLED_SendByte_Poll(0xC0,OLED_Command);
+			OLED_SendByte_Poll(0xA0,OLED_Command);return;
+		default:return;
+	}
+}
+
+/**
+ * @brief 屏幕水平镜像翻转
+ * @param Mode  0正常，1翻转
+ * @retval void
+*/
+void OLED_MirrorHo(uint8_t Mode){
+	switch (Mode){
+		case No:OLED_SendByte_Poll(0xA1,OLED_Command);return;
+		case Yes:OLED_SendByte_Poll(0xA0,OLED_Command);return;
+		default:return;
+	}
+}
+
+/**
+ * @brief 屏幕垂直镜像翻转
+ * @param Mode  0正常，1翻转
+ * @retval void
+*/
+void OLED_MirrorVer(uint8_t Mode){
+	switch (Mode){
+		case No:OLED_SendByte_Poll(0xC8,OLED_Command);return;
+		case Yes:OLED_SendByte_Poll(0xC0,OLED_Command);return;
+		default:return;
+	}
 }
 
 /**

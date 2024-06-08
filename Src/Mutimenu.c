@@ -37,12 +37,16 @@ static uint8_t Current_showrange = 0;  // Draw_menu()专用, 判断当前显示�
 static uint8_t UserChoose = 0; 		// Draw_menu()专用, 光标位置
 
 // settings 参数
-static uint8_t brightness = OLED_StartBrightness;  // 默认屏幕亮度
+static uint8_t brightness = OLED_StartBrightness;            // 默认屏幕亮度
 static uint8_t brightness_setting = OLED_StartBrightness;    // "Brightness" 专用，用于调节屏幕当前亮度
-static uint8_t colormode = OLED_Defult_ColorMode;
-static uint8_t colormode_setting = OLED_Defult_ColorMode;
-static uint8_t fontsize = OLED_StartFontsize;  // 默认菜单字号
-static uint8_t fontsize_setting = OLED_StartFontsize;    // "Fontsize" 专用，用于调节菜单当前字号
+static uint8_t colormode = OLED_Defult_ColorMode;            // 默认屏幕颜色
+static uint8_t colormode_setting = OLED_Defult_ColorMode;    // "ColorMode" 专用，用于调节屏幕颜色模式
+static uint8_t mirrorflipHo = No;                           // 默认水平翻转
+static uint8_t mirrorflipHo_setting = No;                   // "MirrorFlip Ho" 专用
+static uint8_t mirrorflipVer = No;                           // 默认垂直翻转
+static uint8_t mirrorflipVer_setting = No;                   // "MirrorFlip Ver" 专用
+static uint8_t fontsize = OLED_StartFontsize;                // 默认菜单字号
+static uint8_t fontsize_setting = OLED_StartFontsize;        // "Fontsize" 专用，用于调节菜单当前字号
 /* -----------上面是菜单全局变量---------- */
 
 
@@ -56,6 +60,8 @@ Main[],
         Main_Settings_Fontsize[1],
         Main_Settings_Brightness[1],     
         Main_Settings_ColorMode[1],     
+        Main_Settings_MirrorFlipHo[1],     
+        Main_Settings_MirrorFlipVer[1],     
     Main_Hello[],
         Main_Hello_Sayhello[1],
         Main_Hello_Smile[1],
@@ -68,7 +74,7 @@ Main[],
 static Menu_typedef* Menu_Pointer =  (Menu_typedef *)Main; // 设置当前菜单为 Main 并初始化
 
 static const Menu_typedef Main[Main_Child_nodesnumber] = {				
-    {"Main",    NULL, Main_Settings,  Draw_Menu,         3,Menu_Parent},
+    {"Main",    NULL, Main_Settings,  Draw_Menu,         5,Menu_Parent},
     {"Main",    NULL, Main_Hello,     Draw_Menu,         2,Menu_Parent},
     {"Main",    NULL, Main_About,     Func_About,    1,Menu_Once},
     {"Main",    NULL, Main_Game,      Draw_Menu, 1,Menu_Parent},
@@ -77,10 +83,12 @@ static const Menu_typedef Main[Main_Child_nodesnumber] = {
 };
 
 /* Menu_1 */
-static const Menu_typedef Main_Settings[3] = {				
-    {"Settings", Main,  Main_Settings_Fontsize,   Func_Fontsize_enter, 1, Menu_Data},
-    {"Settings", Main,  Main_Settings_Brightness,  Func_Brightness_enter, 1, Menu_Data},
-    {"Settings", Main,  Main_Settings_ColorMode,  Func_ColorMode_enter, 1, Menu_Data}
+static const Menu_typedef Main_Settings[5] = {				
+    {"Settings", Main,  Main_Settings_Fontsize,      Func_Fontsize_enter, 1, Menu_Data},
+    {"Settings", Main,  Main_Settings_Brightness,    Func_Brightness_enter, 1, Menu_Data},
+    {"Settings", Main,  Main_Settings_ColorMode,     Func_ColorMode_enter, 1, Menu_Data},
+    {"Settings", Main,  Main_Settings_MirrorFlipHo,  Func_MirrorFlipHo_enter, 1, Menu_Data},
+    {"Settings", Main,  Main_Settings_MirrorFlipVer, Func_MirrorFlipVer_enter, 1, Menu_Data},
 };
 
 static const Menu_typedef Main_Hello[2] = {				
@@ -93,12 +101,14 @@ static const Menu_typedef Main_Menu5[1] = {{"Menu5",Main,NULL,Invalid_Operation,
 static const Menu_typedef Main_Menu6[1] = {{"Menu6",Main,NULL,Invalid_Operation, 0,}};
 
 /* Menu_2*/
-static const Menu_typedef Main_Game_Dinosaur[1]       = {{"Dinosaur",  Main_Game,    NULL,Func_Dinosaur_run,   0,}};
-static const Menu_typedef Main_Settings_Fontsize[1]   = {{"Fontsize",  Main_Settings,NULL,Func_Fontsize_set,   0,}};
-static const Menu_typedef Main_Settings_Brightness[1] = {{"Brightness",Main_Settings,NULL,Func_Brightness_set, 0,}};
-static const Menu_typedef Main_Settings_ColorMode[1]  = {{"ColorMode", Main_Settings,NULL,Func_ColorMode_set,  0,}};
-static const Menu_typedef Main_Hello_Sayhello[1]      = {{"Sayhello",  Main_Hello,   NULL,Invalid_Operation,   0,}};
-static const Menu_typedef Main_Hello_Smile[1]         = {{"Smile",     Main_Hello,   NULL,Func_Smile_run,      0,}};
+static const Menu_typedef Main_Game_Dinosaur[1]         ={{"Dinosaur",       Main_Game,     NULL, Func_Dinosaur_run,      0,}};
+static const Menu_typedef Main_Settings_Fontsize[1]     ={{"Fontsize",       Main_Settings, NULL, Func_Fontsize_set,      0,}};
+static const Menu_typedef Main_Settings_Brightness[1]   ={{"Brightness",     Main_Settings, NULL, Func_Brightness_set,    0,}};
+static const Menu_typedef Main_Settings_ColorMode[1]    ={{"ColorMode",      Main_Settings, NULL, Func_ColorMode_set,     0,}};
+static const Menu_typedef Main_Settings_MirrorFlipHo[1] ={{"MirrorFlip-Ho",  Main_Settings, NULL, Func_MirrorFlipHo_set,  0,}};
+static const Menu_typedef Main_Settings_MirrorFlipVer[1]={{"MirrorFlip-Ver", Main_Settings, NULL, Func_MirrorFlipVer_set, 0,}};
+static const Menu_typedef Main_Hello_Sayhello[1]        ={{"Sayhello",       Main_Hello,    NULL, Invalid_Operation,      0,}};
+static const Menu_typedef Main_Hello_Smile[1]           ={{"Smile",          Main_Hello,    NULL, Func_Smile_run,         0,}};
 /*                                                           */
 /* ---------------------- 上面是菜单栏定义 ------------------- */
 
@@ -197,7 +207,7 @@ void Func_Brightness_set(void){
 void Func_ColorMode_enter(void){
     OLED_BufferClear();
     OLED_ShowString_Rowcentering(16," [Color Mode] ",16,1);
-    if(colormode == White){OLED_ShowString_Rowcentering(40," White ",16,1);}
+    if(colormode_setting == White){OLED_ShowString_Rowcentering(40," White ",16,1);}
     else{OLED_ShowString_Rowcentering(40," Black ",16,1);}
     OLED_Refresh_Poll();
 }
@@ -232,6 +242,114 @@ void Func_ColorMode_set(void){
         case Return: // return
             colormode_setting = colormode;
             OLED_ColorTurn(colormode);
+            OLED_BufferClear();
+            OLED_ShowString_Rowcentering(8,"config",24,1);
+            OLED_ShowString_Rowcentering(32,"cancel",24,1);
+            OLED_Refresh_Poll();
+            HAL_Delay(1000);
+            KEY_Parent_return();
+            break;
+        default:return;
+    }
+}
+
+/**
+ * @brief MirrorFlipHo节点函数(Data_enter型) 
+ * @note 显示水平镜像设置页面(Horizontal)
+ * @retval void
+*/
+void Func_MirrorFlipHo_enter(void){
+    OLED_BufferClear();
+    OLED_ShowString_Rowcentering(16," [Mirror Flip] ",16,1);
+    if(mirrorflipHo_setting == No){OLED_ShowString_Rowcentering(40," Horizontal: No ",16,1);}
+    else{OLED_ShowString_Rowcentering(40," Horizontal:Yes ",16,1);}
+    OLED_Refresh_Poll();
+}
+
+/**
+ * @brief MirrorFlipHo节点函数(Data_set型)
+ * @note next或previous调整是否镜像，enter确定，return取消，修改的同时在屏幕上显示
+ * @retval void
+*/
+void Func_MirrorFlipHo_set(void){
+    switch (KEY_num){
+        case Zero:return;
+        case Prevoius: // previous 
+            mirrorflipHo_setting = (mirrorflipHo_setting+1)%2;
+            OLED_MirrorHo(mirrorflipHo_setting);
+            Func_MirrorFlipHo_enter();
+            break;
+        case Next: // next
+            mirrorflipHo_setting = (mirrorflipHo_setting+1)%2;
+            OLED_MirrorHo(mirrorflipHo_setting);
+            Func_MirrorFlipHo_enter();
+            break;
+        case Enter: // enter
+            mirrorflipHo = mirrorflipHo_setting;
+            OLED_BufferClear();
+            OLED_ShowString_Rowcentering(8,"config",24,1);
+            OLED_ShowString_Rowcentering(32,"success",24,1);
+            OLED_Refresh_Poll();
+            HAL_Delay(1000);
+            KEY_Parent_return();
+            break;
+        case Return: // return
+            mirrorflipHo_setting = mirrorflipHo;
+            OLED_MirrorHo(mirrorflipHo);
+            OLED_BufferClear();
+            OLED_ShowString_Rowcentering(8,"config",24,1);
+            OLED_ShowString_Rowcentering(32,"cancel",24,1);
+            OLED_Refresh_Poll();
+            HAL_Delay(1000);
+            KEY_Parent_return();
+            break;
+        default:return;
+    }
+}
+
+/**
+ * @brief MirrorFlipVer节点函数(Data_enter型) 
+ * @note 显示水平镜像设置页面(Vertical)
+ * @retval void
+*/
+void Func_MirrorFlipVer_enter(void){
+    OLED_BufferClear();
+    OLED_ShowString_Rowcentering(16," [Mirror Flip] ",16,1);
+    if(mirrorflipVer_setting == No){OLED_ShowString_Rowcentering(40," Vertical: No ",16,1);}
+    else{OLED_ShowString_Rowcentering(40," Vertical:Yes ",16,1);}
+    OLED_Refresh_Poll();
+}
+
+/**
+ * @brief MirrorFlipVer节点函数(Data_set型)
+ * @note next或previous调整是否镜像，enter确定，return取消，修改的同时在屏幕上显示
+ * @retval void
+*/
+void Func_MirrorFlipVer_set(void){
+    switch (KEY_num){
+        case Zero:return;
+        case Prevoius: // previous 
+            mirrorflipVer_setting = (mirrorflipVer_setting+1)%2;
+            OLED_MirrorVer(mirrorflipVer_setting);
+            Func_MirrorFlipVer_enter();
+            break;
+        case Next: // next
+            mirrorflipVer_setting = (mirrorflipVer_setting+1)%2;
+            OLED_MirrorVer(mirrorflipVer_setting);
+            Func_MirrorFlipVer_enter();
+            break;
+        case Enter: // enter
+            mirrorflipVer = mirrorflipVer_setting;
+            OLED_BufferClear();
+            OLED_ShowString_Rowcentering(8,"config",24,1);
+            OLED_ShowString_Rowcentering(32,"success",24,1);
+            OLED_Refresh_Poll();
+            HAL_Delay(1000);
+            KEY_Parent_return();
+            break;
+        case Return: // return
+            mirrorflipVer_setting = mirrorflipVer;
+            OLED_MirrorVer(mirrorflipVer);
             OLED_BufferClear();
             OLED_ShowString_Rowcentering(8,"config",24,1);
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
