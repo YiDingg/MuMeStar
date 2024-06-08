@@ -51,23 +51,24 @@ static uint8_t fontsize_setting = OLED_StartFontsize;    // "Fontsize" 专用，
 /* 菜单节点初始化(节点声明) */
 #define Main_Child_nodesnumber 6    // 宏定义主菜单子节点数,方便操作
 static const Menu_typedef 
-Main[Main_Child_nodesnumber],
-    Main_Settings[2],
+Main[],
+    Main_Settings[],
         Main_Settings_Fontsize[1],
         Main_Settings_Brightness[1],     
-    Main_Hello[2],
+        Main_Settings_ColorMode[1],     
+    Main_Hello[],
         Main_Hello_Sayhello[1],
         Main_Hello_Smile[1],
     Main_About[1],
-    Main_Game[1],
+    Main_Game[],
         Main_Game_Dinosaur[1],
-    Main_Menu5[1],
-    Main_Menu6[1];
+    Main_Menu5[],
+    Main_Menu6[];
 /* Menu_Root, Menu_0 */
 static Menu_typedef* Menu_Pointer =  (Menu_typedef *)Main; // 设置当前菜单为 Main 并初始化
 
 static const Menu_typedef Main[Main_Child_nodesnumber] = {				
-    {"Main",    NULL, Main_Settings,  Draw_Menu,         2,Menu_Parent},
+    {"Main",    NULL, Main_Settings,  Draw_Menu,         3,Menu_Parent},
     {"Main",    NULL, Main_Hello,     Draw_Menu,         2,Menu_Parent},
     {"Main",    NULL, Main_About,     Func_About,    1,Menu_Once},
     {"Main",    NULL, Main_Game,      Draw_Menu, 1,Menu_Parent},
@@ -76,29 +77,28 @@ static const Menu_typedef Main[Main_Child_nodesnumber] = {
 };
 
 /* Menu_1 */
-static const Menu_typedef Main_Settings[2] = {				
+static const Menu_typedef Main_Settings[3] = {				
     {"Settings", Main,  Main_Settings_Fontsize,   Func_Fontsize_enter, 1, Menu_Data},
-    {"Settings", Main,  Main_Settings_Brightness,  Func_Brightness_enter, 1, Menu_Data}
+    {"Settings", Main,  Main_Settings_Brightness,  Func_Brightness_enter, 1, Menu_Data},
+    {"Settings", Main,  Main_Settings_ColorMode,  Func_ColorMode_enter, 1, Menu_Data}
 };
 
 static const Menu_typedef Main_Hello[2] = {				
     {"Hello", Main,  Main_Hello_Sayhello,Func_Sayhello, 1,Menu_Once},
-    {"Hello", Main,  Main_Hello_Smile,Func_Smile_enter, 1,Menu_Loop}};
-static const Menu_typedef Main_About[1] = {
-    {"About",Main,NULL,Invalid_Operation, 0,}};
-static const Menu_typedef Main_Game[1] = {
-    {"Game",Main,Main_Game_Dinosaur,Func_Dinosaur_enter, 0,Menu_Loop}};
-static const Menu_typedef Main_Menu5[1] = {
-    {"Menu5",Main,NULL,Invalid_Operation, 0,}};
-static const Menu_typedef Main_Menu6[1] = {
-    {"Menu6",Main,NULL,Invalid_Operation, 0,}};
+    {"Hello", Main,  Main_Hello_Smile,Func_Smile_enter, 1,Menu_Loop}
+};
+static const Menu_typedef Main_About[1] = {{"About",Main,NULL,Invalid_Operation, 0,}};
+static const Menu_typedef Main_Game[1] = {{"Game",Main,Main_Game_Dinosaur,Func_Dinosaur_enter, 0,Menu_Loop}};
+static const Menu_typedef Main_Menu5[1] = {{"Menu5",Main,NULL,Invalid_Operation, 0,}};
+static const Menu_typedef Main_Menu6[1] = {{"Menu6",Main,NULL,Invalid_Operation, 0,}};
 
 /* Menu_2*/
-static const Menu_typedef Main_Game_Dinosaur[1] = {{"Dinosaur",Main_Game,NULL,Func_Dinosaur_run, 0,}};
-static const Menu_typedef Main_Settings_Fontsize[1] = {{"Fontsize",Main_Settings,NULL,Func_Fontsize_set, 0,}};
+static const Menu_typedef Main_Game_Dinosaur[1]       = {{"Dinosaur",  Main_Game,    NULL,Func_Dinosaur_run,   0,}};
+static const Menu_typedef Main_Settings_Fontsize[1]   = {{"Fontsize",  Main_Settings,NULL,Func_Fontsize_set,   0,}};
 static const Menu_typedef Main_Settings_Brightness[1] = {{"Brightness",Main_Settings,NULL,Func_Brightness_set, 0,}};
-static const Menu_typedef Main_Hello_Sayhello[1] = {{"Sayhello",Main_Hello,NULL,Invalid_Operation, 0,}};
-static const Menu_typedef Main_Hello_Smile[1] = {{"Smile",Main_Hello,NULL,Func_Smile_run, 0,}};
+static const Menu_typedef Main_Settings_ColorMode[1]  = {{"ColorMode", Main_Settings,NULL,Func_ColorMode_set,  0,}};
+static const Menu_typedef Main_Hello_Sayhello[1]      = {{"Sayhello",  Main_Hello,   NULL,Invalid_Operation,   0,}};
+static const Menu_typedef Main_Hello_Smile[1]         = {{"Smile",     Main_Hello,   NULL,Func_Smile_run,      0,}};
 /*                                                           */
 /* ---------------------- 上面是菜单栏定义 ------------------- */
 
@@ -196,8 +196,9 @@ void Func_Brightness_set(void){
 */
 void Func_ColorMode_enter(void){
     OLED_BufferClear();
-    if(colormode == White){OLED_ShowString_Rowcentering(0,"Color Mode: White",16,0);}
-    else{OLED_ShowString_Rowcentering(0,"Color Mode: Black",16,0);}
+    OLED_ShowString_Rowcentering(16," [Color Mode] ",16,1);
+    if(colormode == White){OLED_ShowString_Rowcentering(40," White ",16,1);}
+    else{OLED_ShowString_Rowcentering(40," Black ",16,1);}
     OLED_Refresh_Poll();
 }
 
@@ -213,6 +214,7 @@ void Func_ColorMode_set(void){
             colormode_setting = (colormode_setting+1)%2;
             OLED_ColorTurn(colormode_setting);
             Func_ColorMode_enter();
+            break;
         case Next: // next
             colormode_setting = (colormode_setting+1)%2;
             OLED_ColorTurn(colormode_setting);
