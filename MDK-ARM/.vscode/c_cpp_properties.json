@@ -1,18 +1,18 @@
 {
     "configurations": [
         {
-            "name": "Muitilevel_Menu",
+            "name": "MuMeStar",
             "includePath": [
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Inc",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Drivers\\CMSIS\\Include",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Inc",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Drivers\\CMSIS\\Include",
                 "D:\\aa_my_apps_main\\Keil_STM32\\ARM\\ARMCC\\include",
                 "D:\\aa_my_apps_main\\Keil_STM32\\ARM\\ARMCC\\include\\rw",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\MDK-ARM",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Src",
-                "c:\\Users\\13081\\Desktop\\project_cubeMX\\Muitilevel_Menu\\Drivers\\STM32F1xx_HAL_Driver\\Src"
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\MDK-ARM",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Src",
+                "c:\\Users\\13081\\Desktop\\project_cubeMX\\MuMeStar\\Drivers\\STM32F1xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
