@@ -4,7 +4,8 @@ MuMeStar (Mutiple Menu Star for OLED) 是一个用于单色OLED屏幕的多级�
 
 | 相关链接 |
 | :------: |
-| 更新日志、项目源码下载地址：[MMS (MutipleMenu_Star for OLED) ](https://www.writebug.com/code/74f70a1e-1c04-11ef-a772-0242c0a81018)  |
+| 源码下载地址(Github)：[MMS (MutipleMenu_Star for OLED) ](https://github.com/13081032491/MuMeStar) |
+| 源码下载地址(WriteBug)：[MMS (MutipleMenu_Star for OLED) ](https://www.writebug.com/code/74f70a1e-1c04-11ef-a772-0242c0a81018)  |
 |代码移植方法、详细扩展教程地址：[📚 MuMeStar (MutipleMenu_Star for OLED) 详解](https://www.writebug.com/article/2b4ea580-1bfe-11ef-a772-0242c0a81018) |
 
 由于个人时间、精力和水平有限，项目难免存在不足，望读者不吝指正。
@@ -29,10 +30,9 @@ MuMeStar (Mutiple Menu Star for OLED) 是一个用于单色OLED屏幕的多级�
 下表说明了各版本间的区别，可根据需要选择合适版本：
  | 版本 | 说明| 适用范围|
  | :------: | :------: |:-: |
- | Version 1.X | 具有最基本的按键状态机和菜单框架，IIC通信 | 是手搓菜单的优良参考 |
- | Version 2.X | 具有较完整的菜单框架，但不支持Menu_Loop属性菜单，IIC通信 | 适合剩余内存极小的项目 |
- | Version 3.X | 具有完整的菜单框架，支持多种菜单属性，IIC通信 | 适合以菜单为核心框架的项目 |
- | Version 4.X | 具有完整的菜单框架，支持多种菜单属性，支持IIC+SPI通信 | 适合以菜单为核心框架且通信速率要求较高的项目 |
+ | Version 1.0.X| 具有最基本的按键状态机和菜单框架，IIC，标准库 | 是手搓菜单的优良参考 |
+ | Version 1.1.X | 具有较完整的菜单框架，IIC，HAL库 | 适合剩余内存极小的项目 |
+ | Version 1.2.X | 具有完整的菜单框架，兼容SPI和IIC，HAL库 | 适合以菜单为核心框架的项目 |
 
 ## 4. 更新日志
 
