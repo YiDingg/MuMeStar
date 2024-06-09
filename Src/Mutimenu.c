@@ -37,16 +37,16 @@ static uint8_t Current_showrange = 0;  // Draw_menu()专用, 判断当前显示�
 static uint8_t UserChoose = 0; 		// Draw_menu()专用, 光标位置
 
 // settings 参数
-static uint8_t brightness = OLED_StartBrightness;            // 默认屏幕亮度
-static uint8_t brightness_setting = OLED_StartBrightness;    // "Brightness" 专用，用于调节屏幕当前亮度
+static uint8_t brightness = OLED_Defult_Brightness;            // 默认屏幕亮度
+static uint8_t brightness_setting = OLED_Defult_Brightness;    // "Brightness" 专用，用于调节屏幕当前亮度
 static uint8_t colormode = OLED_Defult_ColorMode;            // 默认屏幕颜色
 static uint8_t colormode_setting = OLED_Defult_ColorMode;    // "ColorMode" 专用，用于调节屏幕颜色模式
 static uint8_t mirrorflipHo = No;                           // 默认水平翻转
 static uint8_t mirrorflipHo_setting = No;                   // "MirrorFlip Ho" 专用
 static uint8_t mirrorflipVer = No;                           // 默认垂直翻转
 static uint8_t mirrorflipVer_setting = No;                   // "MirrorFlip Ver" 专用
-static uint8_t fontsize = OLED_StartFontsize;                // 默认菜单字号
-static uint8_t fontsize_setting = OLED_StartFontsize;        // "Fontsize" 专用，用于调节菜单当前字号
+static uint8_t fontsize = OLED_Defult_Fontsize;                // 默认菜单字号
+static uint8_t fontsize_setting = OLED_Defult_Fontsize;        // "Fontsize" 专用，用于调节菜单当前字号
 /* -----------上面是菜单全局变量---------- */
 
 
@@ -83,7 +83,7 @@ static const Menu_typedef Main[Main_Child_nodesnumber] = {
 };
 
 /* Menu_1 */
-static const Menu_typedef Main_Settings[5] = {				
+static const Menu_typedef Main_Settings[] = {				
     {"Settings", Main,  Main_Settings_Fontsize,      Func_Fontsize_enter, 1, Menu_Data},
     {"Settings", Main,  Main_Settings_Brightness,    Func_Brightness_enter, 1, Menu_Data},
     {"Settings", Main,  Main_Settings_ColorMode,     Func_ColorMode_enter, 1, Menu_Data},
@@ -91,7 +91,7 @@ static const Menu_typedef Main_Settings[5] = {
     {"Settings", Main,  Main_Settings_MirrorFlipVer, Func_MirrorFlipVer_enter, 1, Menu_Data},
 };
 
-static const Menu_typedef Main_Hello[2] = {				
+static const Menu_typedef Main_Hello[] = {				
     {"Hello", Main,  Main_Hello_Sayhello,Func_Sayhello, 1,Menu_Once},
     {"Hello", Main,  Main_Hello_Smile,Func_Smile_enter, 1,Menu_Loop}
 };
@@ -531,10 +531,10 @@ void Func_Smile_run(void){
 void Multimenu_Init(void){
     Insert = 0;
     Current_showrange = 0; 
-    brightness = OLED_StartBrightness;  
-    brightness_setting = OLED_StartBrightness;    
-    fontsize = OLED_StartFontsize;  
-    fontsize_setting = OLED_StartFontsize;    
+    brightness = OLED_Defult_Brightness;  
+    brightness_setting = OLED_Defult_Brightness;    
+    fontsize = OLED_Defult_Fontsize;  
+    fontsize_setting = OLED_Defult_Fontsize;    
 
     Menu_Pointer = (Menu_typedef *)Main;
     Insert = 0;

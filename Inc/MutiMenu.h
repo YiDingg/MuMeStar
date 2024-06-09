@@ -12,10 +12,10 @@
 
 /* --------下面是按键与状态灯接口宏定义-------- */
 /*                                           */
-#define KEY_Active_Volt 0   // 0-按键有效电平为低电平, 1-按键有效电平为高电平
-#define OLED_StartBrightness  0x80  // 屏幕默认亮度, 范围0x01~0xFF, 50% 对应0x80
-#define OLED_StartFontsize size_1206    // 菜单默认字号, 范围{size_0806, size_1206, size_1608}
-#define OLED_Defult_ColorMode White   // 默认屏幕颜色，White--白字黑底，Black---黑字白底
+#define KEY_Active_Volt GPIO_PIN_RESET   // GPIO_PIN_RESET--按键有效电平为低电平, GPIO_PIN_SET--按键有效电平为高电平
+#define OLED_Defult_Brightness  0x80  // 屏幕默认亮度, 范围0x01~0xFF, 50% 对应0x80
+#define OLED_Defult_Fontsize size_1206    // 菜单默认字号, 范围{size_0806, size_1206, size_1608}
+#define OLED_Defult_ColorMode Black   // 默认屏幕颜色，Black--白字黑底，White---黑字白底
 
 // 状态灯
 #define Led_Pin GPIO_PIN_13
@@ -52,8 +52,8 @@ enum FONTSIZE{
   size_1608
 };
 enum COLORMODE{
-  White,
-  Black
+  Black,
+  White
 };
 
 typedef struct Size

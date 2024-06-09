@@ -95,7 +95,7 @@ enum BOOL{
 // 功能函数
 uint8_t OLED_Get_StrLength(uint8_t* str);
 uint32_t OLED_Pow(uint8_t m,uint8_t n);
-void OLED_BufferSet(uint8_t n);
+void OLED_BufferSet(uint8_t byte,uint16_t n);
 void OLED_BufferClear(void);
 void OLED_BufferFill(void);
 void OLED_ColorTurn(uint8_t Mode);

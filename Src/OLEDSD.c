@@ -110,12 +110,13 @@ uint32_t OLED_Pow(uint8_t m,uint8_t n)
 
 /**
  * @brief 用某一数字覆盖显存
- * @param n 0x00~0xFF
+ * @param byte 0x00~0xFF
+ * @param n 字节数:0~128*8=1024
  * @note 对OLED屏幕上的一字节，低位在下高位在上。例如0x01为最下方一个像素点亮
  * @retval void
 */
-void OLED_BufferSet(uint8_t n){
-	memset(OLED_GRAMBuf,n,8*128);
+void OLED_BufferSet(uint8_t byte, uint16_t n){
+	memset(OLED_GRAMBuf,byte,n);
 }
 
 /**
@@ -123,7 +124,7 @@ void OLED_BufferSet(uint8_t n){
  * @retval void
 */
 void OLED_BufferClear(void){
-	OLED_BufferSet(0);
+	OLED_BufferSet(0,1024);
 }
 
 /**
@@ -131,11 +132,11 @@ void OLED_BufferClear(void){
  * @retval void
 */
 void OLED_BufferFill(void){
-	OLED_BufferSet(0xFF);
+	OLED_BufferSet(0xFF,1024);
 }
 
 /**
- * @brief 以不同模式刷新OLED，以提供更美观的动画效果
+ * @brief 以不同模式刷新OLED，以提供更美观的动画效果 
  * @param Mode {1,2,3,4,5,6}
  * @param time 动画时长, 范围[0,10],单位us, 越小速度越快 
  * @note 
