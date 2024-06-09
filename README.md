@@ -4,8 +4,8 @@ MuMeStar (Mutiple Menu Star for OLED) 是一个用于单色OLED屏幕的多级�
 
 | 相关链接 |
 | :------: |
-| 源码下载地址(Github)：[MMS (MutipleMenu_Star for OLED) ](https://github.com/13081032491/MuMeStar) |
-| 源码下载地址(WriteBug)：[MMS (MutipleMenu_Star for OLED) ](https://www.writebug.com/code/74f70a1e-1c04-11ef-a772-0242c0a81018)  |
+| 源码下载地址(Github)：[MuMeStar (MutipleMenu_Star for OLED) ](https://github.com/13081032491/MuMeStar) |
+| 源码下载地址(WriteBug)：[MuMeStar (MutipleMenu_Star for OLED) ](https://www.writebug.com/code/74f70a1e-1c04-11ef-a772-0242c0a81018)  |
 |代码移植方法、详细扩展教程地址：[📚 MuMeStar (MutipleMenu_Star for OLED) 详解](https://www.writebug.com/article/2b4ea580-1bfe-11ef-a772-0242c0a81018) |
 
 由于个人时间、精力和水平有限，项目难免存在不足，望读者不吝指正。
@@ -17,6 +17,10 @@ MuMeStar (Mutiple Menu Star for OLED) 是一个用于单色OLED屏幕的多级�
 	- Settings (Parent)
 		- Fontsize: (Data): 自由调节菜单字号
 		- Brightness (Data): 自由调节屏幕亮度
+		- Color Mode (Data): 设置白天/黑夜模式
+		- Refresh Rate (Data): 设置屏幕刷新率
+		- Mirror Flip -Ho (Data): 水平镜像翻转
+		- Mirror Flip -Ver (Data): 垂直镜像翻转
 	- Hello (Parent)
 		- Sayhello (Once): "Hello MuMeStar!"
 		- Smile (Loop): 眼珠不断转动 

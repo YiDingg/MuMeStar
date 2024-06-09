@@ -141,9 +141,9 @@ void Func_Sayhello(void){
 void Func_About(void){
     OLED_BufferClear();
     OLED_ShowString_Rowcentering(0," [About] ",16,0);
-    OLED_ShowString(0,16,"Author: Star",12,1);
-    OLED_ShowString(0,28,"Version: 4.0",12,1);
-    OLED_ShowString(0,40,"Time: 2024.5.23",12,1);
+    OLED_ShowString_Rowcentering(16,"Name: MuMeStar",16,1);
+    OLED_ShowString_Rowcentering(32,"Author: Star",16,1);
+    OLED_ShowString_Rowcentering(48,"Version: 4.0",16,1);
     OLED_Refresh_Poll();
 }
 
@@ -748,7 +748,6 @@ void KEY_Pressed(uint8_t GPIO_pin){
 void Menu_Handler(void){
     // 检查是否忽略了一次键值
     // if( Jumped_key != Zero ){KEY_num = Jumped_key;Jumped_key=Zero;Menu_Handler();}
-    
     /* 根据菜单属性调用函数 */
     enum MenuProperties property;   // 获取当前菜单属性
     if(Menu_Pointer == Main){property = Menu_Parent;}
