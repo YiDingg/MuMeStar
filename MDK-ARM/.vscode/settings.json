@@ -15,7 +15,9 @@
         "stm32f1xx_hal.h": "c",
         "oledfont.h": "c",
         "string.h": "c",
-        "oledsd.h": "c"
+        "oledsd.h": "c",
+        "mumestar.h": "c",
+        "mumestar_data.h": "c"
     },
     "editor.fontSize": 15,
     "editor.cursorStyle": "line",

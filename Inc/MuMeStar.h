@@ -1,3 +1,10 @@
+/**************************************************************************
+* 文件：MutiMenu.h
+* 作者：StarDY
+* 邮箱：1308102491@qq.com
+* 描述：OLED多级菜单
+***************************************************************************/
+
 #include "main.h"
 #include "OLEDSD.h"
 
@@ -12,34 +19,35 @@
 
 /* --------下面是按键与状态灯接口宏定义-------- */
 /*                                           */
-#define KEY_Active_Volt GPIO_PIN_RESET   // GPIO_PIN_RESET--按键有效电平为低电平, GPIO_PIN_SET--按键有效电平为高电平
+#define KEY_Active_Volt         GPIO_PIN_RESET   // GPIO_PIN_RESET--按键有效电平为低电平, GPIO_PIN_SET--按键有效电平为高电平
 #define OLED_Defult_Brightness  0x80  // 屏幕默认亮度, 范围0x01~0xFF, 50% 对应0x80
-#define OLED_Defult_Fontsize size_1206    // 菜单默认字号, 范围{size_0806, size_1206, size_1608}
-#define OLED_Defult_ColorMode Black   // 默认屏幕颜色，Black--白字黑底，White---黑字白底
+#define OLED_Defult_Fontsize    size_1206    // 菜单默认字号, 范围{size_0806, size_1206, size_1608}
+#define OLED_Defult_ColorMode   Black   // 默认屏幕颜色，Black--白字黑底，White---黑字白底
+#define OLED_Defult_RefreshRate 8 // 默认屏幕刷新率，0x0~0xF(即0~15)
 
 // 状态灯
-#define Led_Pin GPIO_PIN_13
+#define Led_Pin       GPIO_PIN_13
 #define Led_GPIO_Port GPIOC
-#define LED_Pin GPIO_PIN_13
+#define LED_Pin       GPIO_PIN_13
 #define LED_GPIO_Port GPIOC
 
 // previous键
-#define Key_previous_Pin GPIO_PIN_0
+#define Key_previous_Pin       GPIO_PIN_0
 #define Key_previous_GPIO_Port GPIOA
 #define Key_previous_EXTI_IRQn EXTI0_IRQn
 
 // enter键
-#define Key_enter_Pin GPIO_PIN_1
+#define Key_enter_Pin       GPIO_PIN_1
 #define Key_enter_GPIO_Port GPIOA
 #define Key_enter_EXTI_IRQn EXTI1_IRQn
 
 // next键
-#define Key_next_Pin GPIO_PIN_2
+#define Key_next_Pin       GPIO_PIN_2
 #define Key_next_GPIO_Port GPIOA
 #define Key_next_EXTI_IRQn EXTI2_IRQn
 
 // return键
-#define Key_return_Pin GPIO_PIN_3
+#define Key_return_Pin       GPIO_PIN_3
 #define Key_return_GPIO_Port GPIOA
 #define Key_return_EXTI_IRQn EXTI3_IRQn
 /*                                           */
@@ -103,6 +111,8 @@ void Func_Brightness_enter(void);
 void Func_Brightness_set(void);
 void Func_ColorMode_enter(void);
 void Func_ColorMode_set(void);
+void Func_RefreshRate_enter(void);
+void Func_RefreshRate_set(void);
 void Func_MirrorFlipHo_enter(void);
 void Func_MirrorFlipHo_set(void);
 void Func_MirrorFlipVer_enter(void);

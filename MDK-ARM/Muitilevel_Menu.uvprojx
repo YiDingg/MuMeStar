@@ -395,36 +395,6 @@
           <GroupName>Application/User</GroupName>
           <Files>
             <File>
-              <FileName>Mutimenu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\Mutimenu.c</FilePath>
-            </File>
-            <File>
-              <FileName>MutiMenu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\MutiMenu.h</FilePath>
-            </File>
-            <File>
-              <FileName>MultiMenu_Data.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\MultiMenu_Data.h</FilePath>
-            </File>
-            <File>
-              <FileName>OLEDSD.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\OLEDSD.h</FilePath>
-            </File>
-            <File>
-              <FileName>OLEDSD_Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\OLEDSD_Font.h</FilePath>
-            </File>
-            <File>
-              <FileName>OLEDSD_Image.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Inc\OLEDSD_Image.h</FilePath>
-            </File>
-            <File>
               <FileName>OLEDSD.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\OLEDSD.c</FilePath>
@@ -565,6 +535,11 @@
               <FileName>stm32f1xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32f1xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>MuMeStar.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\MuMeStar.c</FilePath>
             </File>
           </Files>
         </Group>

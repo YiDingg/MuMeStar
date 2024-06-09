@@ -1,6 +1,9 @@
-/**
- * 本函数库基于OLED型号: 0.96寸128x64屏幕，SSD1306控制芯片，IIC通信协议，4管脚  
-*/
+/**************************************************************************
+* 文件：OLEDSD.c
+* 作者：StarDY
+* 邮箱：1308102491@qq.com
+* 描述：OLED软件驱动，兼容硬件SPI+硬件IIC
+***************************************************************************/
 #include "OLEDSD.h"
 #include "OLEDSD_Font.h"
 
@@ -28,8 +31,6 @@ uint8_t OLED_RefComBuf[8][3] = {	// 命令数组，用于 refresh 时设置页�
 	{0x00,0xB7,0x10},
 };
 
-//uint8_t BufFinshFlag = 0;
-
 // OLED的初始化命令
 const uint8_t OLED_Init_CMD[29] =
 {
@@ -56,7 +57,7 @@ const uint8_t OLED_Init_CMD[29] =
 	0, 		// 偏移行数：0~64 --not offset
 
 	0xD5, 	// 进入时钟分频/震荡频率设置--set display clock divide ratio/oscillator frequency
-	0xD0, 	// 高四位屏幕刷新率：1~F(越大越快, 也越耗电)，例如0x80和0xF0都合法；低四位时钟分频：一般为0 --set screen refresh rate
+	0xD0, 	// 高四位屏幕刷新率：0~F(越大越快, 也越耗电，0为10Hz，F为100Hz)，例如0x80和0xF0都合法；低四位时钟分频：一般为0 --set screen refresh rate
 
 	0xD9, 	
 	0x05, 
@@ -192,11 +193,10 @@ void OLED_Refresh_Poll_Mutimode(uint8_t Mode, uint8_t time){
 void OLED_ColorTurn(uint8_t Mode)
 {
 	switch (Mode){
-	case 0:	// 正常显示
-		OLED_SendByte_Poll(0xA6,OLED_Command);return;
-	case 1:	// 反色显示
-		OLED_SendByte_Poll(0xA7,OLED_Command);return;
-	default:return;}
+		case 0:	OLED_SendByte_Poll(0xA6,OLED_Command);return;	// 正常
+		case 1:	OLED_SendByte_Poll(0xA7,OLED_Command);return;		// 反色
+		default:return;
+	}
 }
 
 /**
@@ -263,6 +263,17 @@ void OLED_DisPlay_Off(void)
 	OLED_SendByte_Poll(0x8D,OLED_Command);	// 进入电荷泵配置
 	OLED_SendByte_Poll(0x10,OLED_Command);	// 关闭电荷泵
 	OLED_SendByte_Poll(0xAE,OLED_Command);	// 关闭屏幕
+}
+
+/**
+ * @brief 设置OLED屏幕刷新率
+ * @param rate 范围:0~15
+ * @retval void
+*/
+void OLED_Set_RefershRate(uint8_t rate){
+	if(rate>15){return;}
+	OLED_SendByte_Poll(0xD5,OLED_Command);		// 进入时钟分频/震荡频率设置
+	OLED_SendByte_Poll(rate<<4,OLED_Command);	// 高四位是屏幕刷新率：0~F
 }
 
 /** 
@@ -450,25 +461,15 @@ void OLED_DrawRectangle(uint8_t x,uint8_t y,uint8_t width,uint8_t height,uint8_t
  * @param y 纵坐标
  * @param num 要显示的数字
  * @param len 显示位数(从右向左计位)
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
- * @param Mode 反色: 1正常;0反色;
+ * @param Mode 是否反色: 1正常;0反色;
  * @retval void
 */
-void OLED_ShowNum_Bin(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1,uint8_t Mode){
-	uint8_t i, width;
-	switch (size1)
-	{
-	case 8: width = 6; break;
-	case 12: width = 6; break;
-	case 16: width = 8; break;
-	case 24: width = 12; break;
-	default:return;
-	}
-	for (i = 0; i < len; i++)							
-	{
-		OLED_ShowChar(x+width*i, y , (num/OLED_Pow(2, len - i - 1))%2+'0', size1, Mode);
-	}
+void OLED_ShowNum_Bin(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t fontsize,uint8_t Mode){
+	uint8_t i = 0;
+	uint8_t width = (fontsize==8)?6:(fontsize/2);
+	for (i = 0; i < len; i++){OLED_ShowChar(x+width*i, y , (num/OLED_Pow(2, len - i - 1))%2+'0', fontsize, Mode);}
 }
 
 /**
@@ -477,26 +478,16 @@ void OLED_ShowNum_Bin(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1
  * @param y 纵坐标
  * @param num 要显示的数字
  * @param len 显示位数(左侧自动补零)
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
- * @param Mode 1正常;0反色;
+ * @param Mode 是否反色: 1正常;0反色;
  * @retval void
 */
-void OLED_ShowNum_Dec(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1,uint8_t Mode)
+void OLED_ShowNum_Dec(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t fontsize,uint8_t Mode)
 {
-	uint8_t i, width;
-	switch (size1)
-	{
-	case 8: width = 6; break;
-	case 12: width = 6; break;
-	case 16: width = 8; break;
-	case 24: width = 12; break;
-	default:return;
-	}
-	for (i = 0; i < len; i++)							
-	{
-		OLED_ShowChar(x+width*i, y , (num/OLED_Pow(10,len-i-1))%10+'0', size1, Mode);
-	}
+	uint8_t i;
+	uint8_t width = (fontsize==8)?6:(fontsize/2);
+	for (i = 0; i < len; i++){OLED_ShowChar(x+width*i, y , (num/OLED_Pow(10,len-i-1))%10+'0', fontsize, Mode);}
 }
 
 
@@ -506,26 +497,19 @@ void OLED_ShowNum_Dec(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1
  * @param y 纵坐标
  * @param num 要显示的数字
  * @param len 显示位数(从右向左计位)
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
- * @param Mode 反色: 1正常;0反色;
+ * @param Mode 是否反色: 1正常;0反色;
  * @retval void
 */
-void OLED_ShowNum_Hex(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1,uint8_t Mode){
-	uint8_t i, width, decnum;
-	switch (size1)
-	{
-	case 8: width = 6; break;
-	case 12: width = 6; break;
-	case 16: width = 8; break;
-	case 24: width = 12; break;
-	default:return;
-	}
+void OLED_ShowNum_Hex(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t fontsize,uint8_t Mode){
+	uint8_t i, decnum;
+	uint8_t width = (fontsize==8)?6:(fontsize/2);
 	for (i = 0; i < len; i++)							
 	{
 		decnum = num / OLED_Pow(16, len - i - 1) % 16;
-		if (decnum < 10){OLED_ShowChar(x+width*i, y , decnum + '0', size1, Mode);}
-		else{OLED_ShowChar(x+width*i, y , decnum - 10 + 'A', size1, Mode);}
+		if (decnum < 10){OLED_ShowChar(x+width*i, y , decnum + '0', fontsize, Mode);}
+		else{OLED_ShowChar(x+width*i, y , decnum - 10 + 'A', fontsize, Mode);}
 	}
 }
 
@@ -535,48 +519,80 @@ void OLED_ShowNum_Hex(uint8_t x,uint8_t y,uint32_t num,uint8_t len,uint8_t size1
  * @param y 纵坐标
  * @param num 要显示的数字
  * @param len 显示位数(不计正负号)
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
- * @param Mode 反色: 1正常;0反色;
+ * @param Mode 是否反色: 1正常;0反色;
  * @retval void
 */
-void OLED_ShowNum_SignedDec(uint8_t x,uint8_t y,int32_t num,uint8_t len,uint8_t size1,uint8_t Mode){
-	uint8_t width;
-	switch (size1)
-	{
-	case 8: width = 6; break;
-	case 12: width = 6; break;
-	case 16: width = 8; break;
-	case 24: width = 12; break;
-	default:return;
-	}
+void OLED_ShowNum_SignedDec(uint8_t x,uint8_t y,int32_t num,uint8_t len,uint8_t fontsize,uint8_t Mode){
+	uint8_t width = (fontsize==8)?6:(fontsize/2);
 	if(num >=0){
-		OLED_ShowChar(x,y, '+', size1, Mode);
-		OLED_ShowNum_Dec(x+width, y, num, len, size1, Mode);
+		OLED_ShowChar(x,y, '+', fontsize, Mode);
+		OLED_ShowNum_Dec(x+width, y, num, len, fontsize, Mode);
 	}
 	else{
-		OLED_ShowChar(x,y, '-', size1, Mode);
-		OLED_ShowNum_Dec(x+width, y, -num, len, size1, Mode);
+		OLED_ShowChar(x,y, '-', fontsize, Mode);
+		OLED_ShowNum_Dec(x+width, y, -num, len, fontsize, Mode);
 	}
+}
+
+/**
+ * @brief 显示无符号浮点数
+ * @param x 横坐标
+ * @param y 纵坐标
+ * @param num 要显示的数字
+ * @param int_len 整数位数
+ * @param fra_len 小数位数
+ * @param fontsize 字号, {8,12,16,24}
+ * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
+ * @param Mode 是否反色: 1正常;0反色;
+ * @retval void
+*/
+void OLED_ShowFloat_Dec(uint8_t x, uint8_t y, double num, uint8_t int_len,uint8_t fra_len, uint8_t fontsize, uint8_t Mode){
+	uint8_t width = (fontsize==8)?6:(fontsize/2);
+	OLED_ShowNum_Dec(x, y, (uint32_t)num, int_len, fontsize, Mode);
+	OLED_ShowChar(x+int_len*width,y,'.',fontsize,Mode);
+	OLED_ShowNum_Dec(x+(int_len+1)*width, y, (uint32_t)(num*OLED_Pow(10,fra_len)), fra_len, fontsize, Mode);
+}
+
+/**
+ * @brief 显示无符号浮点数
+ * @param x 横坐标
+ * @param y 纵坐标
+ * @param num 要显示的数字
+ * @param int_len 整数位数
+ * @param fra_len 小数位数
+ * @param fontsize 字号, {8,12,16,24}
+ * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
+ * @param Mode 是否反色: 1正常;0反色;
+ * @retval void
+*/
+void OLED_ShowFloat_SignedDec(uint8_t x, uint8_t y, double num, uint8_t int_len,uint8_t fra_len, uint8_t fontsize, uint8_t Mode){
+	uint8_t width = (fontsize==8)?6:(fontsize/2);
+	if(num<0){OLED_ShowChar(x,y,'-',fontsize,Mode);}
+	else{OLED_ShowChar(x,y,'+',fontsize,Mode);}
+	OLED_ShowNum_Dec(x+width, y, (uint32_t)num, int_len, fontsize, Mode);
+	OLED_ShowChar(x+(int_len+1)*width,y,'.',fontsize,Mode);
+	OLED_ShowNum_Dec(x+(int_len+2)*width, y, (uint32_t)(num*OLED_Pow(10,fra_len)), fra_len, fontsize, Mode);
 }
 
 /**
  * @brief 显示屏幕帧率(由SysTick中断实现)
  * @param x 横坐标
  * @param y 纵坐标
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @param Mode 0为反色显示, 1为正常显示
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
  * @retval void
 */
-void OLED_ShowFPS(uint8_t x,uint8_t y,uint8_t size1,uint8_t Mode){
+void OLED_ShowFPS(uint8_t x,uint8_t y,uint8_t fontsize,uint8_t Mode){
 	if(FPS<100){
-		OLED_ShowString(x,y,"FPS:",size1,Mode);
-		OLED_ShowNum_Dec(x+4*((size1==8)?6:(size1/2)),y,FPS,2,size1,Mode);
+		OLED_ShowString(x,y,"FPS:",fontsize,Mode);
+		OLED_ShowNum_Dec(x+4*((fontsize==8)?6:(fontsize/2)),y,FPS,2,fontsize,Mode);
 	}
 	if(FPS>=100){
-		OLED_ShowString(x,y,"FPS:",size1,Mode);
-		OLED_ShowNum_Dec(x+4*((size1==8)?6:(size1/2)),y,FPS,3,size1,Mode);
+		OLED_ShowString(x,y,"FPS:",fontsize,Mode);
+		OLED_ShowNum_Dec(x+4*((fontsize==8)?6:(fontsize/2)),y,FPS,3,fontsize,Mode);
 	}
 
 }
@@ -602,25 +618,25 @@ void HAL_IncTick(void)
  * @param x 横坐标
  * @param y 纵坐标
  * @param Char 要显示的字符
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
  * @param Mode 0为反色显示, 1为正常显示
  * @retval void
 */
-void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t Char,uint8_t size1,uint8_t Mode)
+void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t Char,uint8_t fontsize,uint8_t Mode)
 {
 	uint8_t i,m,temp;
 	uint8_t x0=x,y0=y;
 	const uint8_t* TEMP; 
-	uint16_t size2 = (size1==8)?6:((size1/2)*(size1/8+((size1%8)?1:0)));		//得到字体一个字符对应点阵集所占的字节数
-	switch (size1){
+	uint16_t size2 = (fontsize==8)?6:((fontsize/2)*(fontsize/8+((fontsize%8)?1:0)));		//得到字体一个字符对应点阵集所占的字节数
+	switch (fontsize){
 		case 8: TEMP=asc2_0806[Char-' '];break;
 		case 12: TEMP=asc2_1206[Char-' '];break;
 		case 16: TEMP=asc2_1608[Char-' '];break;
 		case 24: TEMP=asc2_2412[Char-' '];break;
 		default: return;
 	}
-	if(size1==12){	// 避免12*16时侵占其它空间
+	if(fontsize==12){	// 避免12*16时侵占其它空间
 		for(i=0;i<6;i++){
 			temp = *(TEMP+i);
 			for(m=0;m<8;m++){
@@ -654,7 +670,7 @@ void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t Char,uint8_t size1,uint8_t Mode)
 			}
 			x++;
 			y=y0;
-			if((size1!=8)&&((x-x0)==size1/2)){x=x0;y0=y0+8;y=y0;}
+			if((fontsize!=8)&&((x-x0)==fontsize/2)){x=x0;y0=y0+8;y=y0;}
 		}
 	}
 }
@@ -664,18 +680,18 @@ void OLED_ShowChar(uint8_t x,uint8_t y,uint8_t Char,uint8_t size1,uint8_t Mode)
  * @param x 横坐标
  * @param y 纵坐标
  * @param String 要显示的字符串
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
  * @param Mode 0为反色显示, 1为正常显示
  * @retval void
 */
-void OLED_ShowString(uint8_t x,uint8_t y,uint8_t *String,uint8_t size1,uint8_t Mode)
+void OLED_ShowString(uint8_t x,uint8_t y,uint8_t *String,uint8_t fontsize,uint8_t Mode)
 {
 	while((*String>=' ')&&(*String<='~'))//判断是否非法字符!
 	{
-		OLED_ShowChar(x,y,*String,size1,Mode);
-		if(size1==8)x+=6;
-		else x+=size1/2;
+		OLED_ShowChar(x,y,*String,fontsize,Mode);
+		if(fontsize==8)x+=6;
+		else x+=fontsize/2;
 		String++;
   	}
 }
@@ -685,17 +701,17 @@ void OLED_ShowString(uint8_t x,uint8_t y,uint8_t *String,uint8_t size1,uint8_t M
  * @param x 横坐标
  * @param y 纵坐标
  * @param String 要显示的字符串
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*06,12*06,16*08,24*12}
  * @param Mode 0为反色显示, 1为正常显示
  * @retval void
 */
-void OLED_ShowString_Rowcentering(uint8_t y,uint8_t *String,uint8_t size1,uint8_t Mode){
+void OLED_ShowString_Rowcentering(uint8_t y,uint8_t *String,uint8_t fontsize,uint8_t Mode){
 	uint8_t i=0, size=0, n = 0, lenth = 0;
 	while((*String>=' ')&&(*String<='~')){n++;String++;} // 获取字符串长度
 	String -= n;
-	if(size1 == 8){size=6;}
-	else{size=size1/2;}
+	if(fontsize == 8){size=6;}
+	else{size=fontsize/2;}
 	lenth = n*size;
 	if( lenth>128 ){
 		OLED_BufferClear();
@@ -704,7 +720,7 @@ void OLED_ShowString_Rowcentering(uint8_t y,uint8_t *String,uint8_t size1,uint8_
 	else{
 		while((*String>=' ')&&(*String<='~'))
 		{
-			OLED_ShowChar(64-lenth/2 + i*size,y,*String,size1,Mode);
+			OLED_ShowChar(64-lenth/2 + i*size,y,*String,fontsize,Mode);
 			i++;String++;
   		}
 	}
@@ -717,18 +733,18 @@ void OLED_ShowString_Rowcentering(uint8_t y,uint8_t *String,uint8_t size1,uint8_
  * @param x 横坐标
  * @param y 纵坐标
  * @param num 汉字对应的序号
- * @param size1 字号, {8,12,16,24}
+ * @param fontsize 字号, {8,12,16,24}
  * @note  {8,12,16,24} 依次对应 {08*08,12*12,16*116,24*24}
  * @param Mode 1正常, 0反色
  * @retval void
 */
-void OLED_ShowChinese(uint8_t x,uint8_t y,uint8_t num,uint8_t size1,uint8_t Mode)
+void OLED_ShowChinese(uint8_t x,uint8_t y,uint8_t num,uint8_t fontsize,uint8_t Mode)
 {
 	uint8_t i,m,temp;
 	uint8_t x0=x,y0=y;
 	const uint8_t* TEMP; 
-	uint16_t size3=size1*(size1/8 + ((size1%8)?1:0));  //得到字体一个字符对应点阵集所占的字节数
-	switch (size1){
+	uint16_t size3=fontsize*(fontsize/8 + ((fontsize%8)?1:0));  //得到字体一个字符对应点阵集所占的字节数
+	switch (fontsize){
 		case 12: TEMP = *(Chinese_12+num);break;
 		case 16: TEMP = *(Chinese_16+num);break;
 		case 24: TEMP = *(Chinese_24+num);break;
@@ -745,7 +761,7 @@ void OLED_ShowChinese(uint8_t x,uint8_t y,uint8_t num,uint8_t size1,uint8_t Mode
 		}
 		x++;
 		y=y0;
-		if((x-x0)==size1){x=x0;y0=y0+8;y=y0;}
+		if((x-x0)==fontsize){x=x0;y0=y0+8;y=y0;}
 	}
 }
 
@@ -840,6 +856,10 @@ void OLED_ShowPicture(uint8_t x,uint8_t y,uint8_t sizex,uint8_t sizey,const uint
 	uint8_t i,j,k,temp,page;
 	uint8_t x0=x, y0=y;
 	page=sizey/8+((sizey%8)?1:0); // 计算页数
+	if(sizex==OLED_Width&&sizey==OLED_Height){
+		memcpy(OLED_GRAMBuf,BMP,OLED_Width*OLED_Height);
+		return;
+		}
 	switch(Mode){
 		case 0:
 			for(i=0;i<page;i++){

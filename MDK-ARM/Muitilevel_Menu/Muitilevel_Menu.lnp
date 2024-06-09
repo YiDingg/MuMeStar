@@ -1,6 +1,5 @@
 --cpu Cortex-M3
 "muitilevel_menu\startup_stm32f103xb.o"
-"muitilevel_menu\mutimenu.o"
 "muitilevel_menu\oledsd.o"
 "muitilevel_menu\main.o"
 "muitilevel_menu\gpio.o"
@@ -9,6 +8,7 @@
 "muitilevel_menu\spi.o"
 "muitilevel_menu\stm32f1xx_it.o"
 "muitilevel_menu\stm32f1xx_hal_msp.o"
+"muitilevel_menu\mumestar.o"
 "muitilevel_menu\stm32f1xx_hal_gpio_ex.o"
 "muitilevel_menu\stm32f1xx_hal_i2c.o"
 "muitilevel_menu\stm32f1xx_hal.o"
