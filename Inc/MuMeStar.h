@@ -132,7 +132,6 @@ void Invalid_Operation(void);
 void Menu_Handler(void);
 void Switch_Menu(void);
 void Menu_Return(void);
-void Draw_Menu_NoAni(uint8_t len, uint8_t n, uint8_t rec_y, uint8_t height, uint8_t x);
 
 // 按键逻辑
 void KEY_Pressed(uint8_t GPIO_pin);

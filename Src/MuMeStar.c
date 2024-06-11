@@ -637,10 +637,14 @@ void Menu_Handler(void){
  * @retval void
 */
 void Switch_Menu(void){
+/* 
+先获取作图变量，再作出图像
+ */
+// 第一步：获取作图变量
     uint8_t i=0; // 循环变量
     uint8_t len; // 菜单头名字长度
     uint8_t n; // 需要draw的行数
-    uint8_t x; // 光标所在位置
+    uint8_t x; // 光标所在行
     uint8_t rec_y; // 滑动条填充部分起始纵坐标
     uint8_t height; // 滑动条填充部分纵长
     uint8_t index;  // 当前菜单在父级中的索引
@@ -670,28 +674,7 @@ void Switch_Menu(void){
         n = ((Menu_Pointer->Parent+index)->Child_nodes_number<=Mysize[fontsize].row_number)?(Menu_Pointer->Parent+index)->Child_nodes_number:Mysize[fontsize].row_number;
         height = (uint8_t) 60/(Menu_Pointer->Parent+index)->Child_nodes_number-1;
     }
-    Draw_Menu_NoAni(len,n,rec_y,height,x);
-}
-
-/**
- * @brief 返回父级菜单
- * @retval void
-*/
-void Menu_Return(void){
-    KEY_Parent_return();Switch_Menu();
-} 
-
-/**
- * @brief 根据参数作出菜单界面
- * @param len 菜单头名字长度
- * @param n 子菜单个数
- * @param rec_y 滑动条纵坐标
- * @param height 滑动条高度
- * @param x 光标所在行
- * @retval void
-*/
-void Draw_Menu_NoAni(uint8_t len, uint8_t n, uint8_t rec_y, uint8_t height, uint8_t x){
-    uint8_t i;  //循环变量
+// 第二步：作图（包括动画）
     // 作出菜单页面
     OLED_BufferClear();
     // 显示菜单头
@@ -711,6 +694,13 @@ void Draw_Menu_NoAni(uint8_t len, uint8_t n, uint8_t rec_y, uint8_t height, uint
     OLED_Refresh_Poll();
 }
 
+/**
+ * @brief 返回父级菜单
+ * @retval void
+*/
+void Menu_Return(void){
+    KEY_Parent_return();Switch_Menu();
+} 
 
 /**
  * @brief 获取当前菜单在父菜单中的索引值
@@ -793,15 +783,21 @@ void KEY_Pressed(uint8_t GPIO_pin){
  * @retval void
 */
 void KEY_Parent_pressed(void){
+/* 
+分为三步。
+第一步获取菜单相关的变量:Menu_Pointer, Current_showrange, UserChoose, Insert。由switch实现
+第二步根据已有菜单变量，获取作图变量，并作出菜单图像。由Menu_Switch()实现（内含Draw_Menu）。
+第三步收尾。
+*/
      switch (KEY_num){
-            case Zero:return;
-            case Prevoius: KEY_Parent_previous();break;
-            case Enter:    KEY_Parent_enter();   break;
-            case Next:     KEY_Parent_next();    break;
-            case Return:   KEY_Parent_return();  break;
-            default: return;
-        }
-    if(Insert==1){Current_showrange=0;UserChoose=0;Insert=0;return;}
+        case Zero:return;
+        case Prevoius: KEY_Parent_previous();break;
+        case Enter:    KEY_Parent_enter();   break;
+        case Next:     KEY_Parent_next();    break;
+        case Return:   KEY_Parent_return();  break;
+        default: return;
+    }
+    if(Insert==1){Current_showrange=0;UserChoose=0;Insert=0;}
     else{Switch_Menu();Insert=0;}
 }
 
