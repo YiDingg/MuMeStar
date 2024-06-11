@@ -682,24 +682,18 @@ void Switch_Menu(void){
     if(Insert==0){
         if(Current_showrange==Last_showrange){  // Cursor动画
             // 菜单初始化时
-            if(Current_CL==Last_CL){ 
-                Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
-                return;
-            }
+            if(Current_CL==Last_CL){ Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);return;}
             // 其它正常情况
             uint8_t direct = (Current_CL>=Last_CL)?1:-1;
-            for(i=0;i<=Cur_rebound;i++){
-                Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Last_CL]-i*direct,rec_y,height);
-            }
+            for(i=0;i<=Cur_rebound;i++){Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Last_CL]-i*direct,rec_y,height);}
             for(i=0;i<=Mysize[fontsize].size_content+2*Cur_rebound;i++){
                 Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Last_CL]+(i-Cur_rebound)*direct,rec_y,height);
             }
             for(i=0;i<=Cur_rebound;i++){
                 Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL]+(Cur_rebound-i)*direct,rec_y,height);
-                }
+            }
         }
         else{   // Page动画
-            // 先拿这个放着
             uint8_t direct = (Current_showrange>=Last_showrange)?1:-1;
             uint8_t submenu_offset = (Current_showrange-Last_showrange)*direct*Mysize[fontsize].size_content;
             for(i=0;i<=submenu_offset;i++){
