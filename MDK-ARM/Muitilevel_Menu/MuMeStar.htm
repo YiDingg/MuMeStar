@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Muitilevel_Menu\MuMeStar.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Muitilevel_Menu\MuMeStar.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jun 11 13:17:57 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jun 11 13:33:36 2024
 <BR><P>
-<H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        208 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 <P>
@@ -125,9 +125,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[d8]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[d9]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[d9]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[da]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[54]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
@@ -135,78 +135,78 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
-<P><STRONG><a name="[da]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[db]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[58]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
 </UL>
 
-<P><STRONG><a name="[db]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[dc]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[dc]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
+<P><STRONG><a name="[dd]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
 
-<P><STRONG><a name="[dd]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[de]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[de]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[df]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[df]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[e0]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[e0]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[e1]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[e1]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
+<P><STRONG><a name="[e2]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
 
-<P><STRONG><a name="[e2]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[e3]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[e3]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[e4]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[e4]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
+<P><STRONG><a name="[e5]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
 
-<P><STRONG><a name="[e5]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
+<P><STRONG><a name="[e6]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
 
-<P><STRONG><a name="[e6]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[e7]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[e7]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[e8]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
-<P><STRONG><a name="[e8]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[e9]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[e9]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[ea]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[ea]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[eb]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[eb]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[ec]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[ec]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
+<P><STRONG><a name="[ed]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
 
-<P><STRONG><a name="[ed]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[ee]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
-<P><STRONG><a name="[ee]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[ef]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
-<P><STRONG><a name="[ef]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[f0]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
 <P><STRONG><a name="[5d]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[f0]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[f1]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
-<P><STRONG><a name="[f1]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
+<P><STRONG><a name="[f2]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
 
-<P><STRONG><a name="[f2]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
+<P><STRONG><a name="[f3]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
 
-<P><STRONG><a name="[f3]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
+<P><STRONG><a name="[f4]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
 
-<P><STRONG><a name="[f4]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
+<P><STRONG><a name="[f5]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
 
-<P><STRONG><a name="[f5]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[f6]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[f6]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[f7]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[52]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[f7]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[f8]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[55]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -219,17 +219,17 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[f8]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[f9]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[59]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[f9]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[fa]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[68]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -239,7 +239,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[fa]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[fb]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[5e]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
@@ -358,7 +358,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[d2]"></a>__aeabi_memcpy</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text))
+<P><STRONG><a name="[d3]"></a>__aeabi_memcpy</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memcpy_v6.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowPicture
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 </UL>
@@ -367,45 +367,45 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 
-<P><STRONG><a name="[fb]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
+<P><STRONG><a name="[fc]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
 
 <P><STRONG><a name="[62]"></a>__aeabi_memset</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, aeabi_memset.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferSet
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferSet
 </UL>
 
-<P><STRONG><a name="[d7]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text))
+<P><STRONG><a name="[d8]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
-<P><STRONG><a name="[fc]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[fd]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[fd]"></a>__rt_memclr_w</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
+<P><STRONG><a name="[fe]"></a>__rt_memclr_w</STRONG> (Thumb, 78 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
 
 <P><STRONG><a name="[65]"></a>_memset_w</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memclr_w.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memclr
 </UL>
 
-<P><STRONG><a name="[fe]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[ff]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[ff]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[100]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[100]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[101]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[61]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memcpy
 </UL>
 
-<P><STRONG><a name="[101]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[102]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[102]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[103]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[103]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[104]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[104]"></a>__aeabi_memclr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memclr.o(.text), UNUSED)
+<P><STRONG><a name="[105]"></a>__aeabi_memclr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memclr.o(.text), UNUSED)
 
 <P><STRONG><a name="[64]"></a>__rt_memclr</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, rt_memclr.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset_w
@@ -434,21 +434,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[105]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[106]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[66]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[106]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[107]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[5f]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
 
-<P><STRONG><a name="[107]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[108]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[108]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[109]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[7]"></a>BusFault_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.BusFault_Handler))
 <BR><BR>[Calls]<UL><LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BusFault_Handler
@@ -457,7 +457,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[109]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[10a]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[1a]"></a>DMA1_Channel3_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.DMA1_Channel3_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = DMA1_Channel3_IRQHandler &rArr; HAL_DMA_IRQHandler
@@ -504,9 +504,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[70]"></a>Dinosaur_Over_Handler</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, mumestar.o(i.Dinosaur_Over_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Dinosaur_Over_Handler &rArr; Func_Dinosaur_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Dinosaur_Over_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Dinosaur_enter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Dinosaur_run
@@ -531,9 +531,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[7a]"></a>Dinosaur_Stop_Handler</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, mumestar.o(i.Dinosaur_Stop_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Dinosaur_Stop_Handler &rArr; KEY_Parent_return &rArr; Get_MenuIndex
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Dinosaur_Stop_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 </UL>
 <BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Dinosaur_run
 </UL>
@@ -569,8 +569,8 @@ Global Symbols
 <P><STRONG><a name="[9b]"></a>Error_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, main.o(i.Error_Handler))
 <BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_MspInit
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
 </UL>
 
 <P><STRONG><a name="[3d]"></a>Func_About</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, mumestar.o(i.Func_About))
@@ -595,14 +595,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4a]"></a>Func_Brightness_set</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, mumestar.o(i.Func_Brightness_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Func_Brightness_set &rArr; Func_Brightness_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Func_Brightness_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Brightness_enter
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
@@ -619,14 +619,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4b]"></a>Func_ColorMode_set</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, mumestar.o(i.Func_ColorMode_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Func_ColorMode_set &rArr; Func_ColorMode_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Func_ColorMode_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ColorTurn
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_ColorMode_enter
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
@@ -671,13 +671,13 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[49]"></a>Func_Fontsize_set</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, mumestar.o(i.Func_Fontsize_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Func_Fontsize_set &rArr; Func_Fontsize_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Func_Fontsize_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Fontsize_enter
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
@@ -694,14 +694,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4d]"></a>Func_MirrorFlipHo_set</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, mumestar.o(i.Func_MirrorFlipHo_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Func_MirrorFlipHo_set &rArr; Func_MirrorFlipHo_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Func_MirrorFlipHo_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_MirrorHo
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipHo_enter
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
@@ -718,14 +718,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4e]"></a>Func_MirrorFlipVer_set</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, mumestar.o(i.Func_MirrorFlipVer_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = Func_MirrorFlipVer_set &rArr; Func_MirrorFlipVer_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Func_MirrorFlipVer_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_MirrorVer
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipVer_enter
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
@@ -744,14 +744,14 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4c]"></a>Func_RefreshRate_set</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, mumestar.o(i.Func_RefreshRate_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Func_RefreshRate_set &rArr; Func_RefreshRate_enter &rArr; OLED_ShowString_Rowcentering &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Func_RefreshRate_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_RefershRate
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_RefreshRate_enter
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
@@ -776,7 +776,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4f]"></a>Func_Smile_run</STRONG> (Thumb, 292 bytes, Stack size 32 bytes, mumestar.o(i.Func_Smile_run))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = Func_Smile_run &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = Func_Smile_run &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowPicture
@@ -785,16 +785,16 @@ Global Symbols
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawRectangle
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Smile_Draweyes
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[bb]"></a>Get_MenuIndex</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, mumestar.o(i.Get_MenuIndex))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Get_MenuIndex
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_previous
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_next
 </UL>
@@ -830,7 +830,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
+<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Pressed
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
@@ -867,24 +867,24 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_MspInit
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 </UL>
 
-<P><STRONG><a name="[be]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
+<P><STRONG><a name="[bf]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
 <BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Pressed
 </UL>
 
-<P><STRONG><a name="[c5]"></a>HAL_GPIO_TogglePin</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_TogglePin))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<P><STRONG><a name="[c6]"></a>HAL_GPIO_TogglePin</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_TogglePin))
+<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 </UL>
 
-<P><STRONG><a name="[c1]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
+<P><STRONG><a name="[c2]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
+<BR><BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
 </UL>
 
 <P><STRONG><a name="[7e]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_hal.o(i.HAL_GetTick))
@@ -893,7 +893,7 @@ Global Symbols
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Dinosaur_enter
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitFlagStateUntilTimeout
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitFlagStateUntilTimeout
 </UL>
 
 <P><STRONG><a name="[af]"></a>HAL_I2C_AbortCpltCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_hal_i2c.o(i.HAL_I2C_AbortCpltCallback))
@@ -944,7 +944,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_MspInit
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetPCLK1Freq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
+<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
 </UL>
 
 <P><STRONG><a name="[b0]"></a>HAL_I2C_ListenCpltCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_hal_i2c.o(i.HAL_I2C_ListenCpltCallback))
@@ -996,7 +996,7 @@ Global Symbols
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Slave_AF
 </UL>
 
-<P><STRONG><a name="[d5]"></a>HAL_IncTick</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, oledsd.o(i.HAL_IncTick))
+<P><STRONG><a name="[d6]"></a>HAL_IncTick</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, oledsd.o(i.HAL_IncTick))
 <BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
@@ -1029,8 +1029,8 @@ Global Symbols
 <P><STRONG><a name="[9d]"></a>HAL_NVIC_EnableIRQ</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f1xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ))
 <BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_MspInit
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
 </UL>
 
 <P><STRONG><a name="[9c]"></a>HAL_NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, stm32f1xx_hal_cortex.o(i.HAL_NVIC_SetPriority))
@@ -1040,8 +1040,8 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_MspInit
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 
@@ -1056,7 +1056,7 @@ Global Symbols
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[98]"></a>HAL_RCC_GetPCLK1Freq</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq))
@@ -1072,7 +1072,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
 <P><STRONG><a name="[a9]"></a>HAL_SPI_ErrorCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_hal_spi.o(i.HAL_SPI_ErrorCallback))
@@ -1094,7 +1094,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
+<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
 </UL>
 
 <P><STRONG><a name="[ab]"></a>HAL_SPI_MspInit</STRONG> (Thumb, 138 bytes, Stack size 40 bytes, spi.o(i.HAL_SPI_MspInit))
@@ -1115,7 +1115,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_EndRxTxTransaction
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 </UL>
@@ -1167,24 +1167,24 @@ Global Symbols
 <LI> mumestar.o(.constdata)
 <LI> mumestar.o(.constdata)
 </UL>
-<P><STRONG><a name="[c8]"></a>KEY_Data_pressed</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Data_pressed))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<P><STRONG><a name="[c9]"></a>KEY_Data_pressed</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Data_pressed))
+<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 </UL>
 
-<P><STRONG><a name="[c7]"></a>KEY_Loop_pressed</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Loop_pressed))
-<BR><BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<P><STRONG><a name="[c8]"></a>KEY_Loop_pressed</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Loop_pressed))
+<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 </UL>
 
 <P><STRONG><a name="[b8]"></a>KEY_Once_pressed</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Once_pressed))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = KEY_Once_pressed &rArr; KEY_Parent_return &rArr; Get_MenuIndex
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = KEY_Once_pressed &rArr; Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 </UL>
 
-<P><STRONG><a name="[b9]"></a>KEY_Parent_enter</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Parent_enter))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
+<P><STRONG><a name="[b9]"></a>KEY_Parent_enter</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, mumestar.o(i.KEY_Parent_enter))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
 </UL>
@@ -1199,16 +1199,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
 </UL>
 
-<P><STRONG><a name="[bc]"></a>KEY_Parent_pressed</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, mumestar.o(i.KEY_Parent_pressed))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
+<P><STRONG><a name="[bc]"></a>KEY_Parent_pressed</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, mumestar.o(i.KEY_Parent_pressed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_previous
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_next
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_enter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 </UL>
 
 <P><STRONG><a name="[bd]"></a>KEY_Parent_previous</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, mumestar.o(i.KEY_Parent_previous))
@@ -1219,34 +1219,25 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
 </UL>
 
-<P><STRONG><a name="[71]"></a>KEY_Parent_return</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, mumestar.o(i.KEY_Parent_return))
+<P><STRONG><a name="[be]"></a>KEY_Parent_return</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, mumestar.o(i.KEY_Parent_return))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = KEY_Parent_return &rArr; Get_MenuIndex
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_MenuIndex
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Once_pressed
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_RefreshRate_set
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipVer_set
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipHo_set
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Fontsize_set
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_ColorMode_set
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Brightness_set
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Stop_Handler
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Over_Handler
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
 </UL>
 
 <P><STRONG><a name="[86]"></a>KEY_Pressed</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, mumestar.o(i.KEY_Pressed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = KEY_Pressed &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
 </UL>
 
-<P><STRONG><a name="[bf]"></a>MX_DMA_Init</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, dma.o(i.MX_DMA_Init))
+<P><STRONG><a name="[c0]"></a>MX_DMA_Init</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, dma.o(i.MX_DMA_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = MX_DMA_Init &rArr; HAL_NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
@@ -1255,18 +1246,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c0]"></a>MX_GPIO_Init</STRONG> (Thumb, 266 bytes, Stack size 48 bytes, gpio.o(i.MX_GPIO_Init))
+<P><STRONG><a name="[c1]"></a>MX_GPIO_Init</STRONG> (Thumb, 266 bytes, Stack size 48 bytes, gpio.o(i.MX_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c2]"></a>MX_I2C2_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, i2c.o(i.MX_I2C2_Init))
+<P><STRONG><a name="[c3]"></a>MX_I2C2_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, i2c.o(i.MX_I2C2_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = MX_I2C2_Init &rArr; HAL_I2C_Init &rArr; HAL_I2C_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_I2C_Init
@@ -1275,7 +1266,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c3]"></a>MX_SPI1_Init</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, spi.o(i.MX_SPI1_Init))
+<P><STRONG><a name="[c4]"></a>MX_SPI1_Init</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, spi.o(i.MX_SPI1_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = MX_SPI1_Init &rArr; HAL_SPI_Init &rArr; HAL_SPI_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Init
@@ -1291,27 +1282,45 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[c4]"></a>Menu_Handler</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, mumestar.o(i.Menu_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
+<P><STRONG><a name="[c5]"></a>Menu_Handler</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, mumestar.o(i.Menu_Handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_TogglePin
+<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_TogglePin
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Once_pressed
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Loop_pressed
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Data_pressed
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Loop_pressed
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Data_pressed
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_MenuIndex
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c6]"></a>Multimenu_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, mumestar.o(i.Multimenu_Init))
+<P><STRONG><a name="[71]"></a>Menu_Return</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, mumestar.o(i.Menu_Return))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Menu_Return &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Once_pressed
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_RefreshRate_set
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipVer_set
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipHo_set
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Fontsize_set
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_ColorMode_set
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Brightness_set
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Stop_Handler
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Over_Handler
+</UL>
+
+<P><STRONG><a name="[c7]"></a>Multimenu_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, mumestar.o(i.Multimenu_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = Multimenu_Init &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1324,7 +1333,7 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[73]"></a>OLED_BufferClear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_BufferClear))
 <BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
@@ -1347,7 +1356,7 @@ Global Symbols
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Run_Handler
 </UL>
 
-<P><STRONG><a name="[c9]"></a>OLED_BufferSet</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, oledsd.o(i.OLED_BufferSet), UNUSED)
+<P><STRONG><a name="[ca]"></a>OLED_BufferSet</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, oledsd.o(i.OLED_BufferSet), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
@@ -1362,7 +1371,7 @@ Global Symbols
 <P><STRONG><a name="[77]"></a>OLED_DrawLine</STRONG> (Thumb, 156 bytes, Stack size 48 bytes, oledsd.o(i.OLED_DrawLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = OLED_DrawLine &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
 </UL>
 <BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawRectangle
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
@@ -1370,7 +1379,7 @@ Global Symbols
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Run_Handler
 </UL>
 
-<P><STRONG><a name="[ca]"></a>OLED_DrawPoint</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, oledsd.o(i.OLED_DrawPoint))
+<P><STRONG><a name="[cb]"></a>OLED_DrawPoint</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, oledsd.o(i.OLED_DrawPoint))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = OLED_DrawPoint
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowPicture
@@ -1390,11 +1399,11 @@ Global Symbols
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Run_Handler
 </UL>
 
-<P><STRONG><a name="[cb]"></a>OLED_Init</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, oledsd.o(i.OLED_Init))
+<P><STRONG><a name="[cc]"></a>OLED_Init</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, oledsd.o(i.OLED_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = OLED_Init &rArr; OLED_SendBytes_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1416,7 +1425,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_MirrorFlipVer_set
 </UL>
 
-<P><STRONG><a name="[d3]"></a>OLED_Pow</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, oledsd.o(i.OLED_Pow))
+<P><STRONG><a name="[d4]"></a>OLED_Pow</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, oledsd.o(i.OLED_Pow))
 <BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNum_Dec
 </UL>
 
@@ -1424,11 +1433,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
@@ -1452,44 +1461,44 @@ Global Symbols
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Run_Handler
 </UL>
 
-<P><STRONG><a name="[cc]"></a>OLED_Reset</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, oledsd.o(i.OLED_Reset))
+<P><STRONG><a name="[cd]"></a>OLED_Reset</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, oledsd.o(i.OLED_Reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = OLED_Reset &rArr; HAL_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[d1]"></a>OLED_SPI_CloseRe</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_CloseRe))
-<BR><BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<P><STRONG><a name="[d2]"></a>OLED_SPI_CloseRe</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_CloseRe))
+<BR><BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 </UL>
 
-<P><STRONG><a name="[cf]"></a>OLED_SPI_DC_Command</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_DC_Command))
-<BR><BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<P><STRONG><a name="[d0]"></a>OLED_SPI_DC_Command</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_DC_Command))
+<BR><BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 </UL>
 
-<P><STRONG><a name="[d0]"></a>OLED_SPI_DC_Data</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_DC_Data))
-<BR><BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<P><STRONG><a name="[d1]"></a>OLED_SPI_DC_Data</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_DC_Data))
+<BR><BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 </UL>
 
-<P><STRONG><a name="[ce]"></a>OLED_SPI_OpenRe</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_OpenRe))
-<BR><BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<P><STRONG><a name="[cf]"></a>OLED_SPI_OpenRe</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, oledsd.o(i.OLED_SPI_OpenRe))
+<BR><BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendBytes_Poll
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 </UL>
@@ -1498,12 +1507,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = OLED_SendByte_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_CloseRe
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_RefershRate
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_MirrorVer
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_MirrorHo
@@ -1511,15 +1520,15 @@ Global Symbols
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Brightness_set
 </UL>
 
-<P><STRONG><a name="[cd]"></a>OLED_SendBytes_Poll</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, oledsd.o(i.OLED_SendBytes_Poll))
+<P><STRONG><a name="[ce]"></a>OLED_SendBytes_Poll</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, oledsd.o(i.OLED_SendBytes_Poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = OLED_SendBytes_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_OpenRe
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Data
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SPI_DC_Command
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
 <P><STRONG><a name="[82]"></a>OLED_Set_RefershRate</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, oledsd.o(i.OLED_Set_RefershRate))
@@ -1533,7 +1542,7 @@ Global Symbols
 <P><STRONG><a name="[81]"></a>OLED_ShowChar</STRONG> (Thumb, 366 bytes, Stack size 44 bytes, oledsd.o(i.OLED_ShowChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
 </UL>
 <BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
@@ -1556,7 +1565,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Pow
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Pow
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowFPS
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_RefreshRate_enter
@@ -1578,8 +1587,8 @@ Global Symbols
 <P><STRONG><a name="[83]"></a>OLED_ShowPicture</STRONG> (Thumb, 248 bytes, Stack size 48 bytes, oledsd.o(i.OLED_ShowPicture))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = OLED_ShowPicture &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowPicStruct
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
@@ -1642,7 +1651,7 @@ Global Symbols
 <P><STRONG><a name="[84]"></a>Smile_Draweyes</STRONG> (Thumb, 128 bytes, Stack size 8 bytes, mumestar.o(i.Smile_Draweyes))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Smile_Draweyes &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawPoint
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_enter
@@ -1658,23 +1667,24 @@ Global Symbols
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_BufferClear
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_MenuIndex
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.SysTick_Handler))
-<BR><BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
+<BR><BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[d6]"></a>SystemClock_Config</STRONG> (Thumb, 94 bytes, Stack size 72 bytes, main.o(i.SystemClock_Config))
+<P><STRONG><a name="[d7]"></a>SystemClock_Config</STRONG> (Thumb, 94 bytes, Stack size 72 bytes, main.o(i.SystemClock_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1690,17 +1700,17 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
 <P><STRONG><a name="[5a]"></a>main</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
+<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_I2C2_Init
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -1837,12 +1847,12 @@ Local Symbols
 <P><STRONG><a name="[ad]"></a>SPI_EndRxTxTransaction</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, stm32f1xx_hal_spi.o(i.SPI_EndRxTxTransaction))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitFlagStateUntilTimeout
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
 </UL>
 
-<P><STRONG><a name="[d4]"></a>SPI_WaitFlagStateUntilTimeout</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, stm32f1xx_hal_spi.o(i.SPI_WaitFlagStateUntilTimeout))
+<P><STRONG><a name="[d5]"></a>SPI_WaitFlagStateUntilTimeout</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, stm32f1xx_hal_spi.o(i.SPI_WaitFlagStateUntilTimeout))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick

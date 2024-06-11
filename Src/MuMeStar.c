@@ -184,7 +184,7 @@ void Func_Fontsize_set(void){
             OLED_ShowString_Rowcentering(32,"success",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         case Next: // next
             fontsize_set = (fontsize_set==2)?0:(fontsize_set+1);    
@@ -197,7 +197,7 @@ void Func_Fontsize_set(void){
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         default:return;
     }
@@ -242,7 +242,7 @@ void Func_Brightness_set(void){
             OLED_ShowString_Rowcentering(32,"success",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         case Next: // next
             brightness_set = (brightness_set<201)?(brightness_set+25):255;
@@ -257,7 +257,7 @@ void Func_Brightness_set(void){
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         default:return;
     }
@@ -301,7 +301,7 @@ void Func_ColorMode_set(void){
             OLED_ShowString_Rowcentering(32,"success",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         case Return: // return
             colormode_set = colormode;
@@ -311,7 +311,7 @@ void Func_ColorMode_set(void){
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         default:return;
     }
@@ -356,7 +356,7 @@ void Func_RefreshRate_set(void){
             OLED_ShowString_Rowcentering(32,"success",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         case Return: // return
             refreshrate_set = refreshrate;
@@ -366,7 +366,7 @@ void Func_RefreshRate_set(void){
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         default:return;
     }
@@ -410,7 +410,7 @@ void Func_MirrorFlipHo_set(void){
             OLED_ShowString_Rowcentering(32,"success",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         case Return: // return
             mirrorflipHo_set = mirrorflipHo;
@@ -420,7 +420,7 @@ void Func_MirrorFlipHo_set(void){
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         default:return;
     }
@@ -464,7 +464,7 @@ void Func_MirrorFlipVer_set(void){
             OLED_ShowString_Rowcentering(32,"success",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         case Return: // return
             mirrorflipVer_set = mirrorflipVer;
@@ -474,7 +474,7 @@ void Func_MirrorFlipVer_set(void){
             OLED_ShowString_Rowcentering(32,"cancel",24,1);
             OLED_Refresh_Poll();
             HAL_Delay(1000);
-            KEY_Parent_return();
+            Menu_Return();
             break;
         default:return;
     }
@@ -560,7 +560,7 @@ void Func_Smile_run(void){
             break;
         case Return:    // return
             Loop_State = Loop_Stop;
-            KEY_Parent_return();
+            Menu_Return();
             KEY_num = Zero;
             return;
         default:return;
@@ -767,6 +767,14 @@ void Menu_Handler(void){
 }
 
 /**
+ * @brief 返回父级菜单
+ * @retval void
+*/
+void Menu_Return(void){
+    KEY_Parent_return();Switch_Menu();
+} 
+
+/**
  * @brief 经过 Menu_Handler() 函数判定当前菜单为 Parent 型后调用此函数
  * @retval void
 */
@@ -779,9 +787,8 @@ void KEY_Parent_pressed(void){
             case Return:   KEY_Parent_return();  break;
             default: return;
         }
-    Switch_Menu();
-    if(Insert==1){Current_showrange=0;UserChoose=0;}
-    Insert=0;
+    if(Insert==1){Current_showrange=0;UserChoose=0;Insert=0;return;}
+    else{Switch_Menu();Insert=0;}
 }
 
 /**
@@ -845,7 +852,7 @@ void KEY_Parent_enter(void){
         Insert = 1;  
         Current_showrange = 0;
         Menu_Pointer = (Menu_typedef *) (Menu_Pointer+UserChoose)->Child;
-        //(Menu_Pointer->Parent+UserChoose)->func();
+        (Menu_Pointer->Parent+UserChoose)->func();
         Current_showrange = 0;
         UserChoose = 0;
     }
@@ -864,13 +871,12 @@ void KEY_Data_pressed(void){
 
 /**
  * @brief 经过 Menu_Handler() 函数判定当前菜单为 Once 型后调用此函数
- * @param KEY_num 键值
  * @retval void
 */
 void KEY_Once_pressed(void){
-    if(KEY_num != Zero){KEY_Parent_return();}
+    if(KEY_num != Zero){Menu_Return();}
 }
- 
+
 /**
  * @brief 经过 Menu_Handler() 函数判定当前菜单为 Loop 型后调用此函数
  * @retval void
@@ -968,7 +974,7 @@ void Func_Dinosaur_run(void){
 void Dinosaur_Stop_Handler(void){
     switch (KEY_num){
         case Enter:Game_State = Game_Run;break;
-        case Return:Game_State = Game_Over;KEY_Parent_return();break;
+        case Return:Game_State = Game_Over;Menu_Return();break;
         default:break;
     }
     KEY_num=Zero;
@@ -1045,7 +1051,7 @@ void Dinosaur_Run_Handler(void){
 void Dinosaur_Over_Handler(void){
     switch (KEY_num){
         case Enter:Func_Dinosaur_enter();break;
-        case Return:KEY_Parent_return();break;
+        case Return:Menu_Return();break;
         default:return;
     }
     KEY_num=Zero;

@@ -134,6 +134,7 @@ void Switch_Menu(void);
 // 按键控制
 void KEY_Pressed(uint8_t GPIO_pin);
 void Menu_Handler(void);
+void Menu_Return(void);
 void KEY_Parent_pressed(void);
 void KEY_Parent_next(void);
 void KEY_Parent_enter(void);
