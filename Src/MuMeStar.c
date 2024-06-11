@@ -747,7 +747,6 @@ void Draw_Menu(uint8_t headmenu_y, uint8_t submenu_y, uint8_t len, uint8_t n,uin
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
-    OLED_ShowFPS(80,0,8,1);
     #if defined(SPItoOLED)
         OLED_Refresh_Poll();
     #endif

@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Muitilevel_Menu\MuMeStar.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Muitilevel_Menu\MuMeStar.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jun 11 20:02:51 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jun 11 20:04:51 2024
 <BR><P>
-<H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        272 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+__rt_entry_main &rArr; main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 <P>
 <H3>
 Functions with no stack information
@@ -222,8 +222,8 @@ Global Symbols
 <P><STRONG><a name="[f9]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[59]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 320 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 272 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -504,7 +504,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[70]"></a>Dinosaur_Over_Handler</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, mumestar.o(i.Dinosaur_Over_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Dinosaur_Over_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Dinosaur_Over_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Dinosaur_enter
@@ -531,18 +531,17 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[7a]"></a>Dinosaur_Stop_Handler</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, mumestar.o(i.Dinosaur_Stop_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Dinosaur_Stop_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Dinosaur_Stop_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 </UL>
 <BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Dinosaur_run
 </UL>
 
-<P><STRONG><a name="[7b]"></a>Draw_Menu</STRONG> (Thumb, 318 bytes, Stack size 64 bytes, mumestar.o(i.Draw_Menu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<P><STRONG><a name="[7b]"></a>Draw_Menu</STRONG> (Thumb, 306 bytes, Stack size 64 bytes, mumestar.o(i.Draw_Menu))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowFPS
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowChar
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Poll
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawRectangle
@@ -608,7 +607,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4a]"></a>Func_Brightness_set</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, mumestar.o(i.Func_Brightness_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = Func_Brightness_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = Func_Brightness_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -632,7 +631,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4b]"></a>Func_ColorMode_set</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, mumestar.o(i.Func_ColorMode_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = Func_ColorMode_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = Func_ColorMode_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -663,7 +662,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[48]"></a>Func_Dinosaur_run</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, mumestar.o(i.Func_Dinosaur_run))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Func_Dinosaur_run &rArr; Dinosaur_Stop_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Func_Dinosaur_run &rArr; Dinosaur_Stop_Handler &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Stop_Handler
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Run_Handler
@@ -684,7 +683,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[49]"></a>Func_Fontsize_set</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, mumestar.o(i.Func_Fontsize_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Func_Fontsize_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Func_Fontsize_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -707,7 +706,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4d]"></a>Func_MirrorFlipHo_set</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, mumestar.o(i.Func_MirrorFlipHo_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = Func_MirrorFlipHo_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = Func_MirrorFlipHo_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -731,7 +730,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4e]"></a>Func_MirrorFlipVer_set</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, mumestar.o(i.Func_MirrorFlipVer_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = Func_MirrorFlipVer_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = Func_MirrorFlipVer_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -757,7 +756,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4c]"></a>Func_RefreshRate_set</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, mumestar.o(i.Func_RefreshRate_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Func_RefreshRate_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Func_RefreshRate_set &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -789,7 +788,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> mumestar.o(.constdata)
 </UL>
 <P><STRONG><a name="[4f]"></a>Func_Smile_run</STRONG> (Thumb, 292 bytes, Stack size 32 bytes, mumestar.o(i.Func_Smile_run))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = Func_Smile_run &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = Func_Smile_run &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowPicture
@@ -1159,7 +1158,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
 <P><STRONG><a name="[46]"></a>Invalid_Operation</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, mumestar.o(i.Invalid_Operation))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString_Rowcentering
@@ -1185,7 +1184,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b9]"></a>KEY_Once_pressed</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mumestar.o(i.KEY_Once_pressed))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = KEY_Once_pressed &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = KEY_Once_pressed &rArr; Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Return
 </UL>
@@ -1193,7 +1192,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ba]"></a>KEY_Parent_enter</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, mumestar.o(i.KEY_Parent_enter))
-<BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Invalid_Operation
 </UL>
@@ -1209,7 +1208,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[bd]"></a>KEY_Parent_pressed</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, mumestar.o(i.KEY_Parent_pressed))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
@@ -1292,7 +1291,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
 <P><STRONG><a name="[c6]"></a>Menu_Handler</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, mumestar.o(i.Menu_Handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_pressed
@@ -1305,7 +1304,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[71]"></a>Menu_Return</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, mumestar.o(i.Menu_Return))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = Menu_Return &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Parent_return
@@ -1323,7 +1322,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c7]"></a>Multimenu_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, mumestar.o(i.Multimenu_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = Multimenu_Init &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = Multimenu_Init &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SendByte_Poll
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Menu
@@ -1566,7 +1565,6 @@ Global Symbols
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNum_Dec
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Func_Smile_run
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Draw_Menu
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Dinosaur_Run_Handler
 </UL>
 
@@ -1667,7 +1665,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3c]"></a>Switch_Menu</STRONG> (Thumb, 598 bytes, Stack size 48 bytes, mumestar.o(i.Switch_Menu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_MenuIndex
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Draw_Menu
@@ -1705,7 +1703,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
 <P><STRONG><a name="[5a]"></a>main</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_ShowFPS &rArr; OLED_ShowNum_Dec &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = main &rArr; Menu_Handler &rArr; KEY_Parent_pressed &rArr; KEY_Parent_enter &rArr; Invalid_Operation &rArr; Switch_Menu &rArr; Draw_Menu &rArr; OLED_Refresh_Poll &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFlagStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Multimenu_Init
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu_Handler
