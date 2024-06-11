@@ -125,13 +125,14 @@ void Func_Smile_run(void);
 
 
 /* ------------- 菜单内部函数声明 -------------- */
+// 菜单相关
 void Multimenu_Init(void);
 uint8_t Get_MenuIndex(Menu_typedef* menu);
 uint8_t Get_MenuNameLenth(Menu_typedef* menu);
 void Invalid_Operation(void);
 void Menu_Handler(void);
 void Switch_Menu(void);
-void Draw_Menu(uint8_t headmenu_y, uint8_t submenu_y, uint8_t len, uint8_t n, uint8_t cur_y, uint8_t rec_y, uint8_t height);
+void Draw_Menu(uint8_t headmenu_y, uint8_t submenu_y, uint8_t len, uint8_t n,uint8_t cur_y, uint8_t rec_y, uint8_t height);
 void Menu_Return(void);
 
 // 按键逻辑

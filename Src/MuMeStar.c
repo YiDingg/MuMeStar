@@ -708,7 +708,11 @@ void Switch_Menu(void){
         }
     }
     else{
-        Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
+        uint8_t direct = (Insert==1)?1:-1;
+        uint8_t offset =  Mysize[fontsize].row_number*Mysize[fontsize].size_content;
+        for(i=0;i<=offset;i++){
+            Draw_Menu((offset-i)*direct,(offset-i)*direct,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
+        }
     }
 
 }
@@ -738,13 +742,18 @@ void Draw_Menu(uint8_t headmenu_y, uint8_t submenu_y, uint8_t len, uint8_t n,uin
     // 不参与动画的部分
     // 显示菜单头
     for (i = 0; i < len+2; i++){OLED_ShowChar(i*Mysize[fontsize].size_title/2,headmenu_y,' ',Mysize[fontsize].size_title,0);}
-    OLED_ShowString(Mysize[fontsize].size_title/2,0,(uint8_t *)Menu_Pointer->Name,Mysize[fontsize].size_title,0);
+    OLED_ShowString(Mysize[fontsize].size_title/3,0,(uint8_t *)Menu_Pointer->Name,Mysize[fontsize].size_title,0);
     // 显示右侧滑动条
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
     OLED_ShowFPS(80,0,8,1);
-    OLED_Refresh_Poll();
+    #if defined(SPItoOLED)
+        OLED_Refresh_Poll();
+    #endif
+    #if defined(IICtoOLED)
+        OLED_Refresh_DMA();
+    #endif
 }
 
 /**
@@ -752,7 +761,13 @@ void Draw_Menu(uint8_t headmenu_y, uint8_t submenu_y, uint8_t len, uint8_t n,uin
  * @retval void
 */
 void Menu_Return(void){
-    KEY_Parent_return();Switch_Menu();
+    KEY_num=Return;
+    KEY_Parent_return();
+    Switch_Menu();
+    // 收尾工作
+    Last_CL = Current_CL;
+    Last_showrange=Current_showrange;
+    Insert=0;
 } 
 
 /**
