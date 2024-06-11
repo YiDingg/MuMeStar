@@ -674,24 +674,27 @@ void Switch_Menu(void){
         n = ((Menu_Pointer->Parent+index)->Child_nodes_number<=Mysize[fontsize].row_number)?(Menu_Pointer->Parent+index)->Child_nodes_number:Mysize[fontsize].row_number;
         height = (uint8_t) 60/(Menu_Pointer->Parent+index)->Child_nodes_number-1;
     }
-// 第二步：作图（包括动画）
-    // 作出菜单页面
+
+// 第二步：作出菜单页面（包括动画）
     OLED_BufferClear();
-    // 显示菜单头
-    for (i = 0; i < len+2; i++){OLED_ShowChar(i*Mysize[fontsize].size_title/2,0,' ',Mysize[fontsize].size_title,0);}
-    OLED_ShowString(Mysize[fontsize].size_title/2,0,(uint8_t *)Menu_Pointer->Name,Mysize[fontsize].size_title,0);
+    // 显示光标
+    OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
+    OLED_Refresh_Poll();
     // 显示子菜单
     for (i = 0; i <n; i++){
         OLED_ShowString(12,Mysize[fontsize].Mysize_array[i],(uint8_t *)(Menu_Pointer+i+Current_showrange)->Child->Name,Mysize[fontsize].size_content,1);
         if((Menu_Pointer+i+Current_showrange)->Child_Menuproperty == Menu_Parent){ 
-        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);}}
+        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);}
+    }
+    // 不参与动画的部分
+    // 显示菜单头
+    for (i = 0; i < len+2; i++){OLED_ShowChar(i*Mysize[fontsize].size_title/2,0,' ',Mysize[fontsize].size_title,0);}
+    OLED_ShowString(Mysize[fontsize].size_title/2,0,(uint8_t *)Menu_Pointer->Name,Mysize[fontsize].size_title,0);
     // 显示右侧滑动条
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
-    // 显示光标
-    OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
-    OLED_Refresh_Poll();
+
 }
 
 /**
