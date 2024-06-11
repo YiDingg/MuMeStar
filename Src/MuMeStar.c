@@ -37,9 +37,9 @@ static uint8_t eye_y = 0;    // Eyes_y
 enum KEY_NUM KEY_num = Zero;            // 当前键值, KEY_Pressed()和Menu_HAndler()专用
 enum KEY_NUM Jumped_key = Zero;         // 检查是否忽略了一次键值传递, 防止按键失灵 
 enum LOOP_STATE Loop_State = Loop_Run;  // Loop型菜单专用, 表示当前循环状态
-static uint8_t Insert = 0;              // Draw_menu()专用, 判断光标位置 -1return, 0不变, 1enter
-static uint8_t Current_showrange = 0;   // Draw_menu()专用, 判断当前显示范围，屏幕最大显示行数为 Mysize[fontsize].row_number
-static uint8_t UserChoose = 0; 		    // Draw_menu()专用, 光标位置
+static uint8_t Insert = 0;              // Switch_Menu()专用, 判断光标位置, 0不变, 1enter, 2return, 
+static uint8_t Current_showrange = 0;   // Switch_Menu()专用, 判断当前显示范围，屏幕最大显示行数为 Mysize[fontsize].row_number
+static uint8_t UserChoose = 0; 		    // Switch_Menu()专用, 光标位置
 
 // settings 参数
 static uint8_t brightness        = OLED_Defult_Brightness;     // 默认屏幕亮度
@@ -82,10 +82,10 @@ Main[],
 static Menu_typedef* Menu_Pointer =  (Menu_typedef *)Main; // 设置当前菜单为 Main 并初始化
 
 static const Menu_typedef Main[Main_Child_nodesnumber] = {				
-    {"Main", NULL, Main_Settings,  Draw_Menu,    6, Menu_Parent},
-    {"Main", NULL, Main_Hello,     Draw_Menu,    2, Menu_Parent},
+    {"Main", NULL, Main_Settings,  Switch_Menu,    6, Menu_Parent},
+    {"Main", NULL, Main_Hello,     Switch_Menu,    2, Menu_Parent},
     {"Main", NULL, Main_About,     Func_About,   1, Menu_Once  },
-    {"Main", NULL, Main_Game,      Draw_Menu,    1, Menu_Parent},
+    {"Main", NULL, Main_Game,      Switch_Menu,    1, Menu_Parent},
     {"Main", NULL, Main_Menu5,     0,            0, Menu_Parent},
     {"Main", NULL, Main_Menu6,     0,            0, Menu_Parent},
 };
@@ -597,12 +597,11 @@ void Multimenu_Init(void){
     brightness_set = OLED_Defult_Brightness;    
     fontsize = OLED_Defult_Fontsize;  
     fontsize_set = OLED_Defult_Fontsize;    
-
     Menu_Pointer = (Menu_typedef *)Main;
     Insert = 0;
     OLED_SendByte_Poll(0x81,OLED_Command);
     OLED_SendByte_Poll(brightness_set,OLED_Command);
-    Draw_Menu();
+    Switch_Menu();
 }
 
 /**
@@ -651,14 +650,14 @@ void Invalid_Operation(void){
     OLED_Refresh_Poll();
     HAL_Delay(300);
     OLED_BufferClear();
-    Draw_Menu();
+    Switch_Menu();
 }
 
 /**
  * @brief 显示 Menu_Pointer 所指菜单
  * @retval void
 */
-void Draw_Menu(void){
+void Switch_Menu(void){
     uint8_t i=0; // 循环变量
     uint8_t len; // 菜单头名字长度
     uint8_t n; // 需要draw的行数
@@ -668,15 +667,14 @@ void Draw_Menu(void){
     uint8_t index;  // 当前菜单在父级中的索引
     index = Get_MenuIndex(Menu_Pointer);
     switch (Insert){
-        case 0: 
+        case 0: // 仍处于当前菜单
             x= UserChoose-Current_showrange;
             rec_y = (uint8_t) 60*UserChoose/((Menu_Pointer==Main)?Main_Child_nodesnumber:Menu_Pointer->Parent->Child_nodes_number);
             break;
-        case 1:
-            x=0;Insert=0;
-            rec_y = 0;
+        case 1: // 进入子菜单
+            x=0;Insert=0;rec_y = 0;
             break;
-        case 2: 
+        case 2: // 返回父菜单
             Current_showrange = ( UserChoose>=Mysize[fontsize].row_number )?(UserChoose+1-Mysize[fontsize].row_number):0;
             x = UserChoose-Current_showrange; 
             rec_y = (uint8_t) 60*UserChoose/((Menu_Pointer==Main)?Main_Child_nodesnumber:Menu_Pointer->Parent->Child_nodes_number);
@@ -693,7 +691,8 @@ void Draw_Menu(void){
         n = ((Menu_Pointer->Parent+index)->Child_nodes_number<=Mysize[fontsize].row_number)?(Menu_Pointer->Parent+index)->Child_nodes_number:Mysize[fontsize].row_number;
         height = (uint8_t) 60/(Menu_Pointer->Parent+index)->Child_nodes_number-1;
     }
-    Insert=0;
+
+    // 作出菜单页面
     OLED_BufferClear();
     // 显示菜单头
     for (i = 0; i < len+2; i++){OLED_ShowChar(i*Mysize[fontsize].size_title/2,0,' ',Mysize[fontsize].size_title,0);}
@@ -702,15 +701,13 @@ void Draw_Menu(void){
     for (i = 0; i <n; i++){
         OLED_ShowString(12,Mysize[fontsize].Mysize_array[i],(uint8_t *)(Menu_Pointer+i+Current_showrange)->Child->Name,Mysize[fontsize].size_content,1);
         if((Menu_Pointer+i+Current_showrange)->Child_Menuproperty == Menu_Parent){ 
-        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);
-        }
-    }
-    // 显示光标
-    OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
+        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);}}
     // 显示右侧滑动条
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
+    // 显示光标
+    OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
     OLED_Refresh_Poll();
 }
 
@@ -782,6 +779,9 @@ void KEY_Parent_pressed(void){
             case Return:   KEY_Parent_return();  break;
             default: return;
         }
+    Switch_Menu();
+    if(Insert==1){Current_showrange=0;UserChoose=0;}
+    Insert=0;
 }
 
 /**
@@ -789,14 +789,11 @@ void KEY_Parent_pressed(void){
  * @retval void
 */
 void KEY_Parent_return(void){
-    if(Menu_Pointer->Parent == NULL){   // 根菜单检测
-        Insert = 0;return;
-    }  
+    if(Menu_Pointer->Parent == NULL){Insert = 0;return;}  // 根菜单检测
     else{ 
         Insert = 2;
         UserChoose = Get_MenuIndex(Menu_Pointer);
         Menu_Pointer = (Menu_typedef *)Menu_Pointer->Parent;
-        Draw_Menu();
     }
 }
 
@@ -817,7 +814,6 @@ void KEY_Parent_next(void){
             UserChoose++;
         }
     }
-    Draw_Menu();
 }
 
 void KEY_Parent_previous(void){
@@ -838,7 +834,6 @@ void KEY_Parent_previous(void){
             UserChoose--;
         }
     }
-    Draw_Menu();
 }
 
 void KEY_Parent_enter(void){
@@ -850,7 +845,7 @@ void KEY_Parent_enter(void){
         Insert = 1;  
         Current_showrange = 0;
         Menu_Pointer = (Menu_typedef *) (Menu_Pointer+UserChoose)->Child;
-        (Menu_Pointer->Parent+UserChoose)->func();
+        //(Menu_Pointer->Parent+UserChoose)->func();
         Current_showrange = 0;
         UserChoose = 0;
     }

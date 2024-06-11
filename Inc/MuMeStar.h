@@ -129,7 +129,7 @@ void Multimenu_Init(void);
 uint8_t Get_MenuIndex(Menu_typedef* menu);
 uint8_t Get_MenuNameLenth(Menu_typedef* menu);
 void Invalid_Operation(void);
-void Draw_Menu(void);
+void Switch_Menu(void);
 
 // 按键控制
 void KEY_Pressed(uint8_t GPIO_pin);
