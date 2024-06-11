@@ -43,7 +43,7 @@ static uint8_t Last_showrange = 0;      // Switch_Menu()专用
 static uint8_t UserChoose = 0; 		    // Switch_Menu()专用, 用户选择
 static uint8_t Current_CL = 0;          // CursorLine, 当前光标所在行
 static uint8_t Last_CL = 0;             // 上一次光标所在行
-static uint8_t Cur_rebound = 4;         // 光标回弹量
+static uint8_t Cur_rebound = 2;         // 光标回弹量
 
 // settings 参数
 static uint8_t brightness        = OLED_Defult_Brightness;     // 默认屏幕亮度
@@ -683,36 +683,40 @@ void Switch_Menu(void){
         if(Current_showrange==Last_showrange){  // Cursor动画
             // 菜单初始化时
             if(Current_CL==Last_CL){ 
-                Draw_Menu(0,Mysize[fontsize].Mysize_array[0],len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
+                Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
                 return;
             }
             // 其它正常情况
             uint8_t direct = (Current_CL>=Last_CL)?1:-1;
             for(i=0;i<=Cur_rebound;i++){
-                Draw_Menu(0,Mysize[fontsize].Mysize_array[0],len,n,Mysize[fontsize].Mysize_array[Last_CL]-i*direct,rec_y,height);
+                Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Last_CL]-i*direct,rec_y,height);
             }
             for(i=0;i<=Mysize[fontsize].size_content+2*Cur_rebound;i++){
-                Draw_Menu(0,Mysize[fontsize].Mysize_array[0],len,n,Mysize[fontsize].Mysize_array[Last_CL]+(i-Cur_rebound)*direct,rec_y,height);
+                Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Last_CL]+(i-Cur_rebound)*direct,rec_y,height);
             }
             for(i=0;i<=Cur_rebound;i++){
-                Draw_Menu(0,Mysize[fontsize].Mysize_array[0],len,n,Mysize[fontsize].Mysize_array[Current_CL]+(Cur_rebound-i)*direct,rec_y,height);
+                Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL]+(Cur_rebound-i)*direct,rec_y,height);
                 }
         }
         else{   // Page动画
             // 先拿这个放着
-            Draw_Menu(0,Mysize[fontsize].Mysize_array[0],len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
+            uint8_t direct = (Current_showrange>=Last_showrange)?1:-1;
+            uint8_t submenu_offset = (Current_showrange-Last_showrange)*direct*Mysize[fontsize].size_content;
+            for(i=0;i<=submenu_offset;i++){
+                Draw_Menu(0,(submenu_offset-i)*direct,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
+            }
         }
     }
     else{
-        Draw_Menu(0,Mysize[fontsize].Mysize_array[0],len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
+        Draw_Menu(0,0,len,n,Mysize[fontsize].Mysize_array[Current_CL],rec_y,height);
     }
 
 }
 
 /**
  * @brief 根据作图参数作出菜单界面 
- * @param headmenu_y 菜单头起始位置
- * @param submenu_y 子菜单起始位置
+ * @param headmenu_y 菜单头位置(向下偏移量)
+ * @param submenu_y 子菜单位置(向下偏移量)
  * @param len 菜单头长度(字母个数)
  * @param n 作出的子菜单个数
  * @param cur_y 光标纵坐标
@@ -727,18 +731,19 @@ void Draw_Menu(uint8_t headmenu_y, uint8_t submenu_y, uint8_t len, uint8_t n,uin
     OLED_ShowChar(0,cur_y,'>',Mysize[fontsize].size_content,1);
     // 显示子菜单
     for (i = 0; i <n; i++){
-        OLED_ShowString(12,Mysize[fontsize].Mysize_array[i],(uint8_t *)(Menu_Pointer+i+Current_showrange)->Child->Name,Mysize[fontsize].size_content,1);
+        OLED_ShowString(12,submenu_y+Mysize[fontsize].Mysize_array[i],(uint8_t *)(Menu_Pointer+i+Current_showrange)->Child->Name,Mysize[fontsize].size_content,1);
         if((Menu_Pointer+i+Current_showrange)->Child_Menuproperty == Menu_Parent){ 
-        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);}
+        OLED_ShowString(118-Mysize[fontsize].size_content*3/2-6,submenu_y+Mysize[fontsize].Mysize_array[i],"...",Mysize[fontsize].size_content,1);}
     }
     // 不参与动画的部分
     // 显示菜单头
-    for (i = 0; i < len+2; i++){OLED_ShowChar(i*Mysize[fontsize].size_title/2,0,' ',Mysize[fontsize].size_title,0);}
+    for (i = 0; i < len+2; i++){OLED_ShowChar(i*Mysize[fontsize].size_title/2,headmenu_y,' ',Mysize[fontsize].size_title,0);}
     OLED_ShowString(Mysize[fontsize].size_title/2,0,(uint8_t *)Menu_Pointer->Name,Mysize[fontsize].size_title,0);
     // 显示右侧滑动条
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
+    OLED_ShowFPS(80,0,8,1);
     OLED_Refresh_Poll();
 }
 
