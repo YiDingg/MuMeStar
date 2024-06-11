@@ -129,12 +129,13 @@ void Multimenu_Init(void);
 uint8_t Get_MenuIndex(Menu_typedef* menu);
 uint8_t Get_MenuNameLenth(Menu_typedef* menu);
 void Invalid_Operation(void);
-void Switch_Menu(void);
-
-// 按键控制
-void KEY_Pressed(uint8_t GPIO_pin);
 void Menu_Handler(void);
+void Switch_Menu(void);
 void Menu_Return(void);
+void Draw_Menu_NoAni(uint8_t len, uint8_t n, uint8_t rec_y, uint8_t height, uint8_t x);
+
+// 按键逻辑
+void KEY_Pressed(uint8_t GPIO_pin);
 void KEY_Parent_pressed(void);
 void KEY_Parent_next(void);
 void KEY_Parent_enter(void);
