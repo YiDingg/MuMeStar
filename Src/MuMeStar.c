@@ -39,6 +39,7 @@ enum KEY_NUM Jumped_key = Zero;         // 检查是否忽略了一次键值传�
 enum LOOP_STATE Loop_State = Loop_Run;  // Loop型菜单专用, 表示当前循环状态
 static uint8_t Insert = 0;              // Switch_Menu()专用, 判断光标位置, 0不变, 1enter, 2return, 
 static uint8_t Current_showrange = 0;   // Switch_Menu()专用, 判断当前显示范围，屏幕最大显示行数为 Mysize[fontsize].row_number
+static uint8_t Last_showrange = 0;      // Switch_Menu()专用
 static uint8_t UserChoose = 0; 		    // Switch_Menu()专用, 光标位置
 
 // settings 参数
@@ -675,7 +676,7 @@ void Switch_Menu(void){
         height = (uint8_t) 60/(Menu_Pointer->Parent+index)->Child_nodes_number-1;
     }
 
-// 第二步：作出菜单页面（包括动画）
+    // 第二步：作出菜单页面（包括动画）
     OLED_BufferClear();
     // 显示光标
     OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
@@ -694,7 +695,6 @@ void Switch_Menu(void){
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
-
 }
 
 /**
@@ -800,8 +800,9 @@ void KEY_Parent_pressed(void){
         case Return:   KEY_Parent_return();  break;
         default: return;
     }
-    if(Insert==1){Current_showrange=0;UserChoose=0;Insert=0;}
-    else{Switch_Menu();Insert=0;}
+    if(Insert==1){Current_showrange=0;UserChoose=0;}
+    else{Switch_Menu();}
+    Last_showrange=Current_showrange;Insert=0;
 }
 
 /**
