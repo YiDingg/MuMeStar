@@ -680,7 +680,6 @@ void Switch_Menu(void){
     OLED_BufferClear();
     // 显示光标
     OLED_ShowChar(0,Mysize[fontsize].Mysize_array[x],'>',Mysize[fontsize].size_content,1);
-    OLED_Refresh_Poll();
     // 显示子菜单
     for (i = 0; i <n; i++){
         OLED_ShowString(12,Mysize[fontsize].Mysize_array[i],(uint8_t *)(Menu_Pointer+i+Current_showrange)->Child->Name,Mysize[fontsize].size_content,1);
@@ -695,6 +694,7 @@ void Switch_Menu(void){
     OLED_DrawRectangle(118,0,10,64,1,0);
     OLED_DrawRectangle(120,2,6,60,1,0);
     OLED_DrawRectangle(121,3+rec_y,4,height,1,1);
+    OLED_Refresh_Poll();
 }
 
 /**
