@@ -20,7 +20,6 @@
 uint16_t FPS,FPS_Count,ms_Count;
 uint8_t OLED_CursorBuf[4] = {0};
 uint8_t OLED_GRAMBuf[8][128];		// 函数直接控制的显存
-uint8_t OLED_AnimaBuf[8][128];		// 用于记录当前OLED屏幕上的画面，便于动画生成
 uint8_t OLED_RefComBuf[8][3] = {	// 命令数组，用于 refresh 时设置页地址
 	{0x00,0xB0,0x10},
 	{0x00,0xB1,0x10},
@@ -975,7 +974,7 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 		OLED_SPI_DC_Data();
 		HAL_SPI_Transmit(&SPItoOLED,*OLED_GRAMBuf,128*8,100);
 		OLED_SPI_CloseRe();
-		FPS_Count++;memcpy(OLED_AnimaBuf,OLED_GRAMBuf,1024);	// 拷贝当前帧
+		FPS_Count++;
 	}
 
 	/** 
@@ -990,7 +989,7 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 		HAL_SPI_Transmit(&SPItoOLED,(uint8_t*)OLED_RefComBuf[0],3,10);
 		OLED_SPI_DC_Data();
 		HAL_SPI_Transmit_DMA(&SPItoOLED,*OLED_GRAMBuf,128*8);
-		FPS_Count++;memcpy(OLED_AnimaBuf,OLED_GRAMBuf,1024);	// 拷贝当前帧
+		FPS_Count++;
 	}
 
 	/**
@@ -1035,11 +1034,12 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 	void OLED_SendByte_Poll(uint8_t Byte,uint8_t CommandOrData){
 		while (IICtoOLED.State!=HAL_I2C_STATE_READY);	// 检查接口状态
 		switch (CommandOrData){
-		case OLED_Command:	// 写命令
-			HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,&Byte,1);return;
-		case OLED_Data:	// 写数据
-			HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,&Byte,1);return;
-		default:return;}
+			case OLED_Command:	// 写命令
+				HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,&Byte,1,0x100);return;
+			case OLED_Data:	// 写数据
+				HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,&Byte,1,0x100);return;
+			default:return;
+		}
 	}
 
 	/**
@@ -1052,9 +1052,12 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 	void OLED_SendBytes_Poll( uint8_t* Bytes,uint8_t CommandOrData, uint8_t Size){
 		while (IICtoOLED.State!=HAL_I2C_STATE_READY);	// 检查接口状态
 		switch (CommandOrData){
-			case OLED_Data:HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,Bytes,1,0x10);break;  		// DC高--发送数据
-			case OLED_Command:HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,Bytes,1,0x10);break;		// DC低--发送命令
-			default:return;}
+			case OLED_Command:
+				HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,Bytes,Size,0x1000);break;
+			case OLED_Data:
+				HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,Bytes,Size,0x1000);break;
+			default:return;
+		}
 	}
 
 	/**
@@ -1067,9 +1070,12 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 	void OLED_SendBytes_DMA( uint8_t* Bytes,uint8_t CommandOrData, uint8_t Size){
 		while (IICtoOLED.State!=HAL_I2C_STATE_READY);	// 检查接口状态
 		switch (CommandOrData){
-			case OLED_Data:HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,Bytes,1);break;  		// DC高--发送数据
-			case OLED_Command:HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,Bytes,1);break;		// DC低--发送命令
-			default:return;}
+			case OLED_Command:
+				HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,Bytes,Size);break;
+			case OLED_Data:
+				HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,Bytes,Size);break;
+			default:return;
+		}
 	}
 
 	/**
@@ -1083,7 +1089,7 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 			HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,(uint8_t *)OLED_RefComBuf[i],3,0x100);
 			HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,OLED_GRAMBuf[i],128,0x1000);
 		}
-		FPS_Count++;memcpy(OLED_AnimaBuf,OLED_GRAMBuf,1024);	// 拷贝当前帧
+		FPS_Count++;
 	}
 
 	/**
@@ -1093,9 +1099,11 @@ void OLED_ShowPicStruct(uint8_t x,uint8_t y, Image Pic_Structure,uint8_t Mode){
 	*/
 	void OLED_Refresh_DMA(void)
 	{
+		OLED_Refresh_Poll();
+		// 暂未解决用DMA一次传输1024字节时屏幕图像偏移的问题
 		while (IICtoOLED.State != HAL_I2C_STATE_READY);	// if IIC_state == Ready;
-		HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,*OLED_GRAMBuf,8*128);
-		FPS_Count++;memcpy(OLED_AnimaBuf,OLED_GRAMBuf,1024);	// 拷贝当前帧
+		/* HAL_I2C_Mem_Write(&IICtoOLED, 0x78,0x00,I2C_MEMADD_SIZE_8BIT,(uint8_t *)OLED_RefComBuf[0],3,0x100);
+		HAL_I2C_Mem_Write_DMA(&IICtoOLED, 0x78,0x40,I2C_MEMADD_SIZE_8BIT,OLED_GRAMBuf[0],8*128,0x1000); */
 	}
 
 	/**
