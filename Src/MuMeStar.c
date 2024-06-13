@@ -147,7 +147,7 @@ void Func_About(void){
     OLED_ShowString_Rowcentering(0," [About] ",16,0);
     OLED_ShowString_Rowcentering(16,"Name: MuMeStar",16,1);
     OLED_ShowString_Rowcentering(32,"Author: Star",16,1);
-    OLED_ShowString_Rowcentering(48,"Version: 4.0",16,1);
+    OLED_ShowString_Rowcentering(48,"Version: 1.2.2",16,1);
     OLED_Refresh_Poll();
 }
 
