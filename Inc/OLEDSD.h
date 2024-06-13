@@ -25,8 +25,8 @@ RES(即RST) -- 复位(B0)           // 自定义GPIO输出口
   
   四管脚IIC(以IIC2为例)：
       OLED -- 单片机
-       GND -- GND
        VCC -- VCC
+       GND -- GND
        SCL -- IIC_SCL(B10)
        SDA -- IIC_SDA(B11)
 
@@ -34,8 +34,8 @@ RES(即RST) -- 复位(B0)           // 自定义GPIO输出口
 
 /* ----------用户通信方式自定义--------- */
 /*                                     */
-  #define  SPItoOLED hspi1    // 若为SPI通信，宏定义此SPI
-  //#define  IICtoOLED hi2c2    // 若为IIC通信，宏定义此IIC
+  //#define  SPItoOLED hspi1    // 若为SPI通信，宏定义此SPI
+  #define  IICtoOLED hi2c2    // 若为IIC通信，宏定义此IIC
 
   // 用户自定义SPI模式和引脚(IIC无需定义引脚)
   #if defined(SPItoOLED)
