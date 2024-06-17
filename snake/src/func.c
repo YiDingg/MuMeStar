@@ -11,7 +11,7 @@
 #include <pthread.h>
 // 仅限linux，unix，用于构造多线程执行，这里用来实现非阻滞获取用户输入
 #define END -1
-#define DEBUG 1
+#define DEBUG 0
 // TODO当前还有的问题是蛇蛇允许向后走，显然蛇只能前左右走，
 
 /*
@@ -76,14 +76,15 @@ void event_RUN()
         current_key_value = Zero;
         return;
     }
-
-    Draw_Ingame_Image();
+ Better_Ingame_Draw();
+   // Draw_Ingame_Image();
     Snake_Move(current_key_value);
     // 在linux由于可以接受多种键值，接受异常键值时会因为无法解析移动方向而保持不动，从而被判定为撞到了自己身体
     if (Judge_Death())
     {
         current_game_state = OVER;
         DestroyAllNode(); // 防止内存溢出
+        printf("\n");
         DEATH_Menu_Show();
         for (int i = 0; i < 5; i++)
         {
@@ -107,6 +108,7 @@ void event_OVER()
     case Enter:
         Game_Init();
         current_game_state = RUN;
+        break;
     }
     current_key_value = Zero;
 }
@@ -170,7 +172,6 @@ void Game_exit()
 {
     exit(0);
 }
-
 int Judge_Death()
 {
     if (Snake_Head_Location->i == 0 || Snake_Head_Location->i == 63 || Snake_Head_Location->j == 0 || Snake_Head_Location->j == 127)
@@ -327,17 +328,59 @@ void Draw_Ingame_Image()
         printf("\n");
     }
 }
-void Better_Ingame_Drwa()
+void Better_Ingame_Draw()
 {
+    #if DEBUG
+
+printf("\nCalled\n");
+sleep(5);
+    #endif
     last_show = Draw_Image;
     putchar(10);
 
     // 一次性获知蛇和bonus在哪些位置，然后记录下来
-    //
-    Location *p = &the_end;
-    while (p != NULL)
-    {
-    }
+printf("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\n");
+for(int i=1;i<63;i++)
+{
+printf("0");
+
+for(int j=0;j<4;j++)
+{
+if(Pixel_Data[i][j]==0)
+{
+    printf("                                ");
+}
+else
+{
+
+for(int k=j*32;k<j*32+32;k++)
+{
+ printf("%c",(Random_Read(i, k)) ? 'a' : ' ');    
+}
+//TODO还可以继续二分搜索
+}
+
+
+
+}
+
+
+printf("0\n");
+}
+
+
+
+
+
+
+
+
+
+printf("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+#if DEBUG
+printf("\nPaused\n");   
+sleep(2);
+#endif
 }
 // 连续暂停后无法显现界面（解决了，问题出自上面的函数没改
 void Erase(Location *p)

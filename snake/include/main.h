@@ -42,6 +42,7 @@ void RESTART_Menu_Show();
 void Bonus_Spwan();
 void START_Menu_Show();
 void Draw_Ingame_Image();
+void Better_Ingame_Draw();
 int Get_Random(int ceil,int floor);
 void Game_Init();
 void Random_Write(unsigned int i,unsigned int j,unsigned int num);
