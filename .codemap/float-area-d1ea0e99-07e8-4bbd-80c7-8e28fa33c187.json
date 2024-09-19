@@ -1,0 +1,1112 @@
+{
+  "type": "float-area",
+  "_widgets": [
+    [
+      {
+        "widget": {
+          "constructionOptions": {
+            "factoryId": "code-editor-opener",
+            "options": {
+              "kind": "navigatable",
+              "uri": "file:///d%3A/a_RemoteRepo/GH.MuMeStar/Src/main.c",
+              "floatAreaId": "d1ea0e99-07e8-4bbd-80c7-8e28fa33c187"
+            }
+          },
+          "innerWidgetState": {
+            "cursorState": [
+              {
+                "inSelectionMode": false,
+                "selectionStart": {
+                  "lineNumber": 98,
+                  "column": 20
+                },
+                "position": {
+                  "lineNumber": 98,
+                  "column": 20
+                }
+              }
+            ],
+            "viewState": {
+              "scrollLeft": 0,
+              "firstPosition": {
+                "lineNumber": 1,
+                "column": 1
+              },
+              "firstPositionDeltaTop": 0
+            },
+            "contributionsState": {
+              "editor.contrib.folding": {
+                "collapsedRegions": [
+                  {
+                    "startLineNumber": 1,
+                    "endLineNumber": 66
+                  },
+                  {
+                    "startLineNumber": 2,
+                    "endLineNumber": 17
+                  },
+                  {
+                    "startLineNumber": 20,
+                    "endLineNumber": 24
+                  },
+                  {
+                    "startLineNumber": 63,
+                    "endLineNumber": 66
+                  },
+                  {
+                    "startLineNumber": 67,
+                    "endLineNumber": 95
+                  },
+                  {
+                    "startLineNumber": 96,
+                    "endLineNumber": 97
+                  },
+                  {
+                    "startLineNumber": 98,
+                    "endLineNumber": 102
+                  },
+                  {
+                    "startLineNumber": 103,
+                    "endLineNumber": 104
+                  },
+                  {
+                    "startLineNumber": 105,
+                    "endLineNumber": 180
+                  },
+                  {
+                    "startLineNumber": 106,
+                    "endLineNumber": 109
+                  },
+                  {
+                    "startLineNumber": 110,
+                    "endLineNumber": 143
+                  },
+                  {
+                    "startLineNumber": 115,
+                    "endLineNumber": 117
+                  },
+                  {
+                    "startLineNumber": 125,
+                    "endLineNumber": 128
+                  },
+                  {
+                    "startLineNumber": 130,
+                    "endLineNumber": 131
+                  },
+                  {
+                    "startLineNumber": 139,
+                    "endLineNumber": 142
+                  },
+                  {
+                    "startLineNumber": 149,
+                    "endLineNumber": 152
+                  },
+                  {
+                    "startLineNumber": 153,
+                    "endLineNumber": 162
+                  },
+                  {
+                    "startLineNumber": 158,
+                    "endLineNumber": 160
+                  },
+                  {
+                    "startLineNumber": 164,
+                    "endLineNumber": 178
+                  }
+                ],
+                "lineCount": 180,
+                "provider": "syntax",
+                "foldedImports": false
+              },
+              "editor.contrib.wordHighlighter": false
+            }
+          }
+        },
+        "width": 424.6470681870502,
+        "height": 450,
+        "spacing": 0
+      }
+    ],
+    [
+      {
+        "widget": {
+          "constructionOptions": {
+            "factoryId": "code-editor-opener",
+            "options": {
+              "kind": "navigatable",
+              "uri": "file:///d%3A/a_RemoteRepo/GH.MuMeStar/Inc/MuMeStar.h",
+              "floatAreaId": "d1ea0e99-07e8-4bbd-80c7-8e28fa33c187"
+            }
+          },
+          "innerWidgetState": {
+            "cursorState": [
+              {
+                "inSelectionMode": false,
+                "selectionStart": {
+                  "lineNumber": 187,
+                  "column": 18
+                },
+                "position": {
+                  "lineNumber": 187,
+                  "column": 18
+                }
+              }
+            ],
+            "viewState": {
+              "scrollLeft": 0,
+              "firstPosition": {
+                "lineNumber": 1,
+                "column": 1
+              },
+              "firstPositionDeltaTop": 0
+            },
+            "contributionsState": {
+              "editor.contrib.folding": {
+                "collapsedRegions": [
+                  {
+                    "startLineNumber": 1,
+                    "endLineNumber": 10
+                  },
+                  {
+                    "startLineNumber": 8,
+                    "endLineNumber": 9
+                  },
+                  {
+                    "startLineNumber": 11,
+                    "endLineNumber": 95
+                  },
+                  {
+                    "startLineNumber": 57,
+                    "endLineNumber": 61
+                  },
+                  {
+                    "startLineNumber": 62,
+                    "endLineNumber": 65
+                  },
+                  {
+                    "startLineNumber": 67,
+                    "endLineNumber": 72
+                  },
+                  {
+                    "startLineNumber": 78,
+                    "endLineNumber": 83
+                  },
+                  {
+                    "startLineNumber": 84,
+                    "endLineNumber": 90
+                  },
+                  {
+                    "startLineNumber": 91,
+                    "endLineNumber": 94
+                  },
+                  {
+                    "startLineNumber": 96,
+                    "endLineNumber": 99
+                  },
+                  {
+                    "startLineNumber": 100,
+                    "endLineNumber": 102
+                  },
+                  {
+                    "startLineNumber": 103,
+                    "endLineNumber": 132
+                  },
+                  {
+                    "startLineNumber": 133,
+                    "endLineNumber": 186
+                  },
+                  {
+                    "startLineNumber": 151,
+                    "endLineNumber": 181
+                  },
+                  {
+                    "startLineNumber": 167,
+                    "endLineNumber": 171
+                  },
+                  {
+                    "startLineNumber": 187,
+                    "endLineNumber": 188
+                  }
+                ],
+                "lineCount": 188,
+                "provider": "syntax",
+                "foldedImports": false
+              },
+              "editor.contrib.wordHighlighter": false
+            }
+          }
+        },
+        "width": 669.9128368983514,
+        "height": 450,
+        "spacing": 0
+      }
+    ],
+    [
+      {
+        "widget": {
+          "constructionOptions": {
+            "factoryId": "code-editor-opener",
+            "options": {
+              "kind": "navigatable",
+              "uri": "file:///d%3A/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+              "floatAreaId": "d1ea0e99-07e8-4bbd-80c7-8e28fa33c187"
+            }
+          },
+          "innerWidgetState": {
+            "cursorState": [
+              {
+                "inSelectionMode": false,
+                "selectionStart": {
+                  "lineNumber": 961,
+                  "column": 1
+                },
+                "position": {
+                  "lineNumber": 961,
+                  "column": 1
+                }
+              }
+            ],
+            "viewState": {
+              "scrollLeft": 0,
+              "firstPosition": {
+                "lineNumber": 1,
+                "column": 1
+              },
+              "firstPositionDeltaTop": 0
+            },
+            "contributionsState": {
+              "editor.contrib.folding": {
+                "collapsedRegions": [
+                  {
+                    "startLineNumber": 1,
+                    "endLineNumber": 85
+                  },
+                  {
+                    "startLineNumber": 8,
+                    "endLineNumber": 11
+                  },
+                  {
+                    "startLineNumber": 19,
+                    "endLineNumber": 23
+                  },
+                  {
+                    "startLineNumber": 86,
+                    "endLineNumber": 614
+                  },
+                  {
+                    "startLineNumber": 88,
+                    "endLineNumber": 95
+                  },
+                  {
+                    "startLineNumber": 98,
+                    "endLineNumber": 105
+                  },
+                  {
+                    "startLineNumber": 107,
+                    "endLineNumber": 108
+                  },
+                  {
+                    "startLineNumber": 129,
+                    "endLineNumber": 133
+                  },
+                  {
+                    "startLineNumber": 134,
+                    "endLineNumber": 138
+                  },
+                  {
+                    "startLineNumber": 140,
+                    "endLineNumber": 144
+                  },
+                  {
+                    "startLineNumber": 145,
+                    "endLineNumber": 152
+                  },
+                  {
+                    "startLineNumber": 154,
+                    "endLineNumber": 156
+                  },
+                  {
+                    "startLineNumber": 158,
+                    "endLineNumber": 162
+                  },
+                  {
+                    "startLineNumber": 163,
+                    "endLineNumber": 170
+                  },
+                  {
+                    "startLineNumber": 172,
+                    "endLineNumber": 176
+                  },
+                  {
+                    "startLineNumber": 177,
+                    "endLineNumber": 208
+                  },
+                  {
+                    "startLineNumber": 178,
+                    "endLineNumber": 207
+                  },
+                  {
+                    "startLineNumber": 210,
+                    "endLineNumber": 212
+                  },
+                  {
+                    "startLineNumber": 214,
+                    "endLineNumber": 218
+                  },
+                  {
+                    "startLineNumber": 219,
+                    "endLineNumber": 227
+                  },
+                  {
+                    "startLineNumber": 229,
+                    "endLineNumber": 233
+                  },
+                  {
+                    "startLineNumber": 234,
+                    "endLineNumber": 268
+                  },
+                  {
+                    "startLineNumber": 235,
+                    "endLineNumber": 267
+                  },
+                  {
+                    "startLineNumber": 270,
+                    "endLineNumber": 274
+                  },
+                  {
+                    "startLineNumber": 275,
+                    "endLineNumber": 281
+                  },
+                  {
+                    "startLineNumber": 283,
+                    "endLineNumber": 287
+                  },
+                  {
+                    "startLineNumber": 288,
+                    "endLineNumber": 322
+                  },
+                  {
+                    "startLineNumber": 289,
+                    "endLineNumber": 321
+                  },
+                  {
+                    "startLineNumber": 324,
+                    "endLineNumber": 328
+                  },
+                  {
+                    "startLineNumber": 329,
+                    "endLineNumber": 336
+                  },
+                  {
+                    "startLineNumber": 338,
+                    "endLineNumber": 342
+                  },
+                  {
+                    "startLineNumber": 343,
+                    "endLineNumber": 377
+                  },
+                  {
+                    "startLineNumber": 344,
+                    "endLineNumber": 376
+                  },
+                  {
+                    "startLineNumber": 379,
+                    "endLineNumber": 383
+                  },
+                  {
+                    "startLineNumber": 384,
+                    "endLineNumber": 390
+                  },
+                  {
+                    "startLineNumber": 392,
+                    "endLineNumber": 396
+                  },
+                  {
+                    "startLineNumber": 397,
+                    "endLineNumber": 431
+                  },
+                  {
+                    "startLineNumber": 398,
+                    "endLineNumber": 430
+                  },
+                  {
+                    "startLineNumber": 433,
+                    "endLineNumber": 437
+                  },
+                  {
+                    "startLineNumber": 438,
+                    "endLineNumber": 444
+                  },
+                  {
+                    "startLineNumber": 446,
+                    "endLineNumber": 450
+                  },
+                  {
+                    "startLineNumber": 451,
+                    "endLineNumber": 485
+                  },
+                  {
+                    "startLineNumber": 452,
+                    "endLineNumber": 484
+                  },
+                  {
+                    "startLineNumber": 487,
+                    "endLineNumber": 490
+                  },
+                  {
+                    "startLineNumber": 491,
+                    "endLineNumber": 502
+                  },
+                  {
+                    "startLineNumber": 504,
+                    "endLineNumber": 507
+                  },
+                  {
+                    "startLineNumber": 508,
+                    "endLineNumber": 517
+                  },
+                  {
+                    "startLineNumber": 519,
+                    "endLineNumber": 523
+                  },
+                  {
+                    "startLineNumber": 524,
+                    "endLineNumber": 581
+                  },
+                  {
+                    "startLineNumber": 525,
+                    "endLineNumber": 571
+                  },
+                  {
+                    "startLineNumber": 527,
+                    "endLineNumber": 544
+                  },
+                  {
+                    "startLineNumber": 532,
+                    "endLineNumber": 535
+                  },
+                  {
+                    "startLineNumber": 536,
+                    "endLineNumber": 539
+                  },
+                  {
+                    "startLineNumber": 540,
+                    "endLineNumber": 543
+                  },
+                  {
+                    "startLineNumber": 578,
+                    "endLineNumber": 579
+                  },
+                  {
+                    "startLineNumber": 593,
+                    "endLineNumber": 596
+                  },
+                  {
+                    "startLineNumber": 597,
+                    "endLineNumber": 609
+                  },
+                  {
+                    "startLineNumber": 611,
+                    "endLineNumber": 614
+                  },
+                  {
+                    "startLineNumber": 615,
+                    "endLineNumber": 622
+                  },
+                  {
+                    "startLineNumber": 616,
+                    "endLineNumber": 617
+                  },
+                  {
+                    "startLineNumber": 623,
+                    "endLineNumber": 624
+                  },
+                  {
+                    "startLineNumber": 625,
+                    "endLineNumber": 626
+                  },
+                  {
+                    "startLineNumber": 627,
+                    "endLineNumber": 635
+                  },
+                  {
+                    "startLineNumber": 636,
+                    "endLineNumber": 637
+                  },
+                  {
+                    "startLineNumber": 639,
+                    "endLineNumber": 957
+                  },
+                  {
+                    "startLineNumber": 640,
+                    "endLineNumber": 643
+                  },
+                  {
+                    "startLineNumber": 644,
+                    "endLineNumber": 712
+                  },
+                  {
+                    "startLineNumber": 645,
+                    "endLineNumber": 647
+                  },
+                  {
+                    "startLineNumber": 656,
+                    "endLineNumber": 670
+                  },
+                  {
+                    "startLineNumber": 673,
+                    "endLineNumber": 676
+                  },
+                  {
+                    "startLineNumber": 677,
+                    "endLineNumber": 680
+                  },
+                  {
+                    "startLineNumber": 682,
+                    "endLineNumber": 703
+                  },
+                  {
+                    "startLineNumber": 683,
+                    "endLineNumber": 695
+                  },
+                  {
+                    "startLineNumber": 689,
+                    "endLineNumber": 691
+                  },
+                  {
+                    "startLineNumber": 692,
+                    "endLineNumber": 694
+                  },
+                  {
+                    "startLineNumber": 696,
+                    "endLineNumber": 702
+                  },
+                  {
+                    "startLineNumber": 699,
+                    "endLineNumber": 701
+                  },
+                  {
+                    "startLineNumber": 704,
+                    "endLineNumber": 710
+                  },
+                  {
+                    "startLineNumber": 707,
+                    "endLineNumber": 709
+                  },
+                  {
+                    "startLineNumber": 714,
+                    "endLineNumber": 724
+                  },
+                  {
+                    "startLineNumber": 725,
+                    "endLineNumber": 750
+                  },
+                  {
+                    "startLineNumber": 731,
+                    "endLineNumber": 735
+                  },
+                  {
+                    "startLineNumber": 733,
+                    "endLineNumber": 734
+                  },
+                  {
+                    "startLineNumber": 736,
+                    "endLineNumber": 737
+                  },
+                  {
+                    "startLineNumber": 744,
+                    "endLineNumber": 745
+                  },
+                  {
+                    "startLineNumber": 747,
+                    "endLineNumber": 748
+                  },
+                  {
+                    "startLineNumber": 752,
+                    "endLineNumber": 755
+                  },
+                  {
+                    "startLineNumber": 756,
+                    "endLineNumber": 764
+                  },
+                  {
+                    "startLineNumber": 766,
+                    "endLineNumber": 770
+                  },
+                  {
+                    "startLineNumber": 771,
+                    "endLineNumber": 780
+                  },
+                  {
+                    "startLineNumber": 774,
+                    "endLineNumber": 779
+                  },
+                  {
+                    "startLineNumber": 775,
+                    "endLineNumber": 777
+                  },
+                  {
+                    "startLineNumber": 782,
+                    "endLineNumber": 787
+                  },
+                  {
+                    "startLineNumber": 788,
+                    "endLineNumber": 797
+                  },
+                  {
+                    "startLineNumber": 789,
+                    "endLineNumber": 790
+                  },
+                  {
+                    "startLineNumber": 792,
+                    "endLineNumber": 795
+                  },
+                  {
+                    "startLineNumber": 799,
+                    "endLineNumber": 802
+                  },
+                  {
+                    "startLineNumber": 803,
+                    "endLineNumber": 813
+                  },
+                  {
+                    "startLineNumber": 818,
+                    "endLineNumber": 821
+                  },
+                  {
+                    "startLineNumber": 822,
+                    "endLineNumber": 840
+                  },
+                  {
+                    "startLineNumber": 830,
+                    "endLineNumber": 838
+                  },
+                  {
+                    "startLineNumber": 831,
+                    "endLineNumber": 837
+                  },
+                  {
+                    "startLineNumber": 842,
+                    "endLineNumber": 845
+                  },
+                  {
+                    "startLineNumber": 846,
+                    "endLineNumber": 867
+                  },
+                  {
+                    "startLineNumber": 847,
+                    "endLineNumber": 852
+                  },
+                  {
+                    "startLineNumber": 853,
+                    "endLineNumber": 860
+                  },
+                  {
+                    "startLineNumber": 869,
+                    "endLineNumber": 872
+                  },
+                  {
+                    "startLineNumber": 873,
+                    "endLineNumber": 880
+                  },
+                  {
+                    "startLineNumber": 875,
+                    "endLineNumber": 879
+                  },
+                  {
+                    "startLineNumber": 882,
+                    "endLineNumber": 899
+                  },
+                  {
+                    "startLineNumber": 886,
+                    "endLineNumber": 889
+                  },
+                  {
+                    "startLineNumber": 890,
+                    "endLineNumber": 898
+                  },
+                  {
+                    "startLineNumber": 891,
+                    "endLineNumber": 894
+                  },
+                  {
+                    "startLineNumber": 895,
+                    "endLineNumber": 897
+                  },
+                  {
+                    "startLineNumber": 901,
+                    "endLineNumber": 919
+                  },
+                  {
+                    "startLineNumber": 905,
+                    "endLineNumber": 908
+                  },
+                  {
+                    "startLineNumber": 909,
+                    "endLineNumber": 918
+                  },
+                  {
+                    "startLineNumber": 910,
+                    "endLineNumber": 914
+                  },
+                  {
+                    "startLineNumber": 911,
+                    "endLineNumber": 912
+                  },
+                  {
+                    "startLineNumber": 915,
+                    "endLineNumber": 917
+                  },
+                  {
+                    "startLineNumber": 921,
+                    "endLineNumber": 934
+                  },
+                  {
+                    "startLineNumber": 923,
+                    "endLineNumber": 925
+                  },
+                  {
+                    "startLineNumber": 926,
+                    "endLineNumber": 933
+                  },
+                  {
+                    "startLineNumber": 937,
+                    "endLineNumber": 941
+                  },
+                  {
+                    "startLineNumber": 942,
+                    "endLineNumber": 944
+                  },
+                  {
+                    "startLineNumber": 946,
+                    "endLineNumber": 949
+                  },
+                  {
+                    "startLineNumber": 950,
+                    "endLineNumber": 952
+                  },
+                  {
+                    "startLineNumber": 954,
+                    "endLineNumber": 957
+                  },
+                  {
+                    "startLineNumber": 959,
+                    "endLineNumber": 960
+                  },
+                  {
+                    "startLineNumber": 962,
+                    "endLineNumber": 966
+                  },
+                  {
+                    "startLineNumber": 964,
+                    "endLineNumber": 965
+                  },
+                  {
+                    "startLineNumber": 999,
+                    "endLineNumber": 1002
+                  },
+                  {
+                    "startLineNumber": 1003,
+                    "endLineNumber": 1029
+                  },
+                  {
+                    "startLineNumber": 1031,
+                    "endLineNumber": 1034
+                  },
+                  {
+                    "startLineNumber": 1035,
+                    "endLineNumber": 1042
+                  },
+                  {
+                    "startLineNumber": 1036,
+                    "endLineNumber": 1041
+                  },
+                  {
+                    "startLineNumber": 1044,
+                    "endLineNumber": 1047
+                  },
+                  {
+                    "startLineNumber": 1048,
+                    "endLineNumber": 1055
+                  },
+                  {
+                    "startLineNumber": 1049,
+                    "endLineNumber": 1053
+                  },
+                  {
+                    "startLineNumber": 1057,
+                    "endLineNumber": 1060
+                  },
+                  {
+                    "startLineNumber": 1061,
+                    "endLineNumber": 1119
+                  },
+                  {
+                    "startLineNumber": 1062,
+                    "endLineNumber": 1083
+                  },
+                  {
+                    "startLineNumber": 1087,
+                    "endLineNumber": 1103
+                  },
+                  {
+                    "startLineNumber": 1104,
+                    "endLineNumber": 1118
+                  },
+                  {
+                    "startLineNumber": 1115,
+                    "endLineNumber": 1235
+                  },
+                  {
+                    "startLineNumber": 1121,
+                    "endLineNumber": 1124
+                  },
+                  {
+                    "startLineNumber": 1125,
+                    "endLineNumber": 1132
+                  },
+                  {
+                    "startLineNumber": 1126,
+                    "endLineNumber": 1130
+                  },
+                  {
+                    "startLineNumber": 1134,
+                    "endLineNumber": 1137
+                  },
+                  {
+                    "startLineNumber": 1138,
+                    "endLineNumber": 1146
+                  },
+                  {
+                    "startLineNumber": 1139,
+                    "endLineNumber": 1145
+                  },
+                  {
+                    "startLineNumber": 1148,
+                    "endLineNumber": 1151
+                  },
+                  {
+                    "startLineNumber": 1152,
+                    "endLineNumber": 1176
+                  },
+                  {
+                    "startLineNumber": 1153,
+                    "endLineNumber": 1171
+                  },
+                  {
+                    "startLineNumber": 1156,
+                    "endLineNumber": 1159
+                  },
+                  {
+                    "startLineNumber": 1160,
+                    "endLineNumber": 1163
+                  },
+                  {
+                    "startLineNumber": 1172,
+                    "endLineNumber": 1175
+                  },
+                  {
+                    "startLineNumber": 1178,
+                    "endLineNumber": 1181
+                  },
+                  {
+                    "startLineNumber": 1182,
+                    "endLineNumber": 1196
+                  },
+                  {
+                    "startLineNumber": 1183,
+                    "endLineNumber": 1195
+                  },
+                  {
+                    "startLineNumber": 1200,
+                    "endLineNumber": 1202
+                  },
+                  {
+                    "startLineNumber": 1205,
+                    "endLineNumber": 1207
+                  },
+                  {
+                    "startLineNumber": 1210,
+                    "endLineNumber": 1212
+                  },
+                  {
+                    "startLineNumber": 1215,
+                    "endLineNumber": 1217
+                  },
+                  {
+                    "startLineNumber": 1221,
+                    "endLineNumber": 1223
+                  },
+                  {
+                    "startLineNumber": 1227,
+                    "endLineNumber": 1229
+                  }
+                ],
+                "lineCount": 1239,
+                "provider": "syntax",
+                "foldedImports": false
+              },
+              "editor.contrib.wordHighlighter": false
+            }
+          }
+        },
+        "width": 745.2773730262372,
+        "height": 450,
+        "spacing": 0
+      }
+    ]
+  ],
+  "_widths": [
+    424.6470681870502,
+    669.9128368983514,
+    745.2773730262372
+  ],
+  "_modelData": {
+    "connections": [
+      {
+        "startWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/main.c",
+          "lineNumber": 98,
+          "startColumn": 5,
+          "endColumn": 17,
+          "word": "Menu_Handler",
+          "x": 109.99131557370973,
+          "y": 116.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 94
+        },
+        "endWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Inc/MuMeStar.h",
+          "lineNumber": 133,
+          "startColumn": 6,
+          "endColumn": 18,
+          "endLineNumber": 133,
+          "word": "",
+          "x": 598.6423220259051,
+          "y": 154.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 94
+        },
+        "id": "43c8ffcc-da9d-4867-bb91-f4918fbb91d3"
+      },
+      {
+        "startWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Inc/MuMeStar.h",
+          "lineNumber": 133,
+          "startColumn": 6,
+          "endColumn": 18,
+          "word": "Menu_Handler",
+          "x": 598.6423220259051,
+          "y": 154.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 94
+        },
+        "endWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+          "lineNumber": 615,
+          "startColumn": 6,
+          "endColumn": 18,
+          "endLineNumber": 615,
+          "word": "",
+          "x": 1332.553817382399,
+          "y": 116.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 94
+        },
+        "id": "e2acb68a-0de2-4fc9-9224-57c5367fda09"
+      },
+      {
+        "startWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+          "lineNumber": 627,
+          "startColumn": 17,
+          "endColumn": 33,
+          "word": "KEY_Loop_pressed",
+          "x": 1417.553817382399,
+          "y": 173.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 124
+        },
+        "endWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+          "lineNumber": 958,
+          "startColumn": 6,
+          "endColumn": 22,
+          "endLineNumber": 958,
+          "word": "",
+          "x": 1331.553817382399,
+          "y": 249.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 124
+        },
+        "id": "dc977c97-1666-40b2-b97c-9415eab13c56"
+      },
+      {
+        "startWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+          "lineNumber": 959,
+          "startColumn": 19,
+          "endColumn": 23,
+          "word": "func",
+          "x": 1435.553817382399,
+          "y": 268.98263648854135,
+          "hide": false,
+          "height": 19,
+          "width": 31
+        },
+        "endWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Inc/MuMeStar.h",
+          "lineNumber": 100,
+          "startColumn": 10,
+          "endColumn": 14,
+          "endLineNumber": 100,
+          "word": "",
+          "x": 629.6423220259051,
+          "y": 116.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 32
+        },
+        "id": "c4b34fbd-f006-40da-a156-143954ecfa63"
+      },
+      {
+        "startWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+          "lineNumber": 959,
+          "startColumn": 5,
+          "endColumn": 17,
+          "word": "Menu_Pointer",
+          "x": 1324.553817382399,
+          "y": 268.98263648854135,
+          "hide": false,
+          "height": 19,
+          "width": 94
+        },
+        "endWord": {
+          "uri": "/d:/a_RemoteRepo/GH.MuMeStar/Src/MuMeStar.c",
+          "lineNumber": 86,
+          "startColumn": 22,
+          "endColumn": 34,
+          "endLineNumber": 86,
+          "word": "",
+          "x": 1456.553817382399,
+          "y": 78.98263648854137,
+          "hide": false,
+          "height": 19,
+          "width": 93
+        },
+        "id": "03699dc1-d45b-49a5-b449-e3e2bda82e27",
+        "dragC2x": -8.86724510735803,
+        "dragC2y": 45.98067028962794
+      }
+    ],
+    "annotations": [],
+    "highlights": []
+  }
+}
